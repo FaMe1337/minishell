@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"ammintrin.h": "c",
+		"string.h": "c",
+		"dirent.h": "c"
+	}
+}
