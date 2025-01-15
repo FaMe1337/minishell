@@ -2,13 +2,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char *go_up_dir(char *str)
+static char *go_up_directory(char *str)
 {
 	int n = 0;
+	char *res;
 	while (str[n])
 		n++;
 	while (str[n] != '/')
-	return (str)
+	{
+
+	}
+	return (str);
 }
 
 int main(void)
