@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/20 16:30:29 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:33:29 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ void	show_starter(char **env, t_data *data)
 				//todo executador
 			//se falhar sair
 		}
-		//limpar todo
+		//limpar tudo que foi usado para o parsing e execuçao
 	}
+	//limpar tudo que resta
 }
 
 int	main(int ac, char **av, char **env)

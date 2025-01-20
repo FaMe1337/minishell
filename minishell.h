@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/20 16:11:52 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:56:51 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	show_starter(char **env, t_data *data);
 char *fetch_home(void);
 char *get_till(void);
 void	init_data(char **env, t_data *data);
+
+//parsing
+char **ft_splits(char *str);
 
 
 #endif
