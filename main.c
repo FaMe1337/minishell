@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/20 16:33:29 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:20:56 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	show_starter(char **env, t_data *data)
 		else
 		{
 			add_history(data->input);
-			//if (input_parser())
+			if (input_parser(data))
 				//todo parser
 				//todo executador
 			//se falhar sair
