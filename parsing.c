@@ -6,14 +6,14 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/16 13:07:23 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:27:02 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <strings.h>
 
-void input_parser()
+int input_parser()
 {
-	
+
 }
