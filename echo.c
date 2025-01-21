@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built-ins.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 17:27:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/21 11:35:47 by toferrei         ###   ########.fr       */
+/*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
+/*   Updated: 2025/01/21 11:51:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
+#include "built-ins.h"
 
-# define BUILTINS_H
+static bool	check_flag(char *str)
+{
+	int	i;
 
-# include <stdio.h>
-# include <unistd.h>
-# include <string.h>
-#include <stdbool.h>
+	if (!str | str[0] != '-' | str[1] != 'n')
+		return (false);
+	i = 2;
+	while (str[i] == 'n');
+		i++;
+	return (str[i] == '\0');
+}
 
-
-
-
-
-
-
-#endif
+int echo(char **strstr)
+{
+	
+}
