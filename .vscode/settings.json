@@ -1,5 +1,13 @@
 {
 	"files.associations": {
+<<<<<<< HEAD
 		"minishell.h": "c"
 	}
 }
+=======
+		"ammintrin.h": "c",
+		"string.h": "c",
+		"dirent.h": "c"
+	}
+}
+>>>>>>> tomaz
