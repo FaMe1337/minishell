@@ -6,14 +6,11 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/22 16:54:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:14:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-"\""
-
 
 void	show_starter(char **env, t_data *data)
 {
@@ -29,10 +26,10 @@ void	show_starter(char **env, t_data *data)
 		else
 		{
 			add_history(data->input);
-			/* if (input_parser(data)) */
-				//todo parser
-				//todo executador
-			//se falhar sair
+			if (input_parser(data) == 1)
+				printf("%s\n", data->input);
+			else
+				exit(1);
 		}
 		//limpar tudo que foi usado para o parsing e execuçao
 	}

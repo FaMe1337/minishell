@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/22 16:43:23 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:38:37 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,18 @@ char **ft_splits(char *str)
 	return (result);
 }
 
+/* int main (void)
+{
+	char *str1 = " "" "" "" "" "" ";
+	char **str;
+	int i = 0;
+	str = ft_splits(str1);
+	if (!str || !str[i][0])
+	{
+		free(str);
+		return (1);
+	}
+	while (str[i])
+		printf("%s\n", str[i++]);
+
+} */
