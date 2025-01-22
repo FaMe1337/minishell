@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/20 17:07:18 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:30:09 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 	char	*home; //allocado
 	char	*pwd; //allocado
 	char	*pwd_with_till; //allocado
+	char	**env; //allocado
 	//t_token		*token; //allocado
 }t_data;
 

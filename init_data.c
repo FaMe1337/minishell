@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/20 16:19:59 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:17:46 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_data(char **env, t_data *data)
 	data->pwd_with_till = get_till();
 	//data->token = NULL;
 }
+
 
 char *fetch_home(void)
 {
