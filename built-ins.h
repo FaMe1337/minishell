@@ -19,7 +19,10 @@
 # include <string.h>
 #include <stdbool.h>
 
+struct s_data
+{
 
+}	t_data
 
 
 
