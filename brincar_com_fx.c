@@ -41,15 +41,15 @@ void ls(char *path)
 
 int main(void)
 {
-	char arr[1000];
+	char *arr;
 	char *new_arr;
 	int i = 0;
 	
-
-	printf("\n%s\n", getcwd(arr, 1000));
+	arr = getcwd(NULL, 0);
+	printf("\n%s\n", getcwd(arr, 0));
 	new_arr = go_up_directory(arr);
 	printf("\n%s\n", new_arr);
 	chdir(new_arr);
-	printf("\n%s\n", getcwd(arr, 1000));
+	printf("\n%s\n", getcwd(arr, 0));
 	ls(arr);
 }
