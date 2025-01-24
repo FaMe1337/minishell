@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/22 20:44:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:36:09 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int input_parser(t_data *data)
 		perror("Wrong input\n");
 		return (0);
 	}
-	inputs = ft_splits(data->input); //pensar nisto amanha
+	inputs = ft_splits(data->input);
 	//tokenizar o que recebo
-	first_tokenizor(data, inputs);
+	first_tokenazor(data, inputs);
 	if (!data->token)
 		return (0);
+	//primeira tokenizaçao feita, ir para segunda
 	return (1);
 }
 

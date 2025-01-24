@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:05:29 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/22 20:24:05 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:33:51 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,61 @@ static int get_type(char *str)
 {
 	if (!str || !str[0])
 		return (-1);
-	else if (str[0] == '>' && str[1])
+	else if (str[0] == '>' && !str[1])
 		return (REDIR_OUT);
-	else if (str[0] == '>' && str[1] == '>' && str[2])
+	else if (str[0] == '>' && str[1] == '>' && !str[2])
 		return (REDIR_APPEND);
-	else if (str[0] == '<' && str[1])
+	else if (str[0] == '<' && !str[1])
 		return (REDIR_IN);
-	else if (str[0] == '<' && str[1] == '<' && str[2])
+	else if (str[0] == '<' && str[1] == '<' && !str[2])
 		return (HEREDOC);
-	else if (str[0] == '|' && str[1])
+	else if (str[0] == '|')
 		return (PIPE);
 	else
 		return (WORD);
+}
+
+static void lst_add_back(t_token *token, t_token *add, char *str)
+{
+	t_token *current;
+
+	current = token;
+	while (current->next)
+		current = current->next;
+	add->value = malloc(ft_strlen(str) + 1);
+	ft_strlcpy(add->value, str, ft_strlen(str) + 1);
+	add->token_type = get_type(str);
+	add->index = current->index + 1;
+	current->next = add;
+	add->previous = current;
+	add->next = NULL;
+}
+
+static t_token *add_tokens(t_token *token, char *str)
+{
+	t_token *add;
+
+	add = malloc(sizeof(t_token));
+	if (!add)
+		return (NULL);
+	if (token->next == NULL)
+	{
+		token->next = add;
+		add->previous = token;
+		add->value = malloc(ft_strlen(str) + 1);
+		if (!add->value)
+		{
+			free(add);
+			return (NULL);
+		}
+		ft_strlcpy(add->value, str, ft_strlen(str) + 1);
+		add->token_type = get_type(str);
+		add->index = 1;
+		add->next = NULL;
+	}
+	else
+		lst_add_back(token, add, str);
+	return (token);
 }
 
 static t_token *init_token(char *str)
@@ -48,37 +91,8 @@ static t_token *init_token(char *str)
 	token->index = 0;
 	token->next = NULL;
 	token->previous = NULL;
-}
-
-static t_token *add_tokens(t_token *token)
-{
-	t_token *add;
-
-	add = malloc(sizeof(t_token));
-	if (!add)
-		return (NULL);
-	if (token->next = NULL)
-	{
-		token->next = add;
-	}
-}
-
-static void free_all(char **split, t_token *token)
-{
-	int	i;
-	t_token *temp;
-
-	i = 0;
-	while (split[i])
-	 free(split[i++]);
-	free(split);
-	temp = token;
-	while (token)
-	{
-		token = token->next;
-		free(temp);
-		temp = token;
-	}
+	free(str);
+	return (token);
 }
 
 t_token *first_tokenazor(t_data *data, char **inputs)
@@ -97,13 +111,14 @@ t_token *first_tokenazor(t_data *data, char **inputs)
 		return (NULL);
 	while (inputs[++i])
 	{
-		if (add_tokens(token) == NULL)
+		if (add_tokens(token, inputs[i]) == NULL)
 		{
-			free_all(inputs + i, token);
+			free_split_and_token(inputs + i, token);
 			return (NULL);
 		}
 		free(inputs[i]);
 	}
 	free(inputs);
-	return (token);
+	data->token = token;
+	return (data->token);
 }

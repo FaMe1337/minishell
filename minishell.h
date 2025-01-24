@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/22 20:44:14 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:45:54 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 # include "Libft/libft.h"
 
 //todo
+typedef struct s_token{
+	int		token_type;
+	int		index;
+	char	*value; //allocado
+	struct s_token *next;
+	struct s_token *previous;
+}		t_token;
+
+//todo
 typedef struct s_data{
 	char	*input;
 	char	*home; //allocado
@@ -32,15 +41,6 @@ typedef struct s_data{
 	int		exit_status;
 	t_token		*token; //allocado
 }		t_data;
-
-//todo
-typedef struct s_token{
-	int		token_type;
-	int		index;
-	char	*value;
-	struct s_token *next;
-	struct s_token *previous;
-}		t_token;
 
 typedef enum {
 	REDIR_IN ,
@@ -55,6 +55,13 @@ typedef enum {
 
 //start
 void	show_starter(char **env, t_data *data);
+
+//error and cleaning
+void	free_all_data(t_data *data);
+void	free_split_and_token(char **split, t_token *token);
+void	free_stuff(t_data *data);
+
+
 
 //init data
 char *fetch_home(void);
