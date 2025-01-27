@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/21 12:06:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:05:39 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,27 @@ static bool	check_flag(char *str)
 	return (str[i] == '\0');
 }
 
-int echo(char **strstr)
+int echo(char **strstr, t_list *data)
 {
 	bool	flag;
 	int		i;
 
 	flag = false;
-	
+	if (strstr[1] && check_flag(strstr[i]))
+	{
+		flag = true;
+		i++;
+	}
+	while ((strstr[i] && check_flag(strstr[i])))
+		i++;
+	while (strstr[i])
+	{
+		printf("%s", strstr[i]);
+		if (strstr[i + 1] != NULL && ft_strlen(strstr[i]))
+			write (1, " ", 1);
+		i++;
+	}
+	if (!flag)
+		write (1, "\n", 1);
+	data->exit_status = 0;
 }
