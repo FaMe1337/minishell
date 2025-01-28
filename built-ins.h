@@ -18,10 +18,12 @@
 # include <unistd.h>
 # include <string.h>
 #include <stdbool.h>
+#include <limits.h>
 
 struct	s_list
 {
 	size_t exit_code;
+	char *pwd;
 }	t_list;
 
 

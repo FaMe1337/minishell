@@ -12,9 +12,35 @@
 
 #include "built-ins.h"
 
-/*
+
+
+char *get_var_value(t_env *env, char *var_name)
+
+
+static void	update_pwd(t_data *data)
+{
+	char	*new_pwd;
+
+	new_pwd = NULL;
+	new_pwd = getcwd(NULL, 0);
+	if (new_pwd)
+	{
+		free(data->pwd);
+		data->pwd = new_pwd;
+	}
+}
+
 int change_directory(char **args, int fd, lista *data)
 {
+	
+
+
+	if (!args[1] && data->home)
+
+
+
+
+
 	check for directory
 		if no directory
 			check for HOME variable
@@ -34,6 +60,11 @@ int change_directory(char **args, int fd, lista *data)
 				if  ( not / ) or .
 					concatenate current path to beginning of "directory"
 					if .
+
+	
+	update_pwd;
+	export(); // to do
+	data->exit_code = 0;
 
 }
 

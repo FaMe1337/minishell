@@ -20,7 +20,7 @@ void pwd(t_list *data)
 	dir = getcwd(NULL, 0);
 	if (!dir)
 	{
-		dir = // duplicate string of global variable (data->nev)
+		dir = data->
 	}
 	if (dir != NULL)
 	{
