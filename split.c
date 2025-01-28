@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/24 16:07:25 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:14:47 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ static int	fill(char **res, char const *s)
 {
 	int	i;
 	int	len;
+	bool quote;
+	char const *start;
 
 	i = 0;
 	while (*s)
 	{
 		len = 0;
-		while (*s <= 32 && *s)
+		while (*s && *s <= 32)
 			s++;
-		while (*s > 33 && *s)
+		start = s;
+		while (*s && (*s > 32 || (*s <= 32 && in_quotes(start, len))))
 		{
 			len++;
 			s++;
@@ -63,9 +66,8 @@ static int	fill(char **res, char const *s)
 		{
 			if (safe_malloc(res, i, len + 1))
 				return (1);
-			ft_strlcpy(res[i], s - len, len + 1);
+			ft_strlcpy(res[i++], s - len, len + 1);
 		}
-		i++;
 	}
 	return (0);
 }
@@ -73,20 +75,20 @@ static int	fill(char **res, char const *s)
 static int	word_counter(char const *s)
 {
 	int	count;
-	int	x;
+	int i;
 
-	x = 0;
+	i = 0;
 	count = 0;
-	while (*s)
+	while (s[i])
 	{
-		if (*s > 33 && x == 0)
+		if (s[i] > 32 || (s[i] <= 32 && in_quotes(s, i)))
 		{
-			x = 1;
 			count++;
+			while (s[i] && (s[i] > 32 || (s[i] <= 32 && in_quotes(s, i))))
+				i++;
 		}
-		else if (*s <= 32)
-			x = 0;
-		s++;
+		else if (s[i] <= 32 && !in_quotes(s, i))
+			i++;
 	}
 	return (count);
 }
@@ -106,16 +108,3 @@ char	**ft_splits(char *s)
 	return (res);
 }
 
-/* int main(void)
-{
-	int i = 0;
-	char **res = ft_splits(" "" "" "" "" ");
-
-	while (res[i] != NULL)
-	{
-		printf("%s\n" , res[i]);
-		free(res[i++]);
-	}
-	free(res);
-
-} */

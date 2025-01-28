@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/24 18:45:54 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:52:00 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	init_data(char **env, t_data *data);
 //parsing
 int input_parser(t_data *data);
 bool	check_for_open_quotes(char *str);
+bool	in_quotes(char const *str, int index);
 char **ft_splits(char *str);
+
 
 //token
 t_token *first_tokenazor(t_data *data, char **inputs);
