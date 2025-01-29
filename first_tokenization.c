@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:05:29 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/24 18:33:51 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:44:02 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_token *add_tokens(t_token *token, char *str)
 	return (token);
 }
 
-static t_token *init_token(char *str)
+t_token *init_token(char *str)
 {
 	t_token	*token;
 

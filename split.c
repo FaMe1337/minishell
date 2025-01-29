@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/28 23:14:47 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:13:17 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,3 @@ char	**ft_splits(char *s)
 		return (NULL);
 	return (res);
 }
-
