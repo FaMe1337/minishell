@@ -17,19 +17,21 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
-#include <stdbool.h>
-#include <limits.h>
+# include <stdbool.h>
+# include <limits.h>
+# include "Libft/libft.h"
 
-struct	s_list
+typedef struct	s_data
 {
 	size_t exit_code;
+	t_env *env;
 	char *pwd;
-}	t_list;
+	char *home;
+}	t_data;
 
-
-
-
-
-
+typedef struct s_env
+{
+	/* data */
+}	t_env;
 
 #endif

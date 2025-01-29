@@ -35,16 +35,19 @@ static void	update_pwd(t_data *data)
 	}
 }
 
-int change_directory(char **args, int fd, lista *data)
+int change_directory(char **args, int fd, t_data *data)
 {
-	
+	char curpath[4096]; //change to PATH_MAX macro
 
 
 	if (!args[1] && !get_var_value(data->env, "HOME"))
-		perror("cd : "); //to do
-	if (!args[1] && data->home)
+		perror("cd : erro de nao have home"); //to do
+		return ;
+	if ((!args[1] && data->home) ||
+		!ft_strncmp(args[1], "~", ft_strlen(args[1])) ||
+		!ft_strncmp(args[1], "~/", ft_strlen(args[1])))
 	{
-
+		curpath
 	}
 	
 
