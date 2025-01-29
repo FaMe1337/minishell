@@ -12,10 +12,15 @@
 
 #include "built-ins.h"
 
+char *check_for_variable(t_env *env, char *var_name)
+{
 
+}
 
 char *get_var_value(t_env *env, char *var_name)
-
+{
+	
+}
 
 static void	update_pwd(t_data *data)
 {
@@ -35,7 +40,13 @@ int change_directory(char **args, int fd, lista *data)
 	
 
 
+	if (!args[1] && !get_var_value(data->env, "HOME"))
+		perror("cd : "); //to do
 	if (!args[1] && data->home)
+	{
+
+	}
+	
 
 
 
