@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/27 15:05:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:29:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built-ins.h"
+#include "builtins.h"
 
 static bool	check_flag(char *str)
 {
@@ -46,5 +46,5 @@ int echo(char **strstr, t_list *data)
 	}
 	if (!flag)
 		write (1, "\n", 1);
-	data->exit_status = 0;
+	data->exit_code = 0;
 }

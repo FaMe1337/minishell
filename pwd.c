@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/27 15:19:56 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:29:39 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built-ins.h"
+#include "builtins.h"
 
 void pwd(t_list *data)
 {
