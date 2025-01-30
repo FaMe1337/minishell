@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/30 18:31:05 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:49:37 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,6 @@ static char *has_operator(char *str)
 			return (">");
 		if (str[i] == '<')
 			return ("<");
-		i++;
-	}
-	return (NULL);
-}
-
-
-static char	*has_expand(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$' && str[i + 1] != ' ')
-			return(ft_strdup("$"));
 		i++;
 	}
 	return (NULL);
