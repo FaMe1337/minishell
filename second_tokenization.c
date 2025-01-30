@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/30 18:49:37 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:16:49 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static t_token *extract_word(t_token *token, char *operator)
         i++;
 	new_value = ft_substr(token->value, 0, i);
 	new = init_token(new_value);
-	new_value = ft_substr(token->value, i, ft_strlen(token->value) -  i);
+	new_value = ft_substr(token->value, i,
+		ft_strlen(token->value) -  i);
 	new_after = init_token(new_value);
 	if (!new && !new_after)
 		return (NULL);
