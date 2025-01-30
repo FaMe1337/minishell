@@ -6,13 +6,13 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/21 11:15:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:25:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built-ins.h"
 
-char *check_for_variable(t_env *env, char *var_name)
+/* char *check_for_variable(t_env *env, char *var_name)
 {
 
 }
@@ -20,7 +20,7 @@ char *check_for_variable(t_env *env, char *var_name)
 char *get_var_value(t_env *env, char *var_name)
 {
 	
-}
+} */
 
 static void	update_pwd(t_data *data)
 {
@@ -39,19 +39,24 @@ int change_directory(char **args, int fd, t_data *data)
 {
 	char curpath[4096]; //change to PATH_MAX macro
 
-
 	if (!args[1] && !get_var_value(data->env, "HOME"))
+	{
 		perror("cd : erro de nao have home"); //to do
 		return ;
-	if ((!args[1] && data->home) ||
+	}
+	else if((!args[1] && data->home) ||
 		!ft_strncmp(args[1], "~", ft_strlen(args[1])) ||
 		!ft_strncmp(args[1], "~/", ft_strlen(args[1])))
 	{
-		curpath
+		ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
 	}
-	
+	else if(!ft_strncmp(args[1], "-", ft_strlen("-")))
+	{
+		if(!chdir())
+	}
+	ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
 
-
+}
 
 
 
