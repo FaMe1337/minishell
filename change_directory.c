@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/30 17:40:22 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:40:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,96 @@
 }
 */
 
+void	ft_print_list(t_env **lst)
+{
+	t_env *temp;
+
+	temp = *lst;
+	if (lst == NULL)
+	{
+		printf("Tried printing empty list\n");
+		return ;
+	}
+	while (temp != NULL)
+	{
+		printf("%s=", temp->name);
+		printf("%s\n", temp->value);
+		temp = temp->next;
+	}
+}
+
+t_env	*ft_modifiedlstlast(t_env *lst)
+{
+	t_env	*temp;
+
+	if (!lst)
+		return (NULL);
+	temp = lst;
+	while (temp->next)
+		temp = temp->next;
+	return (temp);
+}
+
+t_env	*ft_newnode(char *content, char *value)
+{
+	t_env	*elem;
+
+	elem = malloc(sizeof * elem);
+	if (!elem)
+		return (NULL);
+	elem->name = content;
+	elem->value = value;
+	elem->next = NULL;
+	return (elem);
+}
+
+void	ft_modified_lstadd_back(t_env **lst, t_env *new)
+{
+	t_env	*last;
+
+	last = ft_modifiedlstlast(*lst);
+	if (!last)
+	{
+		*lst = new;
+		return ;
+	}
+	last->next = new;
+}
+
+size_t size_until_symbol(char * str, char c)
+{
+	int n = 0;
+
+	if (!str || !c)
+		return (0);
+	while (str[n] && str[n] != c)
+	{
+		n++;
+	}
+	return (n);
+}
+
 void	env_to_list(t_data *data, char **env)
 {
+	t_env *temp;
+	char *temp1;
+	// char *temp2;
+
+	int n = 0;
 	data->env = malloc(sizeof * data->env);
 	*data->env = NULL;
+	// temp2 = malloc (1100);
+	while (env[n])
+	{
+		temp1 = malloc (1100);
+		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
+		printf("%s\n", temp1);
+		temp = ft_newnode(temp1, "55555");
+		ft_modified_lstadd_back(data->env, temp);
+		n++;
+		free (temp1);
+	}
+	// free (temp2);
 }
 
 char *get_var_value(t_env *env, char *var_name)
@@ -78,7 +164,7 @@ void change_directory(char **args, int fd, t_data *data)
 	{
 		ft_strlcat(curpath, data->pwd, ft_strlen(data->pwd) + 1);
 	}
-	printf("%s\n", curpath);
+	printf("olaolaola: %s\n", curpath);
 	// export(); // to do
 	// data->exit_code = 0;
 
@@ -99,11 +185,18 @@ char **args_creator(char **av)
 int	main(int ac, char **av, char **env)
 {
 	char **args;
-	t_data *data;
+	t_data data;
 
+	if (ac != 3)
+	{
+		printf( "deu cagada, o bjoetivo e tipo have uma string ./a.out cd [qualquer string aqui]");
+		return 0;
+	}
 	args = args_creator(av);
+	write (1, "ola\n", 5);
 	int n = 0;
 	env_to_list(&data, env);
+	ft_print_list(data.env);
 	change_directory(args, 1, &data);
 
 
