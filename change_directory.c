@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/30 18:40:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:44:09 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void change_directory(char **args, int fd, t_data *data)
 	if (!args[1] && !get_var_value(*(data->env), "HOME"))
 	{
 		perror("cd : erro de nao have home"); //to do (write)
+		// data->exit_code = ; to do
 		return ;
 	}
 	else if((!args[1] && data->home) || !ft_strncmp(args[1], "~", ft_strlen(args[1])) || !ft_strncmp(args[1], "~/", ft_strlen("~/")))
@@ -155,6 +156,7 @@ void change_directory(char **args, int fd, t_data *data)
 		if (!get_var_value(*(data->env), "OLDPWD")) // to do
 		{
 			perror("cd : erro de nao haver OLDPWD");
+			// data->exit_code = ; to do
 			return ;
 		}
 		else
