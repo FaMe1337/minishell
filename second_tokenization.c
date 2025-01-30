@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/30 18:30:25 by famendes         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:31:05 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static void	*reasign_tokens(t_token **token, char *operator)
 }
 
 void	second_tokenazor(t_token *token)
-{// o maximo que consigo ter numa str sao 3 operators e posso ter $ no meio
+{// o maximo que consigo ter numa str sao 3 operators
 	int	i;
 	char *operator;
 	char *expand;
