@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/31 02:43:43 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:04:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,12 @@ size_t size_until_symbol(char * str, char c)
 
 char *get_value_for_list(char * str)
 {
-	while (*str != '=')
-		str++;
-	return (str);
+	int n = 0;
+
+
+	while (str[n] != '\0' && str[n - 1] != '=')
+		n++;
+	return (&str[n]);
 }
 
 void	env_to_list(t_data *data, char **env)
@@ -105,15 +108,15 @@ void	env_to_list(t_data *data, char **env)
 	*data->env = NULL;
 	while (env[n])
 	{
-		temp1 = malloc (ft_strlen(env[n] + 1));
+		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n] + 1));
 		printf("%ld\n", size_until_symbol(env[n], '=') + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
 		printf("%s\n", temp1);
 		temp = ft_newnode(temp1, get_value_for_list(env[n]));
 		ft_modified_lstadd_back(data->env, temp);
 		n++;
-		free (temp1);
 	}
+		free (temp1);
 }
 
 char *get_var_value(t_env *env, char *var_name)
@@ -158,6 +161,8 @@ void change_directory(char **args, int fd, t_data *data)
 	else if((!args[1] && data->home) || !ft_strncmp(args[1], "~", ft_strlen(args[1])) || !ft_strncmp(args[1], "~/", ft_strlen("~/")))
 	{
 		ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
+		write (1, "\npila\n", 7);
+		printf("\n\ncurpath : %s\n\n", curpath);
 		if (ft_strncmp(args[1], "~", ft_strlen("~")) && ft_strncmp(args[1], "~/", ft_strlen(args[1])))
 			ft_strlcat(curpath, data->pwd, ft_strlen(data->pwd) + 1);
 	}
@@ -195,10 +200,13 @@ char **args_creator(char **av)
 	char **result;
 
 	result = malloc(sizeof * result * 2);
-	result[0] = malloc (sizeof * result * ft_strlen(av[1]));
-	result[1] = malloc (sizeof * result * ft_strlen(av[2]));
-	ft_strlcpy(result[0], av[1], 1000);
-	ft_strlcpy(result[1], av[2], 1000);
+	result[0] = malloc (sizeof * result * ft_strlen(av[1]) + 1);
+	if (av[2])
+		result[1] = malloc (sizeof * result * ft_strlen(av[2]) + 1);
+	if (result[0])
+		ft_strlcpy(result[0], av[1], ft_strlen(av[1]) + 1);
+	if (result[1])
+		ft_strlcpy(result[1], av[2], ft_strlen(av[2]) + 1);
 
 	return (result);
 }
@@ -209,11 +217,12 @@ int	main(int ac, char **av, char **env)
 	t_data data;
 
 	data.pwd = "/home/etom/Escola42/minishell";
-	if (ac != 3)
+	data.home = "/home/etom";
+	/* if (ac != 3)
 	{
 		printf( "deu cagada, o bjoetivo e tipo have uma string ./a.out cd [qualquer string aqui]");
 		return 0;
-	}
+	} */
 	args = args_creator(av);
 	int n = 0;
 	env_to_list(&data, env);
