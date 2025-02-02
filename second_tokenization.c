@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/30 19:16:49 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:03:19 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ static t_token *extract_operator(t_token *token, char *operator)
 		return (NULL);
 	new->next = new_after;
 	new_after->previous = new;
-	if (token->previous)
-		token->previous->next = new;
-	if (token->next)
-		token->next->previous = new_after;
-	free(token->value);
-	free(token);
 	return(new);
 }
 static t_token *extract_word(t_token *token, char *operator)
@@ -78,35 +72,48 @@ static t_token *extract_word(t_token *token, char *operator)
 		return (NULL);
 	new->next = new_after;
 	new_after->previous = new;
-	if (token->previous)
-		token->previous->next = new;
-	if (token->next)
-		token->next->previous = new_after;
-	free(token->value);
-	free(token);
 	return(new);
 }
 
-static void	*reasign_tokens(t_token **token, char *operator)
+static t_token	*reasign_tokens(t_token *token, char *operator)
 {
-	if (ft_strncmp((*token)->value, operator, ft_strlen(operator)) == 0)
-		(*token) = extract_operator((*token), operator);
+	t_token *new;
+
+	if (ft_strncmp(token->value, operator, ft_strlen(operator)) == 0)
+		new = extract_operator(token, operator);
 	else
-		(*token) = extract_word((*token), operator);
+		new = extract_word(token, operator);
+	if (!new)
+		return (NULL);
+	new->next->next = token->next;
+	if (token->previous)
+		token->previous->next = new;
+	new->previous = token->previous;
+	if (token->next)
+		token->next->previous = new->next;
+	free(token->value);
+	free(token);
+	return (new);
 }
 
-void	second_tokenazor(t_token *token)
+void	second_tokenazor(t_token **head)
 {// o maximo que consigo ter numa str sao 3 operators
 	int	i;
 	char *operator;
 	char *expand;
+	t_token *token;
 
 	i = 0;
+	token = *head;
 	while (token)
 	{
 		operator = has_operator(token->value);
 		if (operator && !in_quotes(token->value, 1))
-			reasign_tokens(&token, operator);
+		{
+			token = reasign_tokens(token, operator);
+			if (token->previous == NULL)
+				*head = token;
+		}
 		token->index = i++;
 		token = token->next;
 	}

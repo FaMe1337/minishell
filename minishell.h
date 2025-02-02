@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/30 18:10:22 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/02 20:58:04 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ bool	single_quote(const char *str, int index);
 //token
 t_token	*first_tokenazor(t_data *data, char **inputs);
 t_token *init_token(char *str);
-void	second_tokenazor(t_token *token);
+void	second_tokenazor(t_token **token);
 
 #endif
