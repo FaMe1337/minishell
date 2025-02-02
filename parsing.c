@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/02 20:57:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/02 21:09:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static bool	parse_pipe(t_token *token)
 
 static bool	parse_red(t_token *token)
 {
-	if (!token->next)
+	if (token->next == NULL)
 	{
 		perror("syntax error near unexpected token 'newline'\n");
 		return (true);
 	}
-	if (token->next->token_type != WORD)
+	else if (token->next->token_type != WORD)
 	{
 		perror("syntax error near unexpected token");
 		write(2, token->next->value, ft_strlen(token->next->value));
@@ -76,12 +76,9 @@ int input_parser(t_data *data)
 		return (0);
 	//primeira tokenizaçao feita, ir para segunda
 	second_tokenazor(&data->token);
-	while (data->token) {
-	printf("value: %s\n", data->token->value);
-	printf("type: %d\n", data->token->token_type);
-	printf("index: %d\n", data->token->index);
-		data->token = data->token->next;
-	}
+	//segunda feita, vamos para a final
+	if (parsing_operators(data->token))
+		return (0);
+	free(data->input);
 	return (1);
 }
-
