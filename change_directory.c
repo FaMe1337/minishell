@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/03 18:48:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:20:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ size_t size_until_symbol(char * str, char c)
 	if (!str || !c)
 		return (0);
 	while (str[n] && str[n] != c)
-	{
 		n++;
-	}
 	return (n);
 }
 
@@ -114,7 +112,8 @@ char *get_value_for_list(char * str)
 {
 	int n = 0;
 
-
+	while (str[n] != '=')
+		n++;
 	while (str[n] != '\0' && str[n - 1] != '=')
 		n++;
 	return (&str[n]);
@@ -131,6 +130,7 @@ void	env_to_list(t_data *data, char **env)
 	*data->env = NULL;
 	while (env[n])
 	{
+		printf("n:%d\n", n);
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n] + 1));
 		printf("%ld\n", size_until_symbol(env[n], '=') + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
