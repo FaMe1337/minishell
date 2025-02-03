@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/02 20:58:04 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:08:08 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 # include <limits.h>
 # include "Libft/libft.h"
 
+//lista env
+
+typedef struct s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+	bool			exported;
+
+}	t_env;
+
 //todo
 typedef struct s_token{
 	int				token_type;
@@ -38,7 +49,7 @@ typedef struct s_data{
 	char		*home; //allocado
 	char		*pwd; //allocado
 	char		*pwd_with_till; //allocado
-	char		**env; //allocado, vai ser o tomas a gerir
+	t_env		**env; //allocado, vai ser o tomas a gerir
 	int			exit_status;
 	t_token		*token; //allocado
 }		t_data;
@@ -69,6 +80,7 @@ void	free_stuff(t_data *data);
 char	*fetch_home(void);
 char	*get_till(void);
 void	init_data(char **env, t_data *data);
+void	env_to_list(t_data *data, char **env);
 
 //parsing
 int		input_parser(t_data *data);

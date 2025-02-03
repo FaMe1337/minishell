@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/29 15:29:17 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:07:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_data(char **env, t_data *data)
 {
 	data->home = fetch_home();
 	data->pwd = getcwd(NULL, 0);
+	env_to_list(data, env);
 	data->pwd_with_till = get_till();
 	data->token = NULL;
 	data->exit_status = 0;
