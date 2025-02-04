@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/03 23:20:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:23:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	env_to_list(t_data *data, char **env)
 	while (env[n])
 	{
 		printf("n:%d\n", n);
-		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n] + 1));
+		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		printf("%ld\n", size_until_symbol(env[n], '=') + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
 		printf("%s\n", temp1);
