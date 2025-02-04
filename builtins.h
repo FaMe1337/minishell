@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:27:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/03 18:05:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:28:05 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_data
 	char			*home;
 }	t_data;
 
+// coisas para o env
 
+void	ft_clean_list(t_env **lst);
+void	ft_print_list(t_env **lst);
+void	env_to_list(t_data *data, char **env);
+t_env	*check_for_variable(t_env *env, char *var_name);
 
 #endif
