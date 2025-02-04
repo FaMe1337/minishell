@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 10:23:28 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:13:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,8 @@ int	main(int ac, char **av, char **env)
 	char **args;
 	t_data data;
 
-	data.pwd = "/home/toferrei/Documents/minishell";
+	data.pwd = NULL;
+	data.pwd = getcwd(NULL, 0);
 	data.home = "/home/toferrei";
 	if (ac != 3)
 	/* 
