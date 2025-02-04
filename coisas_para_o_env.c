@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:05:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/03 19:06:35 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:19:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,14 @@ void	env_to_list(t_data *data, char **env)
 	// char *temp2;
 
 	int n = 0;
-	data->env = malloc(sizeof * data->env);
-	*data->env = NULL;
+	if (!data->env)
+	{
+		data->env = malloc(sizeof * data->env);
+		*data->env = NULL;
+	}
 	while (env[n])
 	{
-		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n] + 1));
+		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		printf("%ld\n", size_until_symbol(env[n], '=') + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
 		printf("%s\n", temp1);
