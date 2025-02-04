@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:10 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 12:35:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:57:42 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **env)
 		return 0;
 	} */
 	args = av;
-	args = (char *[]){"unset", "OLA", NULL};
+	args = (char *[]){"unset", "OLA", "GLIBCXX_FORCE", NULL};
 	env_to_list(&data, env);
 	write (1, "\ndepois en_to_list\n", 20);
 	ft_print_list(data.env);
