@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/07 13:47:38 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:47:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+/* #include "builtins.h"
 
 
 void	exit_exit(t_data *data)
@@ -34,4 +34,4 @@ void	builtin_exit(char **args, t_data *data, int fd)
 
 	value = calculate_value(args[1]);
 	exit_exit()
-}
+} */

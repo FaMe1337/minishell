@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:27:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 12:28:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:46:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	ft_clean_list(t_env **lst);
 void	ft_print_list(t_env **lst);
 void	env_to_list(t_data *data, char **env);
 t_env	*check_for_variable(t_env *env, char *var_name);
+char	*get_var_value(t_env *env, char *var_name);
 
 #endif
