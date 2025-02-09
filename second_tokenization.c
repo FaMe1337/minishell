@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/02 21:03:19 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:47:35 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,16 @@ void	second_tokenazor(t_token **head)
 	while (token)
 	{
 		operator = has_operator(token->value);
-		if (operator && !in_quotes(token->value, 1))
+		if (operator && !in_quotes(token->value, 1) && ft_strlen(token->value) >= 2)
 		{
-			token = reasign_tokens(token, operator);
-			if (token->previous == NULL)
-				*head = token;
+			if ((ft_strcmp(operator, ">>") != 0 &&
+				ft_strcmp(operator, "<<") != 0) ||
+				ft_strlen(token->value) > 2)
+			{
+				token = reasign_tokens(token, operator);
+				if (token->previous == NULL)
+					*head = token;
+			}
 		}
 		token->index = i++;
 		token = token->next;

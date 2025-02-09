@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/03 19:08:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:08:50 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,27 @@ typedef struct s_data{
 	char		*home; //allocado
 	char		*pwd; //allocado
 	char		*pwd_with_till; //allocado
-	t_env		**env; //allocado, vai ser o tomas a gerir
+	t_env		*env; //allocado, vai ser o tomas a gerir
 	int			exit_status;
 	t_token		*token; //allocado
+	t_struct	*tree_list;
 }		t_data;
+
+typedef struct s_struct
+{
+	int				pid;
+	int				pipe[2];
+	int				fd[2];
+	int				has_doc;
+	int				doc_pipe[2];
+	bool			last_child;
+	bool			bad_command;
+	char			*path;
+	char			**red;
+	char			**cmd;
+	struct s_tree	*next;
+	struct s_tree	*previous;
+}			t_struct;
 
 typedef enum {
 	REDIR_IN ,
@@ -63,7 +80,6 @@ typedef enum {
 	WORD,
 	CMD,
 	ARG,
-	EXPAND,
 } Token_type;
 
 //start

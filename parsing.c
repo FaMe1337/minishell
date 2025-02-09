@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/02 21:09:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:24:43 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static bool	parse_pipe(t_token *token)
 	if (!token->previous || !token->next
 		|| token->next->token_type == PIPE)
 		{
-			perror("syntax error near unexpected token \"|\"\n");
+			write(2, "syntax error near ", 18);
+			write(2, "unexpected token \'|\'\n", 22);
 			return (true);
 		}
 	return (false);
@@ -27,14 +28,14 @@ static bool	parse_red(t_token *token)
 {
 	if (token->next == NULL)
 	{
-		perror("syntax error near unexpected token 'newline'\n");
+		write(2, "syntax error near unexpected token 'newline'\n", 45);
 		return (true);
 	}
 	else if (token->next->token_type != WORD)
 	{
-		perror("syntax error near unexpected token");
+		write(2, "syntax error near unexpected token '", 37);
 		write(2, token->next->value, ft_strlen(token->next->value));
-		write(2, "\"\n", 2);
+		write(2, "'\n", 2);
 		return (true);
 	}
 }
@@ -53,8 +54,8 @@ static bool	parsing_operators(t_token *token)
 		token = token->next;
 	}
 	if (error)
-		return (false);
-	return (true);
+		return (true);
+	return (false);
 }
 
 int input_parser(t_data *data)
@@ -66,19 +67,18 @@ int input_parser(t_data *data)
 		exit(1);
 	if (!check_for_open_quotes(data->input))
 	{
-		perror("Wrong input\n");
+		write(2, "Wrong input\n", 12);
 		return (0);
 	}
 	inputs = ft_splits(data->input);
-	//tokenizar o que recebo
-	first_tokenazor(data, inputs);
+	first_tokenazor(data, inputs); 	//tokenizar o que recebo
 	if (!data->token)
 		return (0);
-	//primeira tokenizaçao feita, ir para segunda
-	second_tokenazor(&data->token);
-	//segunda feita, vamos para a final
-	if (parsing_operators(data->token))
+	second_tokenazor(&data->token); 	//primeira tokenizaçao feita, ir para segunda
+	if (parsing_operators(data->token)) //checkar por inputs errados a volta dos operadores
 		return (0);
+	//segunda feita, vamos para a criaçao de pipes
+	pipe_creation(data->token);
 	free(data->input);
 	return (1);
 }

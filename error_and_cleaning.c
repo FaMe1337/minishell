@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/24 18:47:22 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:02:09 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	free_stuff(t_data *data)
 {
 	t_token *current;
 
+	if (data->exit_status == 2)
+		free(data->input);
 	while (data->token)
 	{
 		current = data->token->next;
