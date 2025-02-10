@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coisas_para_o_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 12:32:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:17:07 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_print_list(t_env **lst)
 		printf("Tried printing empty list\n");
 		return ;
 	}
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		printf("%s=", temp->name);
 		printf("%s\n", temp->value);

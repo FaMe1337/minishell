@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:35:44 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/07 14:57:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:18:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void environment(char **args, t_data *data)
 		data->exit_code = 127;
 		return ;
 	}
-	while(data->env)
+	while(env)
 	{
 		printf("%s=%s\n", env->name, env->value);
 		env=env->next;
