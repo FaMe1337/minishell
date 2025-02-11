@@ -6,13 +6,13 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/11 18:01:49 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:07:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-/* t_env	*find_previous_node(t_env *list, t_env *node)
+t_env	*find_previous_node(t_env *list, t_env *node)
 {
 	if (!list || !node || !check_for_variable(list, node->name))
 		return (NULL);
@@ -54,7 +54,7 @@ void list_sorter(t_env **lst)
 		else
 			list = list->next;
 	}
-} */
+}
 
 void list_copier(t_env **source, t_env **dest)
 {
