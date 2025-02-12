@@ -6,15 +6,44 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/11 18:07:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:29:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	if (!s1 || !s2)
+		return (NULL);
+	while (*s1 && *s2 && (*s1 == *s2))
+	{
+		if (!*s1 || !*s2)
+			break ;
+		s1++;
+		s2++;
+	}
+	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
+}
+
+int	ft_modifiedlstsize(t_env *lst)
+{
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
 t_env	*find_previous_node(t_env *list, t_env *node)
 {
-	if (!list || !node || !check_for_variable(list, node->name))
+	if (!list || !node || list == node)
 		return (NULL);
 	while (list && list->next != node && list != node)
 		list = list->next;
@@ -31,28 +60,21 @@ void list_sorter(t_env **lst)
 	temp = NULL;
 	while (cursor)
 	{
-		if (cursor->next && ft_strncmp(cursor->name, cursor->next->name, ft_strlen(cursor->name)) > 0)
+		if (cursor->next && ft_strcmp(cursor->name, cursor->next->name) > 0)
 		{
 			prev = find_previous_node(*lst, cursor);
-			if (prev == *lst)
-			{
-				lst = &
-			}
-			temp = cursor;
-			cursor->next = 
-			prev->next = cursor->next;
-			cursor->next = 
-
+			temp = cursor->next;
+            cursor->next = temp->next;
+            temp->next = cursor;
+			if (prev == NULL)
+				*lst = temp;
+			else
+				prev->next = temp;
 
 			cursor = *lst;
-			
-
-
-
-
 		}
 		else
-			list = list->next;
+			cursor = cursor->next;
 	}
 }
 
@@ -83,8 +105,10 @@ void print_export(t_env **list)
 	*copy = NULL;
 	list_copier(list, copy);
 	ft_print_list(copy);
-	if (ft_lstsize(list) > 1)
+	printf("\nlist size %d\n", ft_modifiedlstsize(*copy));
+	if (ft_modifiedlstsize(*copy) > 1)
 		list_sorter(copy);
+	printf("\nlist size %d\n", ft_modifiedlstsize(*copy));
 	ft_print_list(copy);
 	ft_clean_list(copy);
 	free(copy);
