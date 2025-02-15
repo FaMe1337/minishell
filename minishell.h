@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 16:02:49 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 18:43:06 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,19 @@ typedef struct s_data{
 	char		*home; //allocado
 	char		*pwd; //allocado
 	char		*pwd_with_till; //allocado
-	t_env		**env; //allocado, vai ser o tomas a gerir
 	int			exit_status;
+	t_env		**env; //allocado, vai ser o tomas a gerir
 	t_token		*token; //allocado
 	t_pipe		*pipe_list; //allocado
 }		t_data;
 
 typedef enum {
-	REDIR_IN ,
+	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
 	HEREDOC,
 	PIPE,
 	WORD,
-	CMD,
-	ARG,
 } Token_type;
 
 //start

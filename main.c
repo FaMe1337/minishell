@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/09 16:19:18 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 18:39:42 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	show_starter(char **env, t_data *data)
 		{
 			add_history(data->input);
 			if (input_parser(data) == 1)
-				printf("%s\n", "sucesso");
+				executor(data);
 			else
 			{
-				printf("%s\n", "failed");
+				printf("%s\n", "failed parsing");
 				data->exit_status = 2;
 			}
 		}
