@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 15:01:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:02:49 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ void	free_all_data(t_data *data);
 void	free_split_and_token(char **split, t_token *token);
 void	free_stuff(t_data *data);
 void	*safe_malloc(size_t size);
-
-
+void	free_char_array(char **res);
 
 //init data
 char	*fetch_home(void);
@@ -101,6 +100,8 @@ void	env_to_list(t_data *data, char **env);
 //parsing
 int		input_parser(t_data *data);
 char	**ft_splits(char *str);
+t_pipe	*pipe_lst_creation(t_token *token);
+char	**add_prefix(char **res, char *value, char *prefix);
 
 //quotes shenanigan
 bool	check_for_open_quotes(char *str);
@@ -112,6 +113,5 @@ bool	single_quote(const char *str, int index);
 t_token		*first_tokenazor(t_data *data, char **inputs);
 t_token 	*init_token(char *str);
 void		second_tokenazor(t_token **token);
-t_pipe		*pipe_lst__creation(t_token *token);
 
 #endif

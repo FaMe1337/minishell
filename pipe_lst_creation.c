@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 15:02:45 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:40:40 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_pipe	*init_pipe(void)
 static int	count_pipes(t_token *token)
 {	int	res;
 
-	res = 0;
+	res = 1;
 	while (token)
 	{
 		if (token->token_type == PIPE)
@@ -52,7 +52,31 @@ static void pipe_add_back(t_pipe *start, t_pipe *next)
 	next->previous = current;
 }
 
-t_pipe	*pipe__lst_creation(t_token *token)
+static void	init_red_and_cmd(t_token *token, t_pipe *start)
+{
+
+	while (token)
+	{
+		if (token->token_type == HEREDOC)
+			start->red = add_prefix(start->red, token->next->value, "DOC:");
+		else if (token->token_type == REDIR_IN)
+			start->red = add_prefix(start->red, token->next->value, "RDI:");
+		else if (token->token_type == REDIR_OUT)
+			start->red = add_prefix(start->red, token->next->value, "RDO:");
+		else if (token->token_type == REDIR_APPEND)
+			start->red = add_prefix(start->red, token->next->value, "APP:");
+		else if (token->token_type == WORD)
+			start->cmd = add_prefix(start->cmd, token->value, NULL);
+		else if (token->token_type == PIPE)
+			start = start->next;
+		if (token->token_type == WORD || token->token_type == PIPE)
+			token = token->next;
+		else
+			token = token->next->next;
+	}
+}
+
+t_pipe	*pipe_lst_creation(t_token *token)
 {
 	t_pipe	*start;
 	t_pipe	*next;
@@ -69,29 +93,6 @@ t_pipe	*pipe__lst_creation(t_token *token)
 			processes--;
 		}
 	}
-	init_red(token, start);
+	init_red_and_cmd(token, start);
 	return (start);
-}
-
-void	init_red(t_token *token, t_pipe *start)
-{
-	while (token)
-	{
-		if (token->token_type == HEREDOC)
-			start->red = add_handler(start->red, token->next->value, "DOC:");
-		else if (token->token_type == REDIR_IN)
-			start->red = add_handler(start->red, token->next->value, "RDI:");
-		else if (token->token_type == REDIR_OUT)
-			start->red = add_handler(start->red, token->next->value, "RDO:");
-		else if (token->token_type == REDIR_APPEND)
-			start->red = add_handler(start->red, token->next->value, "APP:");
-		else if (token->token_type == WORD)
-			start->cmd = add_handler(start->cmd, token->value, NULL);
-		else if (token->token_type == PIPE)
-			start = start->next;
-		if (token->token_type == WORD || token->token_type == PIPE)
-			token = token->next;
-		else
-			token = token->next->next;
-	}
 }

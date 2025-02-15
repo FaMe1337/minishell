@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 15:00:12 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:24:48 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static bool	parse_red(t_token *token)
 		write(2, "'\n", 2);
 		return (true);
 	}
+	return (false);
 }
 static bool	parsing_operators(t_token *token)
 {
@@ -74,11 +75,21 @@ int input_parser(t_data *data)
 	first_tokenazor(data, inputs); 	//tokenizar o que recebo
 	if (!data->token)
 		return (0);
-	second_tokenazor(&data->token); 	//primeira tokenizaçao feita, ir para segunda
+	second_tokenazor(&data->token);//primeira tokenizaçao feita, ir para segunda
 	if (parsing_operators(data->token)) //checkar por inputs errados a volta dos operadores
 		return (0);
 	//segunda feita, vamos para a criaçao de pipes
 	data->pipe_list = pipe_lst_creation(data->token);
+	while (data->pipe_list)
+	{
+		if (data->pipe_list->red)
+		{
+			int i = 0;
+			while (data->pipe_list->red[i])
+				printf("%s\n", data->pipe_list->red[i++]);
+		}
+		data->pipe_list = data->pipe_list->next;
+	}
 	free(data->input);
 	return (1);
 }
