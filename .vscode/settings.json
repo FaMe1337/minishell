@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"bit": "c",
+		"algorithm": "c",
+		"limits": "c",
+		"streambuf": "c"
 	}
 }

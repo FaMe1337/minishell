@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/09 15:24:43 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:00:12 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int input_parser(t_data *data)
 	if (parsing_operators(data->token)) //checkar por inputs errados a volta dos operadores
 		return (0);
 	//segunda feita, vamos para a criaçao de pipes
-	pipe_creation(data->token);
+	data->pipe_list = pipe_lst_creation(data->token);
 	free(data->input);
 	return (1);
 }

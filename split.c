@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/29 15:13:17 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:49:21 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 #include "minishell.h"
 
-static int	safe_malloc(char **res, int position, size_t buffer)
+static int	safe_mallocs(char **res, int position, size_t buffer)
 {
 	res[position] = malloc(buffer);
 	if (!res[position])
@@ -64,7 +64,7 @@ static int	fill(char **res, char const *s)
 		}
 		if (len)
 		{
-			if (safe_malloc(res, i, len + 1))
+			if (safe_mallocs(res, i, len + 1))
 				return (1);
 			ft_strlcpy(res[i++], s - len, len + 1);
 		}
@@ -99,7 +99,7 @@ char	**ft_splits(char *s)
 	int		words;
 
 	words = word_counter(s);
-	res = malloc(sizeof * res * (words + 1));
+	res = safe_malloc(sizeof * res * (words + 1));
 	if (!res)
 		return (0);
 	res[words] = NULL;
