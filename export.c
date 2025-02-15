@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/12 15:29:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:46:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	if (!s1 || !s2)
-		return (NULL);
+		return (0);
 	while (*s1 && *s2 && (*s1 == *s2))
 	{
 		if (!*s1 || !*s2)
