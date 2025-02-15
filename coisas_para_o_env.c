@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coisas_para_o_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:05:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 11:19:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:15:06 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_print_list(t_env **lst)
 		printf("Tried printing empty list\n");
 		return ;
 	}
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		printf("%s=", temp->name);
 		printf("%s\n", temp->value);
@@ -91,6 +91,17 @@ void	ft_modified_lstadd_back(t_env **lst, t_env *new)
 	last->next = new;
 }
 
+t_env *check_for_variable(t_env *env, char *var_name)
+{
+	while (env->next != NULL)
+	{
+		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
+}
+
 size_t size_until_symbol(char * str, char c)
 {
 	int n = 0;
@@ -118,7 +129,6 @@ void	env_to_list(t_data *data, char **env)
 {
 	t_env *temp;
 	char *temp1;
-	// char *temp2;
 
 	int n = 0;
 	if (!data->env)
@@ -129,9 +139,7 @@ void	env_to_list(t_data *data, char **env)
 	while (env[n])
 	{
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
-		printf("%ld\n", size_until_symbol(env[n], '=') + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
-		printf("%s\n", temp1);
 		temp = ft_newnode(ft_strdup(temp1), get_value_for_list(env[n]), true);
 		ft_modified_lstadd_back(data->env, temp);
 		n++;
