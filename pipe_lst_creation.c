@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 17:40:40 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:16:35 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_pipe	*init_pipe(void)
 	data->red = NULL;
 	data->cmd = NULL;
 	data->pid = -1;
+	data->fd_in = 0;
+	data->fd_out = 1;
 	data->has_doc = 0;
 	return (data);
 }

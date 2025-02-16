@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 18:38:59 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:18:04 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	parse_red(t_token *token)
 {
 	if (token->next == NULL)
 	{
-		write(2, "syntax error near unexpected token 'newline'\n", 45);
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n", 2);
 		return (true);
 	}
 	else if (token->next->token_type != WORD)
@@ -68,7 +68,7 @@ int input_parser(t_data *data)
 		exit(1);
 	if (!check_for_open_quotes(data->input))
 	{
-		write(2, "Wrong input\n", 12);
+		ft_putstr_fd("Wrong input\n", 2);
 		return (0);
 	}
 	inputs = ft_splits(data->input);

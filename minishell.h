@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/16 19:59:23 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:13:44 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
+#include  <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
@@ -51,6 +52,7 @@ typedef struct s_pipe
 	int				has_doc;
 	int				doc_pipe[2];
 	bool			last_child;
+	bool			bad_fd;
 	bool			bad_command;
 	char			*path;
 	char			**red; //allocado
@@ -113,5 +115,11 @@ bool	single_quote(const char *str, int index);
 t_token		*first_tokenazor(t_data *data, char **inputs);
 t_token 	*init_token(char *str);
 void		second_tokenazor(t_token **token);
+
+//executor
+void	executor(t_data *data);
+
+//red handler
+int	handle_redirections(t_pipe *cmd);
 
 #endif
