@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 18:43:06 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/16 19:59:23 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ typedef struct s_token{
 typedef struct s_pipe
 {
 	int				pid;
-	int				pipe[2];
-	int				fd[2];
+	int				pipe[2]; //fork
+	int				fd_in;
+	int				fd_out;  //pipe
 	int				has_doc;
 	int				doc_pipe[2];
 	bool			last_child;
@@ -64,6 +65,7 @@ typedef struct s_data{
 	char		*home; //allocado
 	char		*pwd; //allocado
 	char		*pwd_with_till; //allocado
+	char		**env_str_array; //allocado
 	int			exit_status;
 	t_env		**env; //allocado, vai ser o tomas a gerir
 	t_token		*token; //allocado
