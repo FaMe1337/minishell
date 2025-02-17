@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/10 13:17:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:59:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,7 @@ char *get_var_value(t_env *env, char *var_name)
 	while (env != NULL)
 	{
 		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
-		{
 			return (env->value);
-		}
 		env= env->next;
 	}
 	return (NULL);
