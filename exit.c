@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 12:08:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:20:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	builtin_exit(char **args, t_data *data, int fd)
 		data->exit_code = 0;
 		exit_exit(data); // macro = 0;
 	}
-	printf("is string numeric: %d\n", is_string_numeric(args[1]));
 	if (args[2] && is_string_numeric(args[1]))
 	{
 		printf("minishell: exit: too many arguments\n");
@@ -116,20 +115,3 @@ void	builtin_exit(char **args, t_data *data, int fd)
 	data->exit_code = (unsigned char)ft_atoll(args[1]);
 	exit_exit(data);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	/* unsigned char c;
-// 	long long d;
-// 	d = 100000;
-// 	c = (unsigned char)d;
-// 	printf("%d\n", c); */
-// 	t_data data;
-
-// 	data.env = NULL;
-// 	data.pwd = NULL;
-// 	data.pwd = getcwd(NULL, 0);
-// 	data.home = "/home/etom";
-// 	env_to_list(&data, env);
-// 	builtin_exit((char *[]){"exit", NULL} , &data, 1);
-// }

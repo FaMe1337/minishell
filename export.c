@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 12:08:19 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:22:59 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ bool is_valid_name_for_export(char *str)
 }
 
 
+
 void export_bi(char **args, int fd, t_data *data)
 {
 	int i;
@@ -158,33 +159,4 @@ void export_bi(char **args, int fd, t_data *data)
 		i++;
 	}
 	
-}
-
-int	main(int ac, char **av, char **env)
-{
-	char **args;
-	t_data data;
-
-	data.env = NULL;
-	data.pwd = NULL;
-	data.pwd = getcwd(NULL, 0);
-	data.home = "/home/etom";
-	if (ac != 3)
-	/* 
-	{
-		printf( "deu cagada, o bjoetivo e tipo have uma string ./a.out cd [qualquer string aqui]");
-		return 0;
-	} */
-	args = av;
-	args = (char *[]){"export", "OLA=tudobem", NULL};
-	env_to_list(&data, env);
-	ft_print_list(data.env);
-
-
-	printf("\n\n\n\n\n antes export fx\n\n\n\n\n");
-	export_bi(args, 1, &data);
-	printf("\n\n\n\n\n antes export fx\n\n\n\n\n");
-	export_bi((char *[]){"export", NULL}, 1, &data);
-	builtin_exit((char *[]){"exit", NULL} , &data, 1);
-
 }
