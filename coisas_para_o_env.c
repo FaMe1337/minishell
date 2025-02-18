@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/17 12:59:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:39:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_clean_list(t_env **lst)
 	}
 	free(temp->name);
 	free(temp);
+	free(lst);
 }
 
 void	ft_print_list(t_env **lst)

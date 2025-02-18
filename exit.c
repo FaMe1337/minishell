@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/17 13:47:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:40:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,47 +64,72 @@ static bool	is_in_long_long_range(char *str)
 	return (true);
 }
 
+bool	is_string_numeric(char *str)
+{
+	if (!*str)
+		return (false);
+	while(*str)
+	{
+		printf("%c\n", *str);
+		if ((*str < '0' || *str > '9') && *str != '-' && *str != '+')
+			return (false);
+		str++;
+	}
+	return (true);
+}
 
 void	exit_exit(t_data *data)
 {
 	int code;
 
 	code = data->exit_code;
+	
+	if (data->env)
+		ft_clean_list(data->env);
+	if (data->pwd)
+		free(data->pwd);
+	printf("exit\n");
 	exit(code);
 }
 
 void	builtin_exit(char **args, t_data *data, int fd)
 {
-	long long value;
-
 	if (!args[1])
 	{
 		data->exit_code = 0;
 		exit_exit(data); // macro = 0;
 	}
-	if (args[2] && is_numeric(args[1]))
+	printf("is string numeric: %d\n", is_string_numeric(args[1]));
+	if (args[2] && is_string_numeric(args[1]))
 	{
 		printf("minishell: exit: too many arguments\n");
 		return ;
 	}
-	if (!is_numeric(args[1]) || !is_in_long_long_range(args[1]))
+	if (!is_string_numeric(args[1]) || !is_in_long_long_range(args[1]))
 	{
-		ft_put_str_fd("minishell: exit: ", 2);
-		ft_put_str_fd(args[1], 2);
-		ft_put_str_fd(": numeric argument required\n", 2);
+		write(1, "minishell: exit: ", 18);
+		write(1, args[1], ft_strlen(args[1]));
+		write(1, ": numeric argument required\n", 29);
 		data->exit_code = 2;
 		exit_exit(data);
 	}
-	value = ft_atoll(args[1]);
-	data->exit_code = (unsigned char)value;
+	data->exit_code = (unsigned char)ft_atoll(args[1]);
 	exit_exit(data);
 }
 
-int main(void)
+int main(int ac, char **av, char **env)
 {
-	unsigned char c;
+	/* unsigned char c;
 	long long d;
 	d = 100000;
 	c = (unsigned char)d;
-	printf("%d\n", c);
+	printf("%d\n", c); */
+	t_data data;
+
+	data.env = NULL;
+	data.pwd = NULL;
+	data.pwd = getcwd(NULL, 0);
+	data.home = "/home/etom";
+	env_to_list(&data, env);
+	builtin_exit((char *[]){"exit", NULL} , &data, 1);
 }
