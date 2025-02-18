@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:27:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/11 15:09:22 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:31:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ t_env	*check_for_variable(t_env *env, char *var_name);
 char	*get_var_value(t_env *env, char *var_name);
 void	ft_modified_lstadd_back(t_env **lst, t_env *new);
 t_env	*ft_newnode(char *content, char *value, bool exported);
+void	minimal_list_init(t_data *data);
 
 #endif

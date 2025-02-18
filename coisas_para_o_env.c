@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 10:39:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:39:55 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	ft_clean_list(t_env **lst)
 	{
 		temp2 = temp->next;
 		free(temp->name);
+		free(temp->value);
 		free(temp);
 		temp = temp2;
 	}
 	free(temp->name);
+	free(temp->value);
 	free(temp);
-	free(lst);
+	free(lst); 
 }
 
 void	ft_print_list(t_env **lst)
@@ -40,7 +42,7 @@ void	ft_print_list(t_env **lst)
 	t_env *temp;
 
 	temp = *lst;
-	if (lst == NULL)
+	if (!lst)
 	{
 		printf("Tried printing empty list\n");
 		return ;
@@ -126,6 +128,18 @@ char *get_value_for_list(char * str)
 	return (&str[n]);
 }
 
+int	size_of_envp(char **env)
+{
+	int	i;
+
+	i = 0;
+	if (!env)
+		return (0);
+	while (env[i] != NULL)
+		i++;
+	return (i);
+}
+
 void	env_to_list(t_data *data, char **env)
 {
 	t_env *temp;
@@ -137,11 +151,15 @@ void	env_to_list(t_data *data, char **env)
 		data->env = malloc(sizeof * data->env);
 		*data->env = NULL;
 	}
+	if (!size_of_envp(env))
+	{
+		minimal_list_init(data);
+	}
 	while (env[n])
 	{
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
-		temp = ft_newnode(ft_strdup(temp1), get_value_for_list(env[n]), true);
+		temp = ft_newnode(ft_strdup(temp1), ft_strdup(get_value_for_list(env[n])), true);
 		ft_modified_lstadd_back(data->env, temp);
 		n++;
 		free (temp1);
