@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/17 12:56:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:08:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void list_copier(t_env **source, t_env **dest)
 	iterator = *source;
 	while (iterator)
 	{
-		temp = ft_newnode(ft_strdup(iterator->name), iterator->value, iterator->exported);
+		temp = ft_newnode(ft_strdup(iterator->name), ft_strdup(iterator->value), iterator->exported);
 		ft_modified_lstadd_back(dest, temp);
 		iterator = iterator->next;
 	}
@@ -111,7 +111,6 @@ void print_export(t_env **list)
 	printf("\nlist size %d\n", ft_modifiedlstsize(*copy));
 	ft_print_list(copy);
 	ft_clean_list(copy);
-	free(copy);
 }
 
 bool is_valid_name_for_export(char *str)
@@ -155,9 +154,7 @@ void export_bi(char **args, int fd, t_data *data)
 			data->exit_code = 1;
 		}
 		else
-		{
 			env_to_list(data, (char *[]){args[i], NULL});
-		}
 		i++;
 	}
 	
@@ -188,8 +185,6 @@ int	main(int ac, char **av, char **env)
 	export_bi(args, 1, &data);
 	printf("\n\n\n\n\n antes export fx\n\n\n\n\n");
 	export_bi((char *[]){"export", NULL}, 1, &data);
-	ft_clean_list(data.env);
-	free(data.env);
-	free(data.pwd);
+	builtin_exit((char *[]){"exit", NULL} , &data, 1);
 
 }
