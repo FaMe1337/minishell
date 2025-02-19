@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_creation_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:59:37 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/15 17:44:53 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:43:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	free_char_array(char **res)
 static char	**word_to_res(char **res, char *word)
 {
 	int	i;
-	int	j;
 	char **result;
 
 	i = 0;

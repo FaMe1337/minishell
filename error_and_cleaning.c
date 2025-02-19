@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/09 16:46:21 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:48:37 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	free_stuff(t_data *data)
 {
 	t_token *current;
 
-	if (data->exit_status == 2)
-		free(data->input);
 	while (data->token)
 	{
 		current = data->token->next;

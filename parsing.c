@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/16 22:35:12 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:50:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static bool	parsing_operators(t_token *token)
 int input_parser(t_data *data)
 {
 	char **inputs;
-	int i = 0;
 
 	if (ft_strncmp(data->input, "exit", 4) == 0)
 		exit(1);
@@ -81,6 +80,7 @@ int input_parser(t_data *data)
 	//segunda feita, vamos para a criaçao de pipes
 	data->pipe_list = pipe_lst_creation(data->token);
 	//remove_quotes(data->pipe_list);
-	free(data->input);
+	if (data->input)
+		free(data->input);
 	return (1);
 }
