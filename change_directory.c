@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 16:20:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:53:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	update_pwd(t_data *data)
 	free (new_pwd);
 }
 
-void change_directory(char **args, int fd, t_data *data)
+void change_directory(char **args, t_data *data)
 {
 	char curpath[4096]; //change to PATH_MAX macro
 	char	env_var[4128];
@@ -87,7 +87,7 @@ void change_directory(char **args, int fd, t_data *data)
 	ft_strlcat(env_var, curpath, sizeof(env_var));
 	printf("%s\n", env_var);
 	update_pwd(data);
-	export_bi((char *[]){"export", env_var, NULL}, fd, data);
+	export_bi((char *[]){"export", env_var, NULL}, data);
 	data->exit_code = 0;
 
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 11:06:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:54:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void pwd(t_data *data)
 	}
 }
 
-int main (void)
+/* int main (void)
 {
 	t_data data;
 
@@ -44,4 +44,4 @@ int main (void)
 	data.pwd = getcwd(NULL, 0);
 	pwd(&data);
 	free(data.pwd);
-}
+} */

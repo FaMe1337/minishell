@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:10 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/04 14:57:42 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:55:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	unset_env(char **args, t_data *data)
 	data->exit_code = 0;
 }
 
-int	main(int ac, char **av, char **env)
+/* int	main(int ac, char **av, char **env)
 {
 	char **args;
 	t_data data;
@@ -50,11 +50,11 @@ int	main(int ac, char **av, char **env)
 	data.pwd = getcwd(NULL, 0);
 	data.home = "/home/toferrei";
 	if (ac != 3)
-	/* 
+	
 	{
 		printf( "deu cagada, o bjoetivo e tipo have uma string ./a.out cd [qualquer string aqui]");
 		return 0;
-	} */
+	}
 	args = av;
 	args = (char *[]){"unset", "OLA", "GLIBCXX_FORCE", NULL};
 	env_to_list(&data, env);
@@ -75,3 +75,4 @@ int	main(int ac, char **av, char **env)
 
 	// change_directory()
 }
+ */

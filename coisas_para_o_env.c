@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coisas_para_o_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 12:13:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:00:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_clean_list(t_env **lst)
 	free(lst); 
 }
 
-void	ft_print_list(t_env **lst)
+void	ft_print_list(t_env **lst, bool exported)
 {
 	t_env *temp;
 
@@ -97,6 +97,8 @@ void	ft_modified_lstadd_back(t_env **lst, t_env *new)
 
 t_env *check_for_variable(t_env *env, char *var_name)
 {
+	if (!env || !var_name || !var_name[0])
+		return (NULL);
 	while (env->next != NULL)
 	{
 		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
@@ -153,7 +155,6 @@ void	env_to_list(t_data *data, char **env)
 {
 	t_env *temp;
 	char *temp1;
-	bool export;
 
 	int n = 0;
 	if (!data->env)
@@ -167,9 +168,11 @@ void	env_to_list(t_data *data, char **env)
 	{
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
-		export = for_export(env[n]);
-		temp = ft_newnode(ft_strdup(temp1), ft_strdup(get_value_for_list(env[n])), export);
-		ft_modified_lstadd_back(data->env, temp);
+		temp = ft_newnode(ft_strdup(temp1), ft_strdup(get_value_for_list(env[n])), for_export(env[n]));
+		if (check_for_variable(*data->env, temp1)) // node exists
+			check_for_variable(*data->env, temp1)->value = ft_strdup(get_value_for_list(env[n]));
+		else
+			ft_modified_lstadd_back(data->env, temp);
 		n++;
 		free (temp1);
 	}

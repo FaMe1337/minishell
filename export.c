@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 16:22:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:01:39 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void list_copier(t_env **source, t_env **dest)
 {
 	t_env *iterator;
 	t_env *temp;
-	char *tempstr;
 
 	if (!source || !dest)
 		return ;
@@ -104,11 +103,8 @@ void print_export(t_env **list)
 	copy = malloc(sizeof * copy);
 	*copy = NULL;
 	list_copier(list, copy);
-	ft_print_list(copy);
-	printf("\nlist size %d\n", ft_modifiedlstsize(*copy));
 	if (ft_modifiedlstsize(*copy) > 1)
 		list_sorter(copy);
-	printf("\nlist size %d\n", ft_modifiedlstsize(*copy));
 	ft_print_list(copy);
 	ft_clean_list(copy);
 }
@@ -134,7 +130,7 @@ bool is_valid_name_for_export(char *str)
 
 
 
-void export_bi(char **args, int fd, t_data *data)
+void export_bi(char **args, t_data *data)
 {
 	int i;
 

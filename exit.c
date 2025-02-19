@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 16:20:52 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:50:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	exit_exit(t_data *data)
 	exit(code);
 }
 
-void	builtin_exit(char **args, t_data *data, int fd)
+void	builtin_exit(char **args, t_data *data)
 {
 	if (!args[1])
 	{

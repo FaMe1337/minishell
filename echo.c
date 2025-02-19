@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/07 14:47:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:50:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ static bool	check_flag(char *str)
 {
 	int	i;
 
-	if (!str | str[0] != '-' | str[1] != 'n')
+	if (!str || str[0] != '-' || str[1] != 'n')
 		return (false);
 	i = 2;
-	while (str[i] == 'n');
+	while (str[i] == 'n')
 		i++;
 	return (str[i] == '\0');
 }
 
-int echo(char **strstr, t_data *data)
+void echo(char **strstr, t_data *data)
 {
 	bool	flag;
 	int		i;

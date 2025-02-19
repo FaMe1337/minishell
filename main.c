@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:22:31 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/18 16:23:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:59:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@ int	main(int ac, char **av, char **env)
 	data.pwd = NULL;
 	data.pwd = getcwd(NULL, 0);
 	data.home = "/home/etom";
-	/* 
-	if (ac != 3)
+	if (ac == 2)
 	{
 		printf( "deu cagada, o bjoetivo e tipo have uma string ./a.out cd [qualquer string aqui]");
 		return 0;
-	} */
+	}
 	args = av;
 	args = (char *[]){"export", "OLA", NULL};
 	env_to_list(&data, env);
 	ft_print_list(data.env);
-
-	export_bi(args, 1, &data);
+	write (1, "\n\n\n\n lista env inicial \n\n\n\n", 28);
+	export_bi(args, &data);
+	export_bi((char *[]){"export", NULL}, &data);
+	write (1, "\n\n\n\n lista env inicial \n\n\n\n", 28);
 	export_bi((char *[]){"export", "OLA=ola", NULL}, &data);
 
 
-	export_bi((char *[]){"export", NULL}, 1, &data);
-	builtin_exit((char *[]){"exit", NULL} , &data, 1);
+	export_bi((char *[]){"export", NULL}, &data);
+	builtin_exit((char *[]){"exit", NULL} , &data);
 
 }
