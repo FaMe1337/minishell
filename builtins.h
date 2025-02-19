@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:27:30 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 16:53:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 20:00:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void export_bi(char **args, t_data *data);
 // coisas para o env
 
 void	ft_clean_list(t_env **lst);
-void	ft_print_list(t_env **lst);
+void	ft_print_list(t_env **lst, bool exported);
 void	env_to_list(t_data *data, char **env);
 t_env	*check_for_variable(t_env *env, char *var_name);
 char	*get_var_value(t_env *env, char *var_name);
