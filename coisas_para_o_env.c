@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coisas_para_o_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 17:00:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:01:37 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_clean_list(t_env **lst)
 		printf("Tried freeing empty list\n");
 		return ;
 	}
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		temp2 = temp->next;
 		free(temp->name);
@@ -31,13 +31,10 @@ void	ft_clean_list(t_env **lst)
 		free(temp);
 		temp = temp2;
 	}
-	free(temp->name);
-	free(temp->value);
-	free(temp);
 	free(lst); 
 }
 
-void	ft_print_list(t_env **lst, bool exported)
+void	ft_print_list(t_env **lst, bool override)
 {
 	t_env *temp;
 
@@ -49,9 +46,10 @@ void	ft_print_list(t_env **lst, bool exported)
 	}
 	while (temp != NULL)
 	{
-		printf("%s", temp->name);
-		if (temp->value)
-			printf("=%s\n", temp->value);
+		printf("declare -x %s", temp->name);
+		if (temp->exported)
+			printf("=%s", temp->value);
+		printf ("\n");
 		temp = temp->next;
 	}
 }
@@ -99,7 +97,7 @@ t_env *check_for_variable(t_env *env, char *var_name)
 {
 	if (!env || !var_name || !var_name[0])
 		return (NULL);
-	while (env->next != NULL)
+	while (env != NULL)
 	{
 		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
 			return (env);
@@ -151,12 +149,11 @@ int	size_of_envp(char **env)
 	return (i);
 }
 
-void	env_to_list(t_data *data, char **env)
+void	env_to_list(t_data *data, char **env, int n)
 {
 	t_env *temp;
 	char *temp1;
 
-	int n = 0;
 	if (!data->env)
 	{
 		data->env = malloc(sizeof * data->env);
@@ -170,7 +167,10 @@ void	env_to_list(t_data *data, char **env)
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
 		temp = ft_newnode(ft_strdup(temp1), ft_strdup(get_value_for_list(env[n])), for_export(env[n]));
 		if (check_for_variable(*data->env, temp1)) // node exists
+		{
 			check_for_variable(*data->env, temp1)->value = ft_strdup(get_value_for_list(env[n]));
+			check_for_variable(*data->env, temp1)->exported = true;
+		}
 		else
 			ft_modified_lstadd_back(data->env, temp);
 		n++;

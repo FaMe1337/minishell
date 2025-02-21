@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:10 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 16:55:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/21 00:26:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void delete_node(t_env *env, char *var_name)
 		env = env->next;
 	env->next = temp->next;
 	free(temp->name);
+	free(temp->value);
 	free(temp);
 }
 

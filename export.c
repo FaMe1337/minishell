@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 17:01:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:00:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void print_export(t_env **list)
 	list_copier(list, copy);
 	if (ft_modifiedlstsize(*copy) > 1)
 		list_sorter(copy);
-	ft_print_list(copy);
+	ft_print_list(copy, 0);
 	ft_clean_list(copy);
 }
 
@@ -151,7 +151,7 @@ void export_bi(char **args, t_data *data)
 			data->exit_code = 1;
 		}
 		else
-			env_to_list(data, (char *[]){args[i], NULL});
+			env_to_list(data, (char *[]){args[i], NULL}, 0);
 		i++;
 	}
 	

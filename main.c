@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:22:31 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 19:57:50 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:02:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int	main(int ac, char **av, char **env)
 	}
 	args = av;
 
-	env_to_list(&data, env);
-	ft_print_list(data.env);
-	write (1, "\n\n\n\n lista env inicial \n\n\n\n", 28);
+	env_to_list(&data, env, 0);
+	ft_print_list(data.env, 1);
+	write (1, "\n\n\n\n first step \n\n\n\n", 21);
 	export_bi((char *[]){"export", "OLA", NULL}, &data);
 	export_bi((char *[]){"export", NULL}, &data);
-	write (1, "\n\n\n\n lista env inicial \n\n\n\n", 28);
+	write (1, "\n\n\n\n second step \n\n\n\n", 22);
 	export_bi((char *[]){"export", "OLA=ola", NULL}, &data);
-
-
 	export_bi((char *[]){"export", NULL}, &data);
 	builtin_exit((char *[]){"exit", NULL} , &data);
 
