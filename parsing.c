@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/19 19:50:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:21:37 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int input_parser(t_data *data)
 	if (parsing_operators(data->token)) //checkar por inputs errados a volta dos operadores
 		return (0);
 	//segunda feita, vamos para a criaçao de pipes
-	data->pipe_list = pipe_lst_creation(data->token);
+	data->cmd_tree = cmd_lst_creation(data->token);
 	//remove_quotes(data->pipe_list);
 	if (data->input)
 		free(data->input);

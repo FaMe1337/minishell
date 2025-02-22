@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   second_tokenization.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/19 19:43:49 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:21:15 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	second_tokenazor(t_token **head)
 {// o maximo que consigo ter numa str sao 3 operators
 	int	i;
 	char *operator;
-	//char *expand;
 	t_token *token;
 
 	i = 0;

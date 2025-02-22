@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/19 19:22:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:22:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_data{
 	int			exit_status;
 	t_env		**env; //allocado, vai ser o tomas a gerir
 	t_token		*token; //allocado
-	t_pipe		*pipe_list; //allocado
+	t_pipe		*cmd_tree; //allocado
 }		t_data;
 
 typedef enum {
@@ -102,7 +102,7 @@ void	env_to_list(t_data *data, char **env);
 //parsing
 int		input_parser(t_data *data);
 char	**ft_splits(char *str);
-t_pipe	*pipe_lst_creation(t_token *token);
+t_pipe	*cmd_lst_creation(t_token *token);
 char	**add_prefix(char **res, char *value, char *prefix);
 
 //quotes shenanigan

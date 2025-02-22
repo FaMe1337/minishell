@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/16 19:53:23 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:20:28 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	**cpy_from_env(t_env **env)
 		temp = temp->next;
 		i++;
 	}
-	res = safe_malloc(sizeof(char *) * i);
+	res = safe_malloc(sizeof(char *) * (i + 1));
 	temp = (*env);
 	i = 0;
 	while (temp)
