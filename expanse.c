@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/24 00:15:03 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/24 00:20:16 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	valid_expansion(char *str, int i)
 {
 	i++;
 	if (ft_isalnum(str[i]) || str[i] == '?' || str[i] == '$' ||
-			str[i] == '_')
+			str[i] == '_' || str[i] == '"' || str[i] == '\'')
 		return true;
 	return (false);
 }
