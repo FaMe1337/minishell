@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/22 17:22:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/23 23:23:32 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_env
 //todo
 typedef struct s_token{
 	int				token_type;
-	int				index;
 	char			*value; //allocado
 	struct s_token *next;
 	struct s_token *previous;
@@ -49,9 +48,9 @@ typedef struct s_pipe
 	int				pipe[2]; //fork
 	int				fd_in;
 	int				fd_out;  //pipe
-	int				has_doc;
 	int				doc_pipe[2];
 	bool			last_child;
+	bool			last_red_out;
 	bool			bad_fd;
 	bool			bad_command;
 	char			*path;
@@ -105,13 +104,21 @@ char	**ft_splits(char *str);
 t_pipe	*cmd_lst_creation(t_token *token);
 char	**add_prefix(char **res, char *value, char *prefix);
 
+//parsing $
+void	expanse_parse(t_data * data);
+bool	valid_expansion(char *str, int i);
+void	expand_str(t_token *token, t_data *data);
+char	*get_var_name(t_token *token);
+int		var_name_len(char *str, int i);
+char	*get_var_values(char *var_name, t_env **env);
+
 //quotes shenanigan
 bool	check_for_open_quotes(char *str);
 bool	in_quotes(char const *str, int index);
 bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
 
-//token
+//token fuctions
 t_token		*first_tokenazor(t_data *data, char **inputs);
 t_token 	*init_token(char *str);
 void		second_tokenazor(t_token **token);

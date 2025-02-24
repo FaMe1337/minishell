@@ -6,64 +6,107 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/16 23:01:41 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/23 22:02:51 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	append(char *str, t_pipe *cmd)
+void	append(char *str, t_pipe *cmd)
 {
-	int		fd;
+	int	fd;
+
 	if (!str || !str[0])
 	{
 		ft_putstr_fd("No outfile present\n", 2);
 		cmd->bad_fd = true;
-		return (1);
+		return ;
 	}
 	fd = open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Invalid outfile\n", 2);
+        ft_putstr_fd("minishell: ", 2);
+        perror(str);
 		cmd->bad_fd = true;
-		return (1);
+		return ;
 	}
-	if (cmd->fd_out >= 0)
+	if (cmd->fd_out > 2)
 		close(cmd->fd_out);
 	cmd->fd_out = fd;
-	return (0);
 }
 
-int	red_out(char *str, t_pipe *cmd)
+void	red_out(char *str, t_pipe *cmd)
 {
-	int		fd;
+	int	fd;
+
 	if (!str || !str[0])
 	{
 		ft_putstr_fd("No outfile present\n", 2);
 		cmd->bad_fd = true;
-		return (1);
+		return ;
 	}
 	fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Invalid outfile\n", 2);
+        ft_putstr_fd("minishell: ", 2);
+        perror(str);
 		cmd->bad_fd = true;
-		return (1);
+		return ;
 	}
-	if (cmd->fd_out >= 0)
+	if (cmd->fd_out > 2)
 		close(cmd->fd_out);
 	cmd->fd_out = fd;
-	return (0);
+}
+
+void	red_in(char *str, t_pipe *cmd)
+{
+	int	fd;
+
+	if (!str || !str[0])
+	{
+		ft_putstr_fd("No infile present\n", 2);
+		cmd->bad_fd = true;
+		return ;
+	}
+	fd = open(str, O_RDONLY);
+	if (fd < 0)
+	{
+        ft_putstr_fd("minishell: ", 2);
+        perror(str);
+		cmd->bad_fd = true;
+		return ;
+	}
+	if (cmd->fd_in > 2)
+		close(cmd->fd_in);
+	cmd->fd_in = fd;
+}
+
+void	check_if_last(t_pipe *cmd)
+{
+	int i;
+
+	i = 0;
+	while (cmd->red)
+	{
+		if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
+			cmd->last_red_out = true;
+		if (ft_strncmp(cmd->red[i], "RDI:", 4) == 0)
+			cmd->last_red_out = false;
+		i++;
+	}
 }
 
 static int	parse_redirections(char *str, t_pipe *cmd)
 {
 	if (ft_strncmp(str, "DOC:", 4) == 0)
-		//here_doc(str + 4, cmd);
-		printf("ola");
+		{
+			check_if_last(cmd);
+			if (cmd->last_red_out)
+				//exec_doc(str + 4, cmd);
+				printf("ola\n");
+		}
 	else if (ft_strncmp(str, "RDI:", 4) == 0)
-		//red_in(str + 4, cmd);
-		printf("ola");
+		red_in(str + 4, cmd);
 	else if (ft_strncmp(str, "RDO:", 4) == 0)
 		red_out(str + 4, cmd);
 	else if (ft_strncmp(str, "APP:", 4) == 0)

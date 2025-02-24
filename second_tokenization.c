@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/22 17:21:15 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:56:26 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	second_tokenazor(t_token **head)
 					*head = token;
 			}
 		}
-		token->index = i++;
 		token = token->next;
 	}
 }

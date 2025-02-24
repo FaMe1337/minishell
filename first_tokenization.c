@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:05:29 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/29 20:44:02 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/23 17:56:17 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void lst_add_back(t_token *token, t_token *add, char *str)
 	add->value = malloc(ft_strlen(str) + 1);
 	ft_strlcpy(add->value, str, ft_strlen(str) + 1);
 	add->token_type = get_type(str);
-	add->index = current->index + 1;
 	current->next = add;
 	add->previous = current;
 	add->next = NULL;
@@ -65,7 +64,6 @@ static t_token *add_tokens(t_token *token, char *str)
 		}
 		ft_strlcpy(add->value, str, ft_strlen(str) + 1);
 		add->token_type = get_type(str);
-		add->index = 1;
 		add->next = NULL;
 	}
 	else
@@ -88,7 +86,6 @@ t_token *init_token(char *str)
 	}
 	ft_strlcpy(token->value, str, ft_strlen(str) + 1);
 	token->token_type = get_type(str);
-	token->index = 0;
 	token->next = NULL;
 	token->previous = NULL;
 	free(str);
