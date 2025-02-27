@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/26 19:44:59 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:02:03 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,50 +82,50 @@ typedef enum {
 	WORD,
 } Token_type;
 
-//start
+/* start */
 void	show_starter(char **env, t_data *data);
 
-//error and cleaning
+/* error and cleaning */
 void	free_all_data(t_data *data);
 void	free_split_and_token(char **split, t_token *token);
 void	free_stuff(t_data *data);
 void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
 
-//init data
+/* init data */
 char	*fetch_home(void);
 char	*get_till(void);
 void	init_data(char **env, t_data *data);
 void	env_to_list(t_data *data, char **env);
 
-//parsing
+/* parsing */
 int		input_parser(t_data *data);
 char	**ft_splits(char *str);
 t_pipe	*cmd_lst_creation(t_token *token);
 char	**add_prefix(char **res, char *value, char *prefix);
 
-//parsing $
+/* expanse */
 void	expanse_parse(t_data * data);
 char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
 
-//quotes shenanigan
+/* quotes shenanigan */
 bool	check_for_open_quotes(char *str);
 bool	in_quotes(char const *str, int index);
 bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
 int		ft_isquote(char c);
 
-//token fuctions
+/* token fuctions */
 t_token		*first_tokenazor(t_data *data, char **inputs);
 t_token 	*init_token(char *str);
 void		second_tokenazor(t_token **token);
 
-//executor
+/* executor */
 void	executor(t_data *data);
 
-//red handler
+/* red handler */
 int	handle_redirections(t_pipe *cmd);
 
 #endif
