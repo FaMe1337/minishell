@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 23:23:32 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:44:59 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,8 @@ char	**add_prefix(char **res, char *value, char *prefix);
 
 //parsing $
 void	expanse_parse(t_data * data);
-bool	valid_expansion(char *str, int i);
-void	expand_str(t_token *token, t_data *data);
 char	*get_var_name(t_token *token);
-int		var_name_len(char *str, int i);
+int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
 
 //quotes shenanigan
@@ -117,6 +115,7 @@ bool	check_for_open_quotes(char *str);
 bool	in_quotes(char const *str, int index);
 bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
+int		ft_isquote(char c);
 
 //token fuctions
 t_token		*first_tokenazor(t_data *data, char **inputs);

@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 23:42:46 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:50:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ int input_parser(t_data *data)
 	expanse_parse(data);
 	//segunda feita, vamos para a criaçao de pipes
 	data->cmd_tree = cmd_lst_creation(data->token);
-	while (data->token)
-	{
-		printf("%s\n", data->token->value);
-		data->token = data->token->next;
-	}
 	//remove_quotes(data->pipe_list);
 	if (data->input)
 		free(data->input);
