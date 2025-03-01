@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 22:02:51 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:34:05 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,28 +90,33 @@ void	check_if_last(t_pipe *cmd)
 	{
 		if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
 			cmd->last_red_out = true;
-		if (ft_strncmp(cmd->red[i], "RDI:", 4) == 0)
+		else if (ft_strncmp(cmd->red[i], "RDI:", 4) == 0)
 			cmd->last_red_out = false;
 		i++;
 	}
 }
 
-static int	parse_redirections(char *str, t_pipe *cmd)
+static void	exec_doc(char *str, t_pipe *cmd)
+{
+	pipe(cmd->doc_pipe)
+}
+
+static int	parse_redirections(char *str, t_pipe *red)
 {
 	if (ft_strncmp(str, "DOC:", 4) == 0)
 		{
-			check_if_last(cmd);
-			if (cmd->last_red_out)
-				//exec_doc(str + 4, cmd);
+			check_if_last(red);
+			if (red->last_red_out)
+				//exec_doc(str + 4, red);
 				printf("ola\n");
 		}
 	else if (ft_strncmp(str, "RDI:", 4) == 0)
-		red_in(str + 4, cmd);
+		red_in(str + 4, red);
 	else if (ft_strncmp(str, "RDO:", 4) == 0)
-		red_out(str + 4, cmd);
+		red_out(str + 4, red);
 	else if (ft_strncmp(str, "APP:", 4) == 0)
-		append(str + 4, cmd);
-	if (cmd->bad_fd)
+		append(str + 4, red);
+	if (red->bad_fd)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/27 20:02:03 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:17:41 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 typedef struct s_env
 {
-	char			*name;
-	char			*value;
+	char			*name; //allocado
+	char			*value; //allocado
 	bool			exported;
 	struct s_env	*next;
 }	t_env;

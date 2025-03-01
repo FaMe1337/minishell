@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/19 19:48:37 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:04:34 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,28 @@ void free_split_and_token(char **split, t_token *token)
 
 void free_all_data(t_data *data)
 {
+	t_env	**current;
+
 	free(data->home);
 	free(data->pwd);
 	free(data->pwd_with_till);
+	free(data->env_str_array);
+	while (data->env)
+	{
+		current = &((*data->env)->next);
+		free((*data->env)->value);
+		free((*data->env)->name);
+		free(*data->env);
+		*data->env = *current;
+	}
+	free_char_array(data->env_str_array);
+	free(data);
 }
 
 void	free_stuff(t_data *data)
 {
 	t_token *current;
+	t_pipe	*currentz;
 
 	while (data->token)
 	{
@@ -61,5 +75,13 @@ void	free_stuff(t_data *data)
 		free(data->token->value);
 		free(data->token);
 		data->token = current;
+	}
+	while (data->cmd_tree)
+	{
+		currentz = data->cmd_tree->next;
+		free_char_array(data->cmd_tree->cmd);
+		free_char_array(data->cmd_tree->red);
+		free(data->cmd_tree);
+		data->cmd_tree = currentz;
 	}
 }
