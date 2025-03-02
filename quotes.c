@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:35:28 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/01 15:39:37 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:10:02 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,4 @@ bool	double_quotes(const char *str, int index)
         i++;
     }
     return (double_quote);
-}
-
-int	ft_isquote(char c)
-{
-	if (c == '"' || c == '\'')
-		return (1);
-	return (0);
 }

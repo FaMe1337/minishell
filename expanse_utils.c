@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:59:45 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/27 20:00:51 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:10:12 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,11 @@ char	*get_var_name(t_token *token)
 	if (token->value[i] == '$' || token->value[i] == '?')
 		return (ft_substr(token->value, i, 1));
 	return (ft_substr(token->value, i, get_var_len(token->value, i)));
+}
+
+int	ft_isquote(char c)
+{
+	if (c == '"' || c == '\'')
+		return (1);
+	return (0);
 }
