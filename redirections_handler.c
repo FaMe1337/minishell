@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 14:57:54 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:02:04 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ void	check_if_last(t_pipe *cmd)
 	}
 }
 
-static void	exec_doc(char *str, t_pipe *cmd)
+/* static void	exec_doc(char *str, t_pipe *cmd)
 {
 	pipe(cmd->doc_pipe)
-}
+} */
 
 static int	parse_redirections(char *str, t_pipe *red)
 {

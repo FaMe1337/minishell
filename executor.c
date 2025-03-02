@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 14:52:24 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:02:17 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data);
-	else
+/* 	else
 	{
 		cmd_tree->pid = fork();
 		if (cmd_tree->pid == -1)
@@ -42,5 +42,5 @@ void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 			return;
 		}
 		if (cmd_tree->pid == 0)
-	}
+	} */
 }
