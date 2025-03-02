@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 14:49:38 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 15:15:21 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void free_all_data(t_data *data)
 	free(data->home);
 	free(data->pwd);
 	free(data->pwd_with_till);
-	free(data->env_str_array);
 	while (data->env)
 	{
 		current = &((*data->env)->next);
