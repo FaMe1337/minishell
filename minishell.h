@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 14:32:22 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:16:01 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <termios.h>
 # include "Libft/libft.h"
 
 //lista env
@@ -44,15 +47,14 @@ typedef struct s_token{
 
 typedef struct s_pipe
 {
-	int				pid;
-	int				pipe[2]; //fork
+	int				pid; //fork
+	int				pipe[2]; //pipe
 	int				fd_in;
-	int				fd_out;  //pipe
-	int				doc_pipe[2];
+	int				fd_out;
+	int				doc_pipe[2]; //pipe
 	bool			last_child;
 	bool			last_red_out;
 	bool			bad_fd;
-	bool			bad_command;
 	char			*path;
 	char			**red; //allocado
 	char			**cmd; //allocado
@@ -111,11 +113,12 @@ int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
 
 /* quotes shenanigan */
-bool	check_for_open_quotes(char *str);
 bool	in_quotes(char const *str, int index);
 bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
 int		ft_isquote(char c);
+void	remove_quotes_from_cmd(t_pipe *tree);
+void	remove_quotes_from_red(t_pipe *tree);
 
 /* token fuctions */
 t_token		*first_tokenazor(t_data *data, char **inputs);
@@ -126,6 +129,7 @@ void		second_tokenazor(t_token **token);
 void	executor(t_data *data);
 int		is_builtin(char *command);
 void	exec_builtin(char **cmd, t_data *data);
+void	child_process(t_pipe *tree, t_data *data);
 
 /* red handler */
 int	handle_redirections(t_pipe *cmd);

@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/01 15:14:04 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 22:36:16 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@ void	show_starter(char **env, t_data *data)
 	while (1)
 	{
 		data->input = readline(data->pwd_with_till);
-		if (!data->input || !data->input[0])
+		if (!data->input)
 		{
-			perror("Empty string\n");
+			ft_putstr_fd("Error on readline\n", 2);
 			break;
 		}
-		else
+		if (*data->input)
 		{
 			add_history(data->input);
 			if (input_parser(data) == 1)
 				executor(data);
-				//printf("%s\n", "sucess");
 			else
 			{
 				printf("%s\n", "failed parsing");
