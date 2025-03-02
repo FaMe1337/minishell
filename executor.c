@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/22 17:22:33 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:52:24 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,28 @@ void	executor(t_data *data)
 		data->exit_status = 1;
 		return;
 	}
-/* 	if (!data->pipe_list->next)
-		exec_solo_pipe(data->pipe_list, data);
+	if (!data->cmd_tree->next)
+		exec_solo_pipe(data->cmd_tree, data);
 	else
 	{
 		//todo multiple pipes
-	} */
+	}
 }
 
-/* void	exec_solo_pipe(t_pipe *cmd, t_data *data)
+void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
-	cmd->pid = fork();
-	if (cmd->pid == -1)
-	{
-		write(2, "Error creating fork", 20);
-		data->exit_status = 1;
-		return;
-	}
-	if (cmd->pid == 0)
 
-} */
+	if (is_builtin(cmd_tree->cmd[0]))
+		exec_builtin(cmd_tree->cmd, data);
+	else
+	{
+		cmd_tree->pid = fork();
+		if (cmd_tree->pid == -1)
+		{
+			write(2, "Error creating fork", 20);
+			data->exit_status = 1;
+			return;
+		}
+		if (cmd_tree->pid == 0)
+	}
+}

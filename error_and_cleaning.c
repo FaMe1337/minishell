@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/01 15:04:34 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:49:38 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	free_stuff(t_data *data)
 	while (data->cmd_tree)
 	{
 		currentz = data->cmd_tree->next;
+		if (data->cmd_tree->fd_in > 2)
+			close(data->cmd_tree->fd_in);
+		if (data->cmd_tree->fd_out > 2);
+			close(data->cmd_tree->fd_out);
 		free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);

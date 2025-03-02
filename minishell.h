@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/27 21:17:41 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:32:22 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void		second_tokenazor(t_token **token);
 
 /* executor */
 void	executor(t_data *data);
+int		is_builtin(char *command);
+void	exec_builtin(char **cmd, t_data *data);
 
 /* red handler */
 int	handle_redirections(t_pipe *cmd);
