@@ -1,7 +1,21 @@
 {
 	"files.associations": {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"minishell.h": "c"
+=======
+		"minishell.h": "c",
+		"bit": "c",
+		"algorithm": "c",
+		"limits": "c",
+		"streambuf": "c",
+		"system_error": "c",
+		"array": "c",
+		"functional": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"utility": "c"
+>>>>>>> fabio
 	}
 }
 =======

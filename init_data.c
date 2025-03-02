@@ -6,19 +6,38 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/01/29 15:29:17 by famendes         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:20:28 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_data(char **env, t_data *data)
+static char	**cpy_from_env(t_env **env)
 {
-	data->home = fetch_home();
-	data->pwd = getcwd(NULL, 0);
-	data->pwd_with_till = get_till();
-	data->token = NULL;
-	data->exit_status = 0;
+	char	**res;
+	t_env	*temp;
+	int		i;
+	char	*temp1;
+
+	i = 0;
+	temp = (*env);
+	while (temp)
+	{
+		temp = temp->next;
+		i++;
+	}
+	res = safe_malloc(sizeof(char *) * (i + 1));
+	temp = (*env);
+	i = 0;
+	while (temp)
+	{
+		temp1 = ft_strjoin(temp->name, "=");
+		res[i++] = ft_strjoin(temp1, temp->value);
+		free(temp1);
+		temp = temp->next;
+	}
+	res[i] = 0;
+	return (res);
 }
 
 
@@ -70,4 +89,16 @@ char *get_till(void)
 	ft_strlcat(result, "->", count + 5);
 	free(cwd);
 	return (result);
+}
+
+void	init_data(char **env, t_data *data)
+{
+	data->home = fetch_home();
+	data->pwd = getcwd(NULL, 0);
+	data->env = NULL;
+	env_to_list(data, env);
+	data->env_str_array = cpy_from_env(data->env);
+	data->pwd_with_till = get_till();
+	data->token = NULL;
+	data->exit_status = 0;
 }
