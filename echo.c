@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/21 14:48:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:55:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	check_flag(char *str)
 	return (str[i] == '\0');
 }
 
-void echo(char **strstr, t_data *data)
+void	echo(char **strstr, t_data *data)
 {
 	bool	flag;
 	int		i;

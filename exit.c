@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/02/19 16:50:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:45:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool	is_string_numeric(char *str)
 {
 	if (!*str)
 		return (false);
-	while(*str)
+	while (*str)
 	{
 		printf("%c\n", *str);
 		if ((*str < '0' || *str > '9') && *str != '-' && *str != '+')
@@ -80,10 +80,9 @@ bool	is_string_numeric(char *str)
 
 void	exit_exit(t_data *data)
 {
-	int code;
+	int	code;
 
 	code = data->exit_code;
-	
 	if (data->env)
 		ft_clean_list(data->env);
 	if (data->pwd)
@@ -97,7 +96,7 @@ void	builtin_exit(char **args, t_data *data)
 	if (!args[1])
 	{
 		data->exit_code = 0;
-		exit_exit(data); // macro = 0;
+		exit_exit(data);
 	}
 	if (args[2] && is_string_numeric(args[1]))
 	{

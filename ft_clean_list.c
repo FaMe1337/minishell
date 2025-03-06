@@ -1,47 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_clean_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:36:23 by toferrei         ###   ########.fr       */
+/*   Created: 2025/03/05 13:45:23 by toferrei          #+#    #+#             */
+/*   Updated: 2025/03/06 15:32:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	pwd(t_data *data)
+void	ft_clean_list(t_env **lst)
 {
-	char	*dir;
+	t_env	*temp;
+	t_env	*temp2;
 
-	dir = NULL;
-	dir = getcwd(NULL, 0);
-	if (!dir)
+	temp = *lst;
+	if (lst == NULL)
 	{
-		dir = data->pwd;
+		printf("Tried freeing empty list\n");
+		return ;
 	}
-	if (dir != NULL)
+	while (temp != NULL)
 	{
-		write(1, dir, ft_strlen(dir));
-		write(1, "\n", 1);
-		free(dir);
-		data->exit_code = 0;
+		temp2 = temp->next;
+		free(temp->name);
+		free(temp->value);
+		free(temp);
+		temp = temp2;
 	}
-	else
-	{
-		perror("pwd : no pwd");
-		data->exit_code = 1;
-	}
+	free(lst);
 }
-
-/* int main (void)
-{
-	t_data data;
-
-	data.pwd = NULL;
-	data.pwd = getcwd(NULL, 0);
-	pwd(&data);
-	free(data.pwd);
-} */
