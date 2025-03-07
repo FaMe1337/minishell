@@ -6,7 +6,11 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/02 15:15:21 by famendes         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/02 22:27:07 by famendes         ###   ########.fr       */
+>>>>>>> fabio
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +50,24 @@ void free_split_and_token(char **split, t_token *token)
 
 void free_all_data(t_data *data)
 {
-	t_env	**current;
+	t_env	*current;
 
 	free(data->home);
 	free(data->pwd);
 	free(data->pwd_with_till);
+<<<<<<< HEAD
 	while (data->env)
+=======
+	while ((*data->env))
+>>>>>>> fabio
 	{
-		current = &((*data->env)->next);
+		current = (*data->env)->next;
 		free((*data->env)->value);
 		free((*data->env)->name);
 		free(*data->env);
-		*data->env = *current;
+		(*data->env) = current;
 	}
 	free_char_array(data->env_str_array);
-	free(data);
 }
 
 void	free_stuff(t_data *data)

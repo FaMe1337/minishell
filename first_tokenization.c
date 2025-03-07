@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:05:29 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 17:56:17 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:30:29 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_token *first_tokenazor(t_data *data, char **inputs)
 	int	i;
 
 	i = 0;
-	if (!inputs || !inputs[i][0])
+	if (!inputs || !inputs[i])
 	{
 		free(inputs);
 		return (NULL);

@@ -6,34 +6,15 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:35:28 by famendes          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/02 15:08:49 by famendes         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/02 23:15:00 by famendes         ###   ########.fr       */
+>>>>>>> fabio
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	check_for_open_quotes(char *str)
-{
-	int	i;
-	bool	one_quote;
-	bool	double_quote;
-
-	i = 0;
-	one_quote = false;
-	double_quote = false;
-
-	while (str[i])
-	{
-		if (str[i] == '\'' && !double_quote)
-			one_quote = !one_quote;
-		else if (str[i] == '\"' && !one_quote)
-			double_quote = !double_quote;
-		i++;
-	}
-	if (one_quote || double_quote)
-		return (false);
-	return (true);
-}
 
 bool	in_quotes(const char *str, int index)
 {
@@ -87,3 +68,57 @@ bool	double_quotes(const char *str, int index)
     return (double_quote);
 }
 
+<<<<<<< HEAD
+=======
+void	remove_quotes_from_cmd(t_pipe *tree)
+{
+	int	i;
+	int	j;
+	char	*result;
+
+	i = 0;
+	while (tree->cmd[i])
+	{
+		result = safe_malloc(ft_strlen(tree->cmd[i]));
+		j = 0;
+		while (tree->cmd[i][j])
+		{
+			if (ft_isquote(tree->cmd[i][j]))
+				j++;
+			result[j] = tree->cmd[i][j];
+			j++;
+		}
+		result[j] = 0;
+		free(tree->cmd[i]);
+		tree->cmd[i] = ft_strdup(result);
+		free(result);
+		i++;
+	}
+}
+
+void	remove_quotes_from_red(t_pipe *tree)
+{
+	int	i;
+	int	j;
+	char	*result;
+
+	i = 0;
+	while (tree->red[i])
+	{
+		result = safe_malloc(ft_strlen(tree->red[i]));
+		j = 0;
+		while (tree->red[i][j])
+		{
+			if (ft_isquote(tree->red[i][j]))
+				j++;
+			result[j] = tree->red[i][j];
+			j++;
+		}
+		result[j] = 0;
+		free(tree->red[i]);
+		tree->red[i] = ft_strdup(result);
+		free(result);
+		i++;
+	}
+}
+>>>>>>> fabio

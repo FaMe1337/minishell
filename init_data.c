@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/22 17:20:28 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:48:21 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	init_data(char **env, t_data *data)
 	data->env_str_array = cpy_from_env(data->env);
 	data->pwd_with_till = get_till();
 	data->token = NULL;
+	data->cmd_tree = NULL;
 	data->exit_status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 14:52:13 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/02 20:41:55 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,24 @@ int		is_builtin(char *command)
 void	exec_builtin(char **cmd, t_data *data)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
-		ft_echo();
+		//ft_echo();
+		printf("ola\n");
 	else if (ft_strcmp(cmd[0], "cd") == 0)
-		ft_cd();
+		//ft_cd();
+		printf("tomaz\n");
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
-		ft_pwd();
+		//ft_pwd();
+		printf("vamos\n");
 	else if (ft_strcmp(cmd[0], "env") == 0)
-		ft_env();
+		//ft_env();
+		printf("acabar\n");
 	else if (ft_strcmp(cmd[0], "export") == 0)
-		ft_export();
+		//ft_export();
+		printf("esta\n");
 	else if (ft_strcmp(cmd[0], "unset") == 0)
-		ft_unset();
+		//ft_unset();
+		printf("merda\n");
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		ft_exit();
+		//ft_exit();
+		printf("!!!\n");
 }
