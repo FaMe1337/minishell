@@ -1,47 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:36:23 by toferrei         ###   ########.fr       */
+/*   Created: 2025/03/05 13:11:26 by toferrei          #+#    #+#             */
+/*   Updated: 2025/03/05 13:11:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	pwd(t_data *data)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*dir;
-
-	dir = NULL;
-	dir = getcwd(NULL, 0);
-	if (!dir)
+	if (!s1 || !s2)
+		return (0);
+	while (*s1 && *s2 && (*s1 == *s2))
 	{
-		dir = data->pwd;
+		if (!*s1 || !*s2)
+			break ;
+		s1++;
+		s2++;
 	}
-	if (dir != NULL)
-	{
-		write(1, dir, ft_strlen(dir));
-		write(1, "\n", 1);
-		free(dir);
-		data->exit_code = 0;
-	}
-	else
-	{
-		perror("pwd : no pwd");
-		data->exit_code = 1;
-	}
+	return (*(const unsigned char *)s1 - *(const unsigned char *)s2);
 }
-
-/* int main (void)
-{
-	t_data data;
-
-	data.pwd = NULL;
-	data.pwd = getcwd(NULL, 0);
-	pwd(&data);
-	free(data.pwd);
-} */

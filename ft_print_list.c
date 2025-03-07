@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_print_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:36:23 by toferrei         ###   ########.fr       */
+/*   Created: 2025/03/05 13:47:48 by toferrei          #+#    #+#             */
+/*   Updated: 2025/03/06 15:26:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	pwd(t_data *data)
+void	ft_print_list(t_env **lst)
 {
-	char	*dir;
+	t_env	*temp;
 
-	dir = NULL;
-	dir = getcwd(NULL, 0);
-	if (!dir)
+	temp = *lst;
+	if (!lst)
 	{
-		dir = data->pwd;
+		printf("Tried printing empty list\n");
+		return ;
 	}
-	if (dir != NULL)
+	while (temp != NULL)
 	{
-		write(1, dir, ft_strlen(dir));
-		write(1, "\n", 1);
-		free(dir);
-		data->exit_code = 0;
-	}
-	else
-	{
-		perror("pwd : no pwd");
-		data->exit_code = 1;
+		printf("declare -x %s", temp->name);
+		if (temp->exported)
+			printf("=%s", temp->value);
+		printf ("\n");
+		temp = temp->next;
 	}
 }
-
-/* int main (void)
-{
-	t_data data;
-
-	data.pwd = NULL;
-	data.pwd = getcwd(NULL, 0);
-	pwd(&data);
-	free(data.pwd);
-} */
