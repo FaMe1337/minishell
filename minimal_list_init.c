@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimal_list_init.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:57:51 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 19:34:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:52:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 void	minimal_list_init(t_data *data)
 {
@@ -24,5 +24,5 @@ void	minimal_list_init(t_data *data)
 	env_to_list(data, (char *[]){"LS_COLORS=", "SHLVL=1", \
 		"PATH=/usr/local/bin:" \
 		"/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin", \
-		"_=/usr/bin/env", NULL}, 0);
+		"_=/usr/bin/env", NULL});
 }

@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:36:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:29:37 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 void	pwd(t_data *data)
 {
@@ -27,12 +27,12 @@ void	pwd(t_data *data)
 		write(1, dir, ft_strlen(dir));
 		write(1, "\n", 1);
 		free(dir);
-		data->exit_code = 0;
+		data->exit_status = 0;
 	}
 	else
 	{
 		perror("pwd : no pwd");
-		data->exit_code = 1;
+		data->exit_status = 1;
 	}
 }
 

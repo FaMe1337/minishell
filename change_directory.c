@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/05 13:10:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:46:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 static void	update_pwd(t_data *data)
 {
@@ -35,7 +35,7 @@ void	change_directory(char **args, t_data *data)
 	if (!args[1] && !get_var_value(*(data->env), "HOME"))
 	{
 		write(2, "cd : HOME not set", 18);
-		data->exit_code = 1;
+		data->exit_status = 1;
 		return ;
 	}
 	else if ((!args[1] && data->home) \
@@ -55,7 +55,7 @@ void	change_directory(char **args, t_data *data)
 		if (!get_var_value(*(data->env), "OLDPWD"))
 		{
 			write(2, "cd : OLDPWD not set", 20);
-			data->exit_code = 1;
+			data->exit_status = 1;
 			return ;
 		}
 		else
@@ -78,18 +78,18 @@ void	change_directory(char **args, t_data *data)
 	if (chdir(curpath))
 	{
 		write(2, "cd: ", 5);
-		data->exit_code = 1;
+		data->exit_status = 1;
 		return ;
 	}
 	if (getcwd(curpath, sizeof(curpath)) == NULL)
 	{
 		write(2, "pwd: ", 6);
-		data->exit_code = 1;
+		data->exit_status = 1;
 		return ;
 	}
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, curpath, sizeof(env_var));
 	update_pwd(data);
 	export_bi((char *[]){"export", env_var, NULL}, data);
-	data->exit_code = 0;
+	data->exit_status = 0;
 }

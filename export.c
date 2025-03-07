@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:47:43 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:51:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 static bool	is_valid_name_for_export(char *str)
 {
@@ -51,7 +51,7 @@ void	export_bi(char **args, t_data *data)
 	int	i;
 
 	i = 1;
-	data->exit_code = 0;
+	data->exit_status = 0;
 	if (!args[1])
 	{
 		print_export(data->env);
@@ -64,10 +64,10 @@ void	export_bi(char **args, t_data *data)
 			write(2, "minishell: export: \"", 21);
 			write(2, args[i], ft_strlen(args[i]));
 			write(2, "\": not a valid identifier\n", 26);
-			data->exit_code = 1;
+			data->exit_status = 1;
 		}
 		else
-			env_to_list(data, (char *[]){args[i], NULL}, 0);
+			env_to_list(data, (char *[]){args[i], NULL});
 		i++;
 	}
 }

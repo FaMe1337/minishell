@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 20:41:55 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:56:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,17 @@ int		is_builtin(char *command)
 void	exec_builtin(char **cmd, t_data *data)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
-		//ft_echo();
-		printf("ola\n");
+		echo(cmd, data);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
-		//ft_cd();
-		printf("tomaz\n");
+		change_directory(cmd, data);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
-		//ft_pwd();
-		printf("vamos\n");
+		pwd(data);
 	else if (ft_strcmp(cmd[0], "env") == 0)
-		//ft_env();
-		printf("acabar\n");
+		environment(cmd, data);
 	else if (ft_strcmp(cmd[0], "export") == 0)
-		//ft_export();
-		printf("esta\n");
+		export_bi(cmd, data);
 	else if (ft_strcmp(cmd[0], "unset") == 0)
-		//ft_unset();
-		printf("merda\n");
+		unset_env(cmd, data);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
-		//ft_exit();
-		printf("!!!\n");
+		builtin_exit(cmd, data);
 }

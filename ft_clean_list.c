@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:45:23 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/06 15:32:01 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:33:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 void	ft_clean_list(t_env **lst)
 {

@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:12:52 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/05 13:17:16 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:32:26 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 int	ft_modifiedlstsize(t_env *lst)
 {
