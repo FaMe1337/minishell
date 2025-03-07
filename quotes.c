@@ -6,11 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:35:28 by famendes          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/02 15:08:49 by famendes         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/02 23:15:00 by famendes         ###   ########.fr       */
->>>>>>> fabio
+/*   Updated: 2025/03/07 19:32:04 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +64,6 @@ bool	double_quotes(const char *str, int index)
     return (double_quote);
 }
 
-<<<<<<< HEAD
-=======
 void	remove_quotes_from_cmd(t_pipe *tree)
 {
 	int	i;
@@ -121,4 +115,3 @@ void	remove_quotes_from_red(t_pipe *tree)
 		i++;
 	}
 }
->>>>>>> fabio

@@ -6,11 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/02 15:15:21 by famendes         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/02 22:27:07 by famendes         ###   ########.fr       */
->>>>>>> fabio
+/*   Updated: 2025/03/07 19:31:09 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +51,7 @@ void free_all_data(t_data *data)
 	free(data->home);
 	free(data->pwd);
 	free(data->pwd_with_till);
-<<<<<<< HEAD
-	while (data->env)
-=======
 	while ((*data->env))
->>>>>>> fabio
 	{
 		current = (*data->env)->next;
 		free((*data->env)->value);
