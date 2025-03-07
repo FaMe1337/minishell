@@ -3,49 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/01/21 11:15:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:53:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built-ins.h"
+#include "builtins.h"
 
-/*
-int change_directory(char **args, int fd, lista *data)
+static void	update_pwd(t_data *data)
 {
-	check for directory
-		if no directory
-			check for HOME variable
-				if no HOME
-					return error message ---> bash: cd: HOME not set ===> error code 1
-				if HOME
-					go to HOME and return
-		if directory
-			check for flag
-				if flag == '-'
-					check if OLDPWD exists
-						yes
-							change to OLDPWD and print and return 0 and change PWD to OLDPWD and OLPWD to PWD
-						no
-							return error message -----> need to find error code
-			check for first character
-				if  ( not / ) or .
-					concatenate current path to beginning of "directory"
-					if .
+	char	*new_pwd;
 
+	new_pwd = NULL;
+	new_pwd = getcwd(NULL, 0);
+	if (new_pwd)
+	{
+		free(data->pwd); 
+		data->pwd = new_pwd;
+	}
+	free (new_pwd);
 }
 
-*/
-
-int main(int ac, char **av, char **env)
+void change_directory(char **args, t_data *data)
 {
-	int n = 0;
-	while (env[n])
+	char curpath[4096]; //change to PATH_MAX macro
+	char	env_var[4128];
+
+	curpath[0] = '\0';
+	if (!args[1] && !get_var_value(*(data->env), "HOME"))
 	{
-		printf("\n%s\n", env[n]);
-		n++;
+		perror("cd : erro de nao have home"); //to do (write)
+		// data->exit_code = ; to do
+		return ;
 	}
-	return 0;
+	else if((!args[1] && data->home) || !ft_strncmp(args[1], "~", ft_strlen(args[1])) \
+		|| !ft_strncmp(args[1], "~/", ft_strlen("~/")))
+	{
+		ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
+		if (ft_strncmp(args[1], "~", ft_strlen(args[1])) && ft_strncmp(args[1], "~/", ft_strlen(args[1])))
+		{
+			args[1]++;
+			ft_strlcat(curpath, args[1], ft_strlen(data->pwd) + 1);
+		}
+	}
+	else if(!ft_strncmp(args[1], "-", ft_strlen(args[1])))//vai buscar um strcmp da forma que tens falha se escreveres mais no args[1]
+	{
+		if (!get_var_value(*(data->env), "OLDPWD")) // to do
+		{
+			perror("cd : erro de nao haver OLDPWD");
+			// data->exit_code = ; to do
+			return ;
+		}
+		else
+			ft_strlcat(curpath, get_var_value(*(data->env), "OLDPWD"), ft_strlen(get_var_value(*(data->env), "OLDPWD")) + 1);
+	}
+	else if(!ft_strncmp(args[1], "/", ft_strlen("/")) ||
+		!ft_strncmp(args[1], ".", ft_strlen(args[1])) ||
+		!ft_strncmp(args[1], "..", ft_strlen(args[1])))
+	{
+		ft_strlcat(curpath, args[1], ft_strlen(args[1] + 1));
+	}
+	else
+	{
+		ft_strlcat(curpath, data->pwd, ft_strlen(data->pwd) + 1);
+		ft_strlcat(curpath, "/", ft_strlen(data->pwd) + 3);
+		ft_strlcat(curpath, args[1], ft_strlen(args[1]) + ft_strlen(data->pwd) + 2);
+	}
+	if (chdir(curpath))
+	{
+		perror("minishell: cd: ");
+		data->exit_code = 1;
+		return ;
+	}
+	if (getcwd(curpath, sizeof(curpath)) == NULL)
+	{
+		perror("minishell: pwd: ");
+		data->exit_code = 1;
+		return ;
+	}
+	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
+	ft_strlcat(env_var, curpath, sizeof(env_var));
+	printf("%s\n", env_var);
+	update_pwd(data);
+	export_bi((char *[]){"export", env_var, NULL}, data);
+	data->exit_code = 0;
+
 }

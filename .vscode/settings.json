@@ -29,7 +29,8 @@
 =======
 		"ammintrin.h": "c",
 		"string.h": "c",
-		"dirent.h": "c"
+		"dirent.h": "c",
+		"builtins.h": "c"
 	}
 }
 >>>>>>> tomaz

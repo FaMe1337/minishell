@@ -1,4 +1,4 @@
-#include <stdio.h>
+/* #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -52,4 +52,4 @@ int main(void)
 	chdir(new_arr);
 	printf("\n%s\n", getcwd(arr, 0));
 	ls(arr);
-}
+} */

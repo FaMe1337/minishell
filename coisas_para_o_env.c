@@ -3,6 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   coisas_para_o_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:05:35 by toferrei          #+#    #+#             */
@@ -11,6 +12,16 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+=======
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 12:23:45 by toferrei          #+#    #+#             */
+/*   Updated: 2025/02/20 17:01:37 by toferrei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "builtins.h"
+>>>>>>> tomaz
 
 void	ft_clean_list(t_env **lst)
 {
@@ -23,6 +34,7 @@ void	ft_clean_list(t_env **lst)
 		printf("Tried freeing empty list\n");
 		return ;
 	}
+<<<<<<< HEAD
 	while (temp->next != NULL)
 	{
 		temp2 = temp->next;
@@ -35,19 +47,44 @@ void	ft_clean_list(t_env **lst)
 }
 
 void	ft_print_list(t_env **lst)
+=======
+	while (temp != NULL)
+	{
+		temp2 = temp->next;
+		free(temp->name);
+		free(temp->value);
+		free(temp);
+		temp = temp2;
+	}
+	free(lst); 
+}
+
+void	ft_print_list(t_env **lst, bool override)
+>>>>>>> tomaz
 {
 	t_env *temp;
 
 	temp = *lst;
+<<<<<<< HEAD
 	if (lst == NULL)
+=======
+	if (!lst)
+>>>>>>> tomaz
 	{
 		printf("Tried printing empty list\n");
 		return ;
 	}
 	while (temp != NULL)
 	{
+<<<<<<< HEAD
 		printf("%s=", temp->name);
 		printf("%s\n", temp->value);
+=======
+		printf("declare -x %s", temp->name);
+		if (temp->exported)
+			printf("=%s", temp->value);
+		printf ("\n");
+>>>>>>> tomaz
 		temp = temp->next;
 	}
 }
@@ -93,7 +130,13 @@ void	ft_modified_lstadd_back(t_env **lst, t_env *new)
 
 t_env *check_for_variable(t_env *env, char *var_name)
 {
+<<<<<<< HEAD
 	while (env->next != NULL)
+=======
+	if (!env || !var_name || !var_name[0])
+		return (NULL);
+	while (env != NULL)
+>>>>>>> tomaz
 	{
 		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
 			return (env);
@@ -109,9 +152,13 @@ size_t size_until_symbol(char * str, char c)
 	if (!str || !c)
 		return (0);
 	while (str[n] && str[n] != c)
+<<<<<<< HEAD
 	{
 		n++;
 	}
+=======
+		n++;
+>>>>>>> tomaz
 	return (n);
 }
 
@@ -119,29 +166,78 @@ char *get_value_for_list(char * str)
 {
 	int n = 0;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> tomaz
 	while (str[n] != '\0' && str[n - 1] != '=')
 		n++;
 	return (&str[n]);
 }
 
+<<<<<<< HEAD
 void	env_to_list(t_data *data, char **env)
+=======
+bool for_export(char *str)
+{
+	while (*str)
+	{
+		if (*str == '=')
+			return (true);
+		str++;
+	}
+	return (false);
+}
+
+int	size_of_envp(char **env)
+{
+	int	i;
+
+	i = 0;
+	if (!env)
+		return (0);
+	while (env[i] != NULL)
+		i++;
+	return (i);
+}
+
+void	env_to_list(t_data *data, char **env, int n)
+>>>>>>> tomaz
 {
 	t_env *temp;
 	char *temp1;
 
+<<<<<<< HEAD
 	int n = 0;
+=======
+>>>>>>> tomaz
 	if (!data->env)
 	{
 		data->env = malloc(sizeof * data->env);
 		*data->env = NULL;
 	}
+<<<<<<< HEAD
+=======
+	if (!size_of_envp(env))
+		minimal_list_init(data);
+>>>>>>> tomaz
 	while (env[n])
 	{
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		ft_strlcpy(temp1, env[n], size_until_symbol(env[n], '=') + 1);
+<<<<<<< HEAD
 		temp = ft_newnode(ft_strdup(temp1), get_value_for_list(env[n]), true);
 		ft_modified_lstadd_back(data->env, temp);
+=======
+		temp = ft_newnode(ft_strdup(temp1), ft_strdup(get_value_for_list(env[n])), for_export(env[n]));
+		if (check_for_variable(*data->env, temp1)) // node exists
+		{
+			check_for_variable(*data->env, temp1)->value = ft_strdup(get_value_for_list(env[n]));
+			check_for_variable(*data->env, temp1)->exported = true;
+		}
+		else
+			ft_modified_lstadd_back(data->env, temp);
+>>>>>>> tomaz
 		n++;
 		free (temp1);
 	}
@@ -152,9 +248,13 @@ char *get_var_value(t_env *env, char *var_name)
 	while (env != NULL)
 	{
 		if (!ft_strncmp(env->name, var_name, ft_strlen(var_name)))
+<<<<<<< HEAD
 		{
 			return (env->value);
 		}
+=======
+			return (env->value);
+>>>>>>> tomaz
 		env= env->next;
 	}
 	return (NULL);
