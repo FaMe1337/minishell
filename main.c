@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 19:34:04 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:38:55 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	show_starter(char **env, t_data *data)
 	}
 	//limpar tudo que resta
 	free_all_data(data);
+	/*
+		MEMORY IS CLEANED
+	*/
 }
 
 int	main(int ac, char **av, char **env)

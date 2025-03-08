@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 23:51:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:13:19 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,7 @@ bool	in_quotes(char const *str, int index);
 bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
 int		ft_isquote(char c);
-void	remove_quotes_from_cmd(t_pipe *tree);
-void	remove_quotes_from_red(t_pipe *tree);
+void	remove_quotes(t_pipe *tree);
 
 /* token fuctions */
 
