@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 13:52:32 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/09 18:22:13 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_pipe
 	int				fd_in;
 	int				fd_out;
 	int				doc_pipe[2]; //pipe
+	bool			heredoc;
 	bool			last_child;
 	bool			bad_fd;
 	char			*path;

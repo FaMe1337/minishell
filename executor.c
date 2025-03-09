@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 17:16:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:52:02 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
-
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data);
 	else
@@ -31,7 +30,6 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 		//temos de resetar o terminal com sinais senão perco o readline
 		int	status;
 		waitpid(cmd_tree->pid, &status, 0);
-	printf("\n%d\n", status);
 		/*
 			OBRIGADO WAITPID
 		*/

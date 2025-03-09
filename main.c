@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 16:01:23 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/09 17:34:02 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	show_starter(char **env, t_data *data)
 		data->input = readline(data->pwd_with_till);
 		if (!data->input)
 		{
-			ft_putstr_fd("Error on readline\n", 2);
+			ft_putstr_fd("exit\n", 2);
 			break;
 		}
 		if (*data->input)

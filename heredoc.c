@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/09 17:18:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:35:09 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 		read_heredoc(str, cmd, data);
 	close(cmd->doc_pipe[1]);
 	waitpid(pid, &status, 0);
+	data->cmd_tree->heredoc = true;
 }
