@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 18:22:13 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 20:52:41 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ char	**add_prefix(char **res, char *value, char *prefix);
 /* expanse */
 
 void	expanse_parse(t_data * data);
+bool	valid_expansion(char *str, int i);
+void	expand_str(t_token *token, t_data *data);
+char	*put_var_on_token(t_token *token, char *var);
 char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);

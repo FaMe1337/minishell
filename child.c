@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 18:52:19 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 20:23:35 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void child_red_in(t_pipe *tree)
 {
-	printf("ola1234\n");
 	int i;
 	bool has_red;
 
@@ -24,7 +23,7 @@ static void child_red_in(t_pipe *tree)
 		return;
 	while (tree->red[i])
 	{
-		if (ft_strcmp(tree->cmd[i], "RDI") == 0 || ft_strcmp(tree->cmd[i], "DOC") == 0)
+		if (ft_strncmp(tree->red[i], "RDI:", 4) == 0 || ft_strncmp(tree->red[i], "DOC:", 4) == 0)
 			has_red = true;
 		i++;
 	}
@@ -37,9 +36,8 @@ static void child_red_in(t_pipe *tree)
 	{
 		if (tree->heredoc)
 		{
-			printf("ola\n");
 			dup2(tree->doc_pipe[0], STDIN_FILENO);
-			close(tree->doc_pipe[0]);	
+			close(tree->doc_pipe[0]);
 		}
 		else
 		{
@@ -61,7 +59,7 @@ static void	child_red_out(t_pipe *tree)
 		return;
 	while (tree->red[i])
 	{
-		if (ft_strcmp(tree->cmd[i], "RDO") == 0 || ft_strcmp(tree->cmd[i], "APP") == 0)
+		if (ft_strncmp(tree->red[i], "RDO:", 4) == 0 || ft_strncmp(tree->red[i], "APP:", 4) == 0)
 			has_red = true;
 		i++;
 	}

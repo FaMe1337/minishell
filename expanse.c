@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/27 20:00:29 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 20:53:20 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	valid_expansion(char *str, int i)
+bool	valid_expansion(char *str, int i)
 {
 	i++;
 	if (ft_isalnum(str[i]) || str[i] == '?' || str[i] == '$' ||
@@ -21,7 +21,7 @@ static bool	valid_expansion(char *str, int i)
 	return (false);
 }
 
-static char	*put_var_on_token(t_token *token, char *var)
+char	*put_var_on_token(t_token *token, char *var)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,7 @@ static char	*put_var_on_token(t_token *token, char *var)
 	return (res);
 }
 
-static void	expand_str(t_token *token, t_data *data)
+void	expand_str(t_token *token, t_data *data)
 {
 	char	*var_name;
 	char	*var_value;
@@ -84,10 +84,10 @@ void	expanse_parse(t_data * data)
 						&& temp->value[i + 1])
 				{
 					if (valid_expansion(temp->value, i))
-							{
-								expand_str(temp, data);
-								continue;
-							}
+					{
+						expand_str(temp, data);
+						continue;
+					}
 				}
 				i++;
 			}

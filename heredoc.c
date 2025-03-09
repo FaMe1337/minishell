@@ -3,44 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/09 18:35:09 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 21:15:53 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void write_heredoc(char *input, int wpipe)
+static void	expand_doc_token(t_token *token ,t_data *data)
 {
+	int	i;
+	t_token *temp;
+
+	temp = token;
+
+	i = 0;
+	while (temp->value[i])
+	{
+		if (temp->value[i] == '$' && !single_quote(temp->value, i)
+				&& temp->value[i + 1])
+		{
+			if (valid_expansion(temp->value, i))
+			{
+				printf("entrei\n");
+				expand_str(temp, data);
+				continue;
+			}
+		}
+		i++;
+	}
+}
+
+void	expand_doc(char *str, t_data *data)
+{
+	t_token	*token;
+	char	*result;
+
+	printf("str é: %s\n", str);
+	token = init_token(str);
+	expand_doc_token(token, data);
+	result = ft_strdup(token->value);
+	free(token->value);
+	free(token);
+	str = result;
+	printf("result é: %s\n", result);
+}
+
+static void write_heredoc(char *input, int wpipe,t_data *data)
+{
+	int	i;
+
+	i = 0;
 	if (!*input)
 		return;
+	while (input[i])
+	{
+		if (input[i] == '$')
+			expand_doc(input, data);
+		i++;
+	}
 	ft_putstr_fd(input, wpipe);
 	write(wpipe, "\n", 1);
-	free(input);
+	if (input)
+		free(input);
 }
 
 static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
 	char	*input;
 
-	(void) *data;
 	close(cmd->doc_pipe[0]);
 	while (1)
 	{
 		input = readline("> ");
 		if (!input)
-		{
-			//write_for_terminal();
 			break;
-		}
 		if (ft_strcmp(input, str) == 0)
 		{
 			free(input);
 			break;
 		}
-		write_heredoc(input, cmd->doc_pipe[1]);
+		write_heredoc(input, cmd->doc_pipe[1], data);
 	}
 	close(cmd->doc_pipe[1]);
 	exit(0);
@@ -51,6 +96,7 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	int	pid;
 	int	status;
 
+	cmd->heredoc = true;
 	if (pipe(cmd->doc_pipe) < 0)
 	{
 		perror("pipe error");
@@ -68,5 +114,4 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 		read_heredoc(str, cmd, data);
 	close(cmd->doc_pipe[1]);
 	waitpid(pid, &status, 0);
-	data->cmd_tree->heredoc = true;
 }
