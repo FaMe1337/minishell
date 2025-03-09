@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/08 22:13:19 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:52:32 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_pipe
 	int				fd_out;
 	int				doc_pipe[2]; //pipe
 	bool			last_child;
-	bool			last_red_out;
 	bool			bad_fd;
 	char			*path;
 	char			**red; //allocado
@@ -143,7 +142,8 @@ void	child_process(t_pipe *tree, t_data *data);
 
 /* red handler */
 
-int	handle_redirections(t_pipe *cmd);
+int		handle_redirections(t_pipe *cmd, t_data *data);
+void	exec_doc(char *str, t_pipe *cmd, t_data *data);
 
 /* Built - Ins */
 

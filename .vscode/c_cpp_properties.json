@@ -1,0 +1,14 @@
+{
+    "configurations": [
+      {
+        "name": "Linux",
+        "includePath": [
+          "${workspaceFolder}/**",
+          "/usr/include/**",
+          "/usr/local/include/**"
+        ],
+        "compilerPath": "/usr/bin/gcc"
+      }
+    ],
+    "version": 4
+  }

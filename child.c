@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/08 20:22:31 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 15:56:16 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,28 @@
 
 static void	child_red_out(t_pipe *tree)
 {
-	if (tree->next != NULL)
+	int i;
+	bool has_red;
+
+	i = 0;
+	has_red = false;
+	while (tree->red[i])
 	{
-		//todo
+		if (ft_strcmp(tree->cmd[i], "RDO") == 0 || \
+			ft_strcmp(tree->cmd[i], "APP") == 0)
+				has_red = true;
+		i++;
 	}
-	if (tree->fd_out == 1)
-		return ;
-	dup2(tree->fd_out, STDOUT_FILENO);
-	close(tree->fd_out);
+	if (tree->next != NULL && !has_red)
+	{
+		dup2(tree->pipe[1], STDOUT_FILENO);
+		close(tree->pipe[1]);
+	}
+	else if (tree->fd_out > 2)
+	{
+		dup2(tree->fd_out, STDOUT_FILENO);
+		close(tree->fd_out);
+	}
 }
 
 static char	*find_path(char *cmd, char **envp)
@@ -68,6 +82,8 @@ void	child_process(t_pipe *tree, t_data *data)
 	else
 	{
 		path = find_path(tree->cmd[0], data->env_str_array);
+		if (!path)
+			path = ft_strdup(tree->cmd[0]);
 		execve(path, tree->cmd, data->env_str_array);
 		free(path);
 	}

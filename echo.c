@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 23:38:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:00:58 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	echo(char **strstr, t_data *data)
 		i++;
 	while (strstr[i])
 	{
-		printf("%s", strstr[i]);
+		ft_putstr_fd(strstr[i], data->cmd_tree->fd_out);
 		if (strstr[i + 1] != NULL && ft_strlen(strstr[i]))
-			write (1, " ", 1);
+			write (data->cmd_tree->fd_out, " ", 1);
 		i++;
 	}
 	if (!flag)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 19:15:55 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:51:36 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	append(char *str, t_pipe *cmd)
+static void	append(char *str, t_pipe *cmd)
 {
 	int	fd;
 
@@ -35,7 +35,7 @@ void	append(char *str, t_pipe *cmd)
 	cmd->fd_out = fd;
 }
 
-void	red_out(char *str, t_pipe *cmd)
+static void	red_out(char *str, t_pipe *cmd)
 {
 	int	fd;
 
@@ -58,7 +58,7 @@ void	red_out(char *str, t_pipe *cmd)
 	cmd->fd_out = fd;
 }
 
-void	red_in(char *str, t_pipe *cmd)
+static void	red_in(char *str, t_pipe *cmd)
 {
 	int	fd;
 
@@ -81,35 +81,10 @@ void	red_in(char *str, t_pipe *cmd)
 	cmd->fd_in = fd;
 }
 
-void	check_if_last(t_pipe *cmd)
-{
-	int i;
-
-	i = 0;
-	while (cmd->red)
-	{
-		if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
-			cmd->last_red_out = true;
-		else if (ft_strncmp(cmd->red[i], "RDI:", 4) == 0)
-			cmd->last_red_out = false;
-		i++;
-	}
-}
-
-/* static void	exec_doc(char *str, t_pipe *cmd)
-{
-	pipe(cmd->doc_pipe)
-} */
-
-static int	parse_redirections(char *str, t_pipe *red)
+static int	parse_redirections(char *str, t_pipe *red, t_data *data)
 {
 	if (ft_strncmp(str, "DOC:", 4) == 0)
-		{
-			check_if_last(red);
-			if (red->last_red_out)
-				//exec_doc(str + 4, red);
-				printf("ola\n");
-		}
+		exec_doc(str + 4, red, data);
 	else if (ft_strncmp(str, "RDI:", 4) == 0)
 		red_in(str + 4, red);
 	else if (ft_strncmp(str, "RDO:", 4) == 0)
@@ -121,7 +96,7 @@ static int	parse_redirections(char *str, t_pipe *red)
 	return (0);
 }
 
-int	handle_redirections(t_pipe *cmd)
+int	handle_redirections(t_pipe *cmd, t_data *data)
 {
 	int		i;
 
@@ -132,7 +107,7 @@ int	handle_redirections(t_pipe *cmd)
 		i = 0;
 		while(cmd->red && cmd->red[i])
 		{
-			if (parse_redirections(cmd->red[i], cmd))
+			if (parse_redirections(cmd->red[i], cmd, data))
 				return (1);
 			i++;
 		}
