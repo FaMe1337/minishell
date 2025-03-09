@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 23:43:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 19:13:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	populate_list(char *temp1, char *env, t_data *data)
 	t_env	*temp;
 
 	ft_strlcpy(temp1, env, size_until_symbol(env, '=') + 1);
+	printf("%s", get_value_for_list(env));
 	temp = ft_newnode(ft_strdup(temp1), \
 		ft_strdup(get_value_for_list(env)), \
 		for_export(env));
@@ -57,6 +58,11 @@ void	env_to_list(t_data *data, char **env)
 		minimal_list_init(data);
 	while (env[n])
 	{
+		if (!check_for_variable(*data->env, env[n]))
+		{
+			unset_env((char *[]){"unset", env[n], NULL}, data);
+			printf("estou aqui\n%s\n", env[n]);
+		}
 		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
 		populate_list(temp1, env[n], data);
 		n++;

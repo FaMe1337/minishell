@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 23:52:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:16:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char *get_till(void)
 	int count;
 
 	count = 0;
+	cwd = NULL;
 	cwd = getcwd(NULL, 0);
 	i = ft_strlen(cwd);
 	while (cwd[--i] != '/' && i >= 0)
@@ -93,8 +94,9 @@ char *get_till(void)
 
 void	init_data(char **env, t_data *data)
 {
-	data->home = fetch_home();
+	data->pwd = NULL;
 	data->pwd = getcwd(NULL, 0);
+	data->home = fetch_home();
 	data->env = NULL;
 	env_to_list(data, env);
 	data->env_str_array = cpy_from_env(data->env);

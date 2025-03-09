@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/09 16:06:50 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/09 17:32:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	echo(char **strstr, t_data *data)
 			write (data->cmd_tree->fd_out, " ", 1);
 		i++;
 	}
-	if (!flag)
+	if (!flag && data->cmd_tree->fd_out <= 2)
 		write (1, "\n", 1);
 	data->exit_status = 0;
 }

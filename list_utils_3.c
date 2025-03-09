@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:23:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 23:51:15 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:41:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*get_value_for_list(char *str)
 {
 	int	n;
 
-	n = 0;
+	n = 1;
+	printf("\n%s\n", str);
 	while (str[n] != '\0' && str[n - 1] != '=')
 		n++;
 	return (&str[n]);
