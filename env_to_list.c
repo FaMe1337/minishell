@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/09 19:13:10 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/09 19:14:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	env_to_list(t_data *data, char **env)
 		minimal_list_init(data);
 	while (env[n])
 	{
-		if (!check_for_variable(*data->env, env[n]))
+		if (check_for_variable(*data->env, env[n]))
 		{
 			unset_env((char *[]){"unset", env[n], NULL}, data);
 			printf("estou aqui\n%s\n", env[n]);
