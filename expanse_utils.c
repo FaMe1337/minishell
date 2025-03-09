@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:59:45 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 19:31:57 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:17:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	get_var_len(char *str, int i)
 
 char	*get_var_values(char *var_name, t_env **env)
 {
-	char *res;
 	t_env	*temp;
 
 	temp = (*env);

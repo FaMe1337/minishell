@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/09 14:59:59 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/09 17:18:26 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
 	char	*input;
 
+	(void) *data;
 	close(cmd->doc_pipe[0]);
 	while (1)
 	{

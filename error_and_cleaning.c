@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/08 21:24:22 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:17:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void free_split_and_token(char **split, t_token *token)
 
 void free_all_data(t_data *data)
 {
-	t_env	*current;
-
 	if (!data)
 		return;
 	free(data->home);

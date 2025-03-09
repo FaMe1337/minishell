@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 15:01:21 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/09 17:16:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 		//temos de resetar o terminal com sinais senão perco o readline
 		int	status;
 		waitpid(cmd_tree->pid, &status, 0);
+	printf("\n%d\n", status);
 		/*
 			OBRIGADO WAITPID
 		*/
