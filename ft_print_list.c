@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:47:48 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 23:32:56 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:48:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_print_list(t_env **lst)
 	{
 		printf("declare -x %s", temp->name);
 		if (temp->exported)
-			printf("=%s", temp->value);
+			printf("=\"%s\"", temp->value);
 		printf ("\n");
 		temp = temp->next;
 	}

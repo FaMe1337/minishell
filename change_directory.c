@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/09 18:52:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:12:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,22 @@ static void	update_pwd(t_data *data)
 		free(data->pwd);
 		data->pwd = new_pwd;
 	}
-	free (new_pwd);
+}
+
+void	export_for_cd(t_data *data, char *env_var)
+{
+	char	oldpwd_var[4128];
+	if (check_for_variable(*(data->env), "PWD"))
+	{
+		printf("\nsupposed value in pwd:%s:\n", get_var_value(*(data->env), "PWD"));
+		ft_strlcpy(oldpwd_var, "OLDPWD=", sizeof(env_var));
+		ft_strlcat(oldpwd_var, \
+			get_var_value(*(data->env), "PWD"), \
+			sizeof(oldpwd_var) + sizeof(get_var_value(*(data->env), "PWD")));
+		printf("\nantes de mandar olpwd:%s:\n", oldpwd_var);
+		export_bi((char *[]){"export", oldpwd_var, NULL}, data);
+	}
+	export_bi((char *[]){"export", env_var, NULL}, data);
 }
 
 void	change_directory(char **args, t_data *data)
@@ -32,7 +47,6 @@ void	change_directory(char **args, t_data *data)
 	char	env_var[4128];
 
 	curpath[0] = '\0';
-	printf("\nentrei :%s:\n", args[1]);
 	if (!args[1] && !get_var_value(*(data->env), "HOME"))
 	{
 		write(2, "cd : HOME not set", 18);
@@ -68,17 +82,15 @@ void	change_directory(char **args, t_data *data)
 		|| !ft_strncmp(args[1], "..", ft_strlen(args[1])))
 	{
 		ft_strlcat(curpath, args[1], ft_strlen(args[1]) + 1);
-		printf("entrei \n%s\n", curpath);
 	}
 	else
 	{
+		printf("entrei \n%s\n", curpath);
 		ft_strlcat(curpath, data->pwd, ft_strlen(data->pwd) + 1);
 		ft_strlcat(curpath, "/", ft_strlen(data->pwd) + 3);
 		ft_strlcat(curpath, args[1], \
 			ft_strlen(args[1]) + ft_strlen(data->pwd) + 2);
 	}
-	printf("\n%s\n", curpath);
-
 	if (chdir(curpath))
 	{
 		write(2, "cd: ", 5);
@@ -95,6 +107,6 @@ void	change_directory(char **args, t_data *data)
 	ft_strlcat(env_var, curpath, sizeof(env_var));
 	update_pwd(data);
 	printf("\n%s\n", env_var);
-	export_bi((char *[]){"export", env_var, NULL}, data);
+	export_for_cd(data, env_var);
 	data->exit_status = 0;
 }

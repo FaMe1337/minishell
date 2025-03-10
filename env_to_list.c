@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/09 19:14:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:10:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,33 @@ static int	size_of_envp(char **env)
 	return (i);
 }
 
-static void	populate_list(char *temp1, char *env, t_data *data)
+static void	populate_list(char *env, t_data *data)
 {
+	char	*temp1;
 	t_env	*temp;
 
+	temp1 = malloc (sizeof * temp1 * ft_strlen(env) + 1);
 	ft_strlcpy(temp1, env, size_until_symbol(env, '=') + 1);
-	printf("%s", get_value_for_list(env));
-	temp = ft_newnode(ft_strdup(temp1), \
-		ft_strdup(get_value_for_list(env)), \
-		for_export(env));
+	
 	if (check_for_variable(*data->env, temp1))
 	{
-		check_for_variable(*data->env, temp1)->value = \
-			ft_strdup(get_value_for_list(env));
+		temp = check_for_variable(*data->env, temp1);
+		free(temp->value);
+		temp->value = ft_strdup(get_value_for_list(env));
 		check_for_variable(*data->env, temp1)->exported = true;
 	}
 	else
+	{
+		temp = ft_newnode(ft_strdup(temp1),
+		ft_strdup(get_value_for_list(env)), \
+		for_export(env));
 		ft_modified_lstadd_back(data->env, temp);
+	}
+	free (temp1);
 }
 
 void	env_to_list(t_data *data, char **env)
 {
-	char	*temp1;
 	int		n;
 
 	n = 0;
@@ -58,14 +63,7 @@ void	env_to_list(t_data *data, char **env)
 		minimal_list_init(data);
 	while (env[n])
 	{
-		if (check_for_variable(*data->env, env[n]))
-		{
-			unset_env((char *[]){"unset", env[n], NULL}, data);
-			printf("estou aqui\n%s\n", env[n]);
-		}
-		temp1 = malloc (sizeof * temp1 * ft_strlen(env[n]) + 1);
-		populate_list(temp1, env[n], data);
+		populate_list(env[n], data);
 		n++;
-		free (temp1);
 	}
 }

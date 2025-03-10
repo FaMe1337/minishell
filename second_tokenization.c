@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   second_tokenization.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 17:56:26 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:03:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ static t_token	*reasign_tokens(t_token *token, char *operator)
 
 void	second_tokenazor(t_token **head)
 {// o maximo que consigo ter numa str sao 3 operators
-	int	i;
+	// int	i;
 	char *operator;
 	t_token *token;
 
-	i = 0;
+	// i = 0;
 	token = *head;
 	while (token)
 	{
