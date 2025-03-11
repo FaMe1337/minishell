@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/08 22:36:06 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:38:55 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ int input_parser(t_data *data)
 {
 	char **inputs;
 
-	if (ft_strncmp(data->input, "exit", 4) == 0)
-		exit(1);
 	if (!check_for_open_quotes(data->input))
 	{
 		ft_putstr_fd("Wrong input\n", 2);

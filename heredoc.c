@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/09 21:15:53 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/11 20:29:13 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	expand_doc_token(t_token *token ,t_data *data)
 		{
 			if (valid_expansion(temp->value, i))
 			{
-				printf("entrei\n");
 				expand_str(temp, data);
 				continue;
 			}
@@ -36,38 +35,41 @@ static void	expand_doc_token(t_token *token ,t_data *data)
 	}
 }
 
-void	expand_doc(char *str, t_data *data)
+static char *expand_doc(char *str, t_data *data)
 {
 	t_token	*token;
 	char	*result;
 
-	printf("str é: %s\n", str);
 	token = init_token(str);
 	expand_doc_token(token, data);
 	result = ft_strdup(token->value);
 	free(token->value);
 	free(token);
-	str = result;
-	printf("result é: %s\n", result);
+	return (result);
 }
 
 static void write_heredoc(char *input, int wpipe,t_data *data)
 {
 	int	i;
+	char	*temp;
 
 	i = 0;
 	if (!*input)
 		return;
-	while (input[i])
+	temp = ft_strdup(input);
+	free(input);
+	while (temp[i])
 	{
-		if (input[i] == '$')
-			expand_doc(input, data);
+		if (temp[i] == '$')
+		{
+			temp = expand_doc(temp, data);
+			continue;
+		}
 		i++;
 	}
-	ft_putstr_fd(input, wpipe);
+	ft_putstr_fd(temp, wpipe);
 	write(wpipe, "\n", 1);
-	if (input)
-		free(input);
+	free(temp);
 }
 
 static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
