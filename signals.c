@@ -6,13 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 01:13:04 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 01:43:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:10:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 static void	handle_sigint(int sig)
 {

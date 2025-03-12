@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/12 01:40:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:02:00 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data);
 void	environment(char **args, t_data *data);
 void	export_bi(char **args, t_data *data);
 void	change_directory(char **args, t_data *data);
+char	*set_directory(char **args, char *curpath, t_data *data);
 void	unset_env(char **args, t_data *data);
 void	pwd(t_data *data);
 void	echo(char **strstr, t_data *data);

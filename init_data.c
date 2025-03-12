@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/12 12:37:15 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:09:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**cpy_from_env(t_env **env)
 }
 
 
-char *fetch_home(void)
+/* char *fetch_home(void)
 {
 	char	*cwd;
 	char	*result;
@@ -67,7 +67,7 @@ char *fetch_home(void)
 		result[i] = cwd[i];
 	free(cwd);
 	return (result);
-}
+} */
 
 char *get_till(void)
 {
@@ -96,10 +96,13 @@ void	init_data(char **env, t_data *data)
 {
 	data->pwd = NULL;
 	data->pwd = getcwd(NULL, 0);
-	data->home = fetch_home();
-	printf("\n%s\n", data->home);
 	data->env = NULL;
 	env_to_list(data, env);
+	if (check_for_variable(*(data)->env, "HOME"))
+	{
+		data->home = malloc ();
+		data->home = check_for_variable(*(data)->env, "HOME")->value;
+	}
 	data->env_str_array = cpy_from_env(data->env);
 	data->pwd_with_till = get_till();
 	data->token = NULL;
