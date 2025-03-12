@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/10 16:14:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 01:53:55 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,23 @@ void	exit_exit(t_data *data)
 		ft_clean_list(data->env);
 	if (data->pwd)
 		free(data->pwd);
-	write(1, "passei aqui\n", 13);
+	if (data->home)
+		free(data->home);
+	if (data->pwd_with_till)
+		free(data->pwd_with_till);
+	if (data->env_str_array)
+		free(data->env_str_array);
+	if (data->token)
+		free(data->token);
+	if (data->cmd_tree)
+		free(data->cmd_tree);
 	write(1, "exit\n", 6);
+	clear_history();
 	exit(code);
 }
 
 void	builtin_exit(char **args, t_data *data)
 {
-	write(1, "passei aqui\n", 13);
 	if (!args[1])
 	{
 		data->exit_status = 0;

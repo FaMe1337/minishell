@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 13:52:32 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/12 01:40:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
+# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <termios.h>
@@ -169,5 +170,16 @@ int		ft_modifiedlstsize(t_env *lst);
 size_t	size_until_symbol(char *str, char c);
 char	*get_value_for_list(char *str);
 bool	for_export(char *str);
+
+/* Signals */
+
+void	set_main_signals();
+void	set_signals_to_default(void);
+void	set_parent_signals(void);
+void	set_signals_to_ignore(void);
+
+/* Data */
+
+t_data	*minicall(void);
 
 #endif

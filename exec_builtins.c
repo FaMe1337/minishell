@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/10 16:34:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 01:42:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		is_builtin(char *command)
 
 void	exec_builtin(char **cmd, t_data *data)
 {
-	write(1, "entre aqui\n", 12);
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		echo(cmd, data);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
@@ -47,9 +46,6 @@ void	exec_builtin(char **cmd, t_data *data)
 		export_bi(cmd, data);
 	else if (ft_strcmp(cmd[0], "unset") == 0)
 		unset_env(cmd, data);
-	else if (ft_strcmp(cmd[0], "thisexit") == 0)
-		{
-			printf("entrei\n");
+	else if (ft_strcmp(cmd[0], "exit") == 0)
 			builtin_exit(cmd, data);
-		}
 }

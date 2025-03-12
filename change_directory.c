@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/10 18:12:19 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 01:18:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	update_pwd(t_data *data)
 void	export_for_cd(t_data *data, char *env_var)
 {
 	char	oldpwd_var[4128];
+
 	if (check_for_variable(*(data->env), "PWD"))
 	{
 		printf("\nsupposed value in pwd:%s:\n", get_var_value(*(data->env), "PWD"));

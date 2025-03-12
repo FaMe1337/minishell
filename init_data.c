@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/10 16:44:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:37:15 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	init_data(char **env, t_data *data)
 	data->pwd = NULL;
 	data->pwd = getcwd(NULL, 0);
 	data->home = fetch_home();
+	printf("\n%s\n", data->home);
 	data->env = NULL;
 	env_to_list(data, env);
 	data->env_str_array = cpy_from_env(data->env);
