@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 01:53:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:06:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ bool	is_string_numeric(char *str)
 		return (false);
 	while (*str)
 	{
-		printf("%c\n", *str);
 		if ((*str < '0' || *str > '9') && *str != '-' && *str != '+')
 			return (false);
 		str++;
@@ -78,9 +77,41 @@ bool	is_string_numeric(char *str)
 	return (true);
 }
 
+void	clean_tokens(t_data *data)
+{
+	t_token *current;
+
+	while (data->token)
+	{
+		current = data->token->next;
+		free(data->token->value);
+		free(data->token);
+		data->token = current;
+	}
+}
+
+void	clean_cmd_tree(t_data *data)
+{
+	t_pipe	*current;
+
+	while (data->cmd_tree)
+	{
+		current = data->cmd_tree->next;
+		if (data->cmd_tree->fd_in > 2)
+			close(data->cmd_tree->fd_in);
+		if (data->cmd_tree->fd_out > 2)
+			close(data->cmd_tree->fd_out);
+		free_char_array(data->cmd_tree->cmd);
+		free_char_array(data->cmd_tree->red);
+		free(data->cmd_tree);
+		data->cmd_tree = current;
+	}
+}
+
 void	exit_exit(t_data *data)
 {
 	int	code;
+	int i = 0;
 
 	code = data->exit_status;
 	if (data->env)
@@ -92,11 +123,15 @@ void	exit_exit(t_data *data)
 	if (data->pwd_with_till)
 		free(data->pwd_with_till);
 	if (data->env_str_array)
+	{
+		while(data->env_str_array[i])
+			free(data->env_str_array[i++]);
 		free(data->env_str_array);
+	}
 	if (data->token)
-		free(data->token);
+		clean_tokens(data);
 	if (data->cmd_tree)
-		free(data->cmd_tree);
+		clean_cmd_tree(data);
 	write(1, "exit\n", 6);
 	clear_history();
 	exit(code);

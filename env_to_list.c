@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 15:11:09 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:46:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	populate_list(char *env, t_data *data)
 
 	temp1 = safe_malloc(sizeof * temp1 * ft_strlen(env) + 1);
 	ft_strlcpy(temp1, env, size_until_symbol(env, '=') + 1);
-	
 	if (check_for_variable(*data->env, temp1))
 	{
 		temp = check_for_variable(*data->env, temp1);
@@ -41,9 +40,8 @@ static void	populate_list(char *env, t_data *data)
 	}
 	else
 	{
-		temp = ft_newnode(ft_strdup(temp1),
-		ft_strdup(get_value_for_list(env)), \
-		for_export(env));
+		temp = ft_newnode(ft_strdup(temp1), \
+			ft_strdup(get_value_for_list(env)), for_export(env));
 		ft_modified_lstadd_back(data->env, temp);
 	}
 	free (temp1);

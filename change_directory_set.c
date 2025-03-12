@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:54:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 15:04:34 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:48:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static char	*set_dir_sub1(char **args, char *curpath, t_data *data)
 {
 	ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
-		if (args[1] && ft_strncmp(args[1], "~", ft_strlen(args[1])) \
-			&& ft_strncmp(args[1], "~/", ft_strlen(args[1])))
-		{
-			args[1]++;
-			ft_strlcat(curpath, args[1], ft_strlen(data->pwd) + 1);
-		}
+	if (args[1] && ft_strncmp(args[1], "~", ft_strlen(args[1])) \
+		&& ft_strncmp(args[1], "~/", ft_strlen(args[1])))
+	{
+		args[1]++;
+		ft_strlcat(curpath, args[1], ft_strlen(data->pwd) + 1);
+	}
 	return (curpath);
 }
 
@@ -55,7 +55,7 @@ char	*set_directory(char **args, char *curpath, t_data *data)
 	else if (!ft_strcmp(args[1], "-"))
 		ft_strlcat(curpath, set_dir_sub2(curpath, data), 4096);
 	else if (!ft_strncmp(args[1], "/", ft_strlen("/")) \
-		|| !ft_strcmp(args[1], ".")	|| !ft_strcmp(args[1], ".."))
+		|| !ft_strcmp(args[1], ".") || !ft_strcmp(args[1], ".."))
 		ft_strlcat(curpath, args[1], ft_strlen(args[1]) + 1);
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/12 15:09:28 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:49:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,10 @@ void	init_data(char **env, t_data *data)
 	env_to_list(data, env);
 	if (check_for_variable(*(data)->env, "HOME"))
 	{
-		data->home = malloc ();
-		data->home = check_for_variable(*(data)->env, "HOME")->value;
+		data->home = ft_strdup(check_for_variable(*(data)->env, "HOME")->value);
 	}
+	else
+		data->home = NULL;
 	data->env_str_array = cpy_from_env(data->env);
 	data->pwd_with_till = get_till();
 	data->token = NULL;
