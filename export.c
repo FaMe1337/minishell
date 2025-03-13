@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 12:33:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:43:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void	export_bi(char **args, t_data *data)
 			env_to_list(data, (char *[]){args[i], NULL});
 		i++;
 	}
+	update_prompt(data);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/12 15:01:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:55:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(int ac, char **av, char **env)
 {
 	(void) av;
 
-	
 	if (ac == 1)
 	{
 		set_main_signals();
@@ -65,4 +64,3 @@ int	main(int ac, char **av, char **env)
 	}
 	return (0);
 }
-

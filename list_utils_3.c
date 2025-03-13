@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:23:35 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 13:00:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:04:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_value_for_list(char *str)
 	return (&str[n]);
 }
 
-/* fx above is redundant */
+/* fx below is redundant because of check_for_variable*/
 
 char	*get_var_value(t_env *env, char *var_name)
 {

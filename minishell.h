@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/12 15:02:00 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:42:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char	*get_till(void);
 void	init_data(char **env, t_data *data);
 void	env_to_list(t_data *data, char **env);
 void	minimal_list_init(t_data *data);
+char	*get_prompt(t_data *data);
+void	update_prompt(t_data *data);
 
 /* parsing */
 
