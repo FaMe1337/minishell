@@ -6,13 +6,13 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/12 16:46:28 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:14:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	size_of_envp(char **env)
+/* static int	size_of_envp(char **env)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static int	size_of_envp(char **env)
 	while (env[i] != NULL)
 		i++;
 	return (i);
-}
+} */
 
 static void	populate_list(char *env, t_data *data)
 {
@@ -57,8 +57,6 @@ void	env_to_list(t_data *data, char **env)
 		data->env = safe_malloc(sizeof * data->env);
 		*data->env = NULL;
 	}
-	if (!size_of_envp(env))
-		minimal_list_init(data);
 	while (env[n])
 	{
 		populate_list(env[n], data);

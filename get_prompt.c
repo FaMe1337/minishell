@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:52:38 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/13 16:42:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 00:41:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static char	*get_path(t_data *data, char *pwd)
 		ft_strlcpy(temp + 1, \
 			pwd + ft_strlen(get_var_value(*data->env, "HOME")), \
 			ft_strlen(pwd) - ft_strlen(get_var_value(*data->env, "HOME")) + 1);
-		printf("\n%s\n", temp);
 		return (temp);
 	}
 	else

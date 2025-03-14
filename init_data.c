@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/13 16:41:27 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:10:50 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,28 @@ static char	**cpy_from_env(t_env **env)
 	return (result);
 } */
 
+void	increase_SHLVL(t_data *data)
+{
+	int		x;
+
+	x = ft_atoi((check_for_variable(*data->env, "SHLVL")->value));
+	x++;
+	free(check_for_variable(*data->env, "SHLVL")->value);
+	check_for_variable(*data->env, "SHLVL")->value = ft_itoa(x);
+}
+
 void	init_data(char **env, t_data *data)
 {
 	data->pwd = NULL;
 	data->pwd = getcwd(NULL, 0);
 	data->env = NULL;
-	env_to_list(data, env);
+	if (env)
+	{
+		env_to_list(data, env);
+		increase_SHLVL(data);
+	}	
+	else
+		minimal_list_init(data);
 	if (check_for_variable(*(data)->env, "HOME"))
 		data->home = ft_strdup(check_for_variable(*(data)->env, "HOME")->value);
 	else
