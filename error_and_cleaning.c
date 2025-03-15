@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 17:17:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:27:35 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	free_stuff(t_data *data)
 			close(data->cmd_tree->fd_in);
 		if (data->cmd_tree->fd_out > 2)
 			close(data->cmd_tree->fd_out);
+		if (data->cmd_tree->doc_pipe[0] > 2)
+			close(data->cmd_tree->doc_pipe[0]);
 		free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);

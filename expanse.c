@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/11 19:43:47 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 13:21:06 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ void	expand_str(t_token *token, t_data *data)
 	char	*var_value;
 
 	var_name = get_var_name(token);
-	printf("var name: %s\n", var_name);
 	if (!ft_strcmp(var_name, "?"))
 		var_value = ft_itoa(data->exit_status);
 	else if (!ft_strcmp(var_name, "$"))
 		var_value = ft_itoa(getpid());
 	else
 		var_value = get_var_values(var_name, data->env);
-	printf("var value: %s\n", var_value);
 	token->value = put_var_on_token(token, var_value);
 	free(var_name);
 	free(var_value);

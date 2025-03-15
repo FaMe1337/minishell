@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst_creation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/23 17:57:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/15 15:18:08 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_pipe	*cmd_lst_creation(t_token *token)
 	processes = count_pipes(token);
 	if (processes > 1)
 	{
-		while (processes > 0)
+		while (processes > 1)
 		{
 			next = init_pipe();
 			pipe_add_back(start, next);

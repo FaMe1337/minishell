@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/07 23:52:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/15 17:18:39 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ char *get_till(void)
 	i = ft_strlen(cwd);
 	while (cwd[--i] != '/' && i >= 0)
 		count++;
-	result = malloc(count + 5);
+	result = malloc(count + 6);
 	if (!result)
 		return (NULL);
 	result[0] = '~';
 	ft_strlcpy(result + 1, cwd + i, count + 2);
-	ft_strlcat(result, "->", count + 5);
+	ft_strlcat(result, "-> ", count + 6);
 	free(cwd);
 	return (result);
 }

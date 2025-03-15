@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/11 20:29:13 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 13:57:21 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ static void write_heredoc(char *input, int wpipe,t_data *data)
 
 	i = 0;
 	if (!*input)
-		return;
+	{
+		free(input);
+		return ;
+	}
 	temp = ft_strdup(input);
 	free(input);
 	while (temp[i])
