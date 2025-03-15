@@ -6,12 +6,12 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/13 23:57:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:12:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_H
-# define MINISHELL_H
+#ifndef	MINISHELL_M_H
+# define MINISHELL_M_H
 
 # include <stdio.h>
 # include <errno.h>

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/13 23:50:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:24:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	show_starter(char **env, t_data *data)
 		data->input = readline(data->pwd_with_till);
 		if (!data->input)
 		{
-			ft_putstr_fd("Error on readline\n", 2);
+			ft_putstr_fd("Exit\n", 2);
 			break;
 		}
 		if (*data->input)

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:54:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/14 00:32:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:20:09 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static char	*set_dir_sub1(char **args, char *curpath, t_data *data)
 		args[1]++;
 		ft_strlcat(curpath, args[1], ft_strlen(data->pwd) + 1);
 	}
-
 	return (curpath);
 }
 
