@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 17:35:32 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 19:41:24 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,8 @@ static void	child_red_out(t_pipe *tree)
 		dup2(tree->pipe[1], STDOUT_FILENO);
 		close(tree->pipe[1]);
 	}
-	if (tree->fd_out > 2)
-	{
-		dup2(tree->fd_out, STDOUT_FILENO);
-		close(tree->fd_out);
-	}
 	close(tree->pipe[1]);
+	dup2(tree->fd_out, STDOUT_FILENO);
 }
 
 static char	*find_path(char *cmd, char **envp)
@@ -115,12 +111,10 @@ void	child_process(t_pipe *tree, t_data *data)
 {
 	char	*path;
 
-	//red
 	if (!tree)
 		return ;
 	child_red_out(tree);
 	child_red_in(tree);
-	//executar
 	if (is_builtin(tree->cmd[0]))
 	{
 		exec_builtin(tree->cmd, data);

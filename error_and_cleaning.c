@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 13:27:35 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 19:35:09 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	free_stuff(t_data *data)
 			close(data->cmd_tree->fd_out);
 		if (data->cmd_tree->doc_pipe[0] > 2)
 			close(data->cmd_tree->doc_pipe[0]);
+		if (data->cmd_tree->doc_pipe[1] > 2)
+			close(data->cmd_tree->doc_pipe[1]);
 		free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);
