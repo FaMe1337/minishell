@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 19:35:09 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 23:41:35 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,20 @@ void	free_stuff(t_data *data)
 	while (data->cmd_tree)
 	{
 		currentz = data->cmd_tree->next;
-		if (data->cmd_tree->fd_in > 2)
-			close(data->cmd_tree->fd_in);
-		if (data->cmd_tree->fd_out > 2)
-			close(data->cmd_tree->fd_out);
-		if (data->cmd_tree->doc_pipe[0] > 2)
-			close(data->cmd_tree->doc_pipe[0]);
-		if (data->cmd_tree->doc_pipe[1] > 2)
-			close(data->cmd_tree->doc_pipe[1]);
+		clean_all_fds(data->cmd_tree);
 		free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);
 		data->cmd_tree = currentz;
 	}
+}
+
+void clean_all_fds(t_pipe *tree)
+{
+	if (tree->fd_in > 2)
+		close(tree->fd_in);
+	if (tree->fd_out > 2)
+		close(tree->fd_out);
+	if (tree->doc_pipe[0] > 2)
+		close(tree->doc_pipe[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 16:53:50 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 23:41:56 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	free_split_and_token(char **split, t_token *token);
 void	free_stuff(t_data *data);
 void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
+void 	clean_all_fds(t_pipe *tree);
 
 /* init data */
 

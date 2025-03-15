@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 19:29:56 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/15 23:35:59 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,4 @@ void	exec_builtin(char **cmd, t_data *data)
 		unset_env(cmd, data);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		builtin_exit(cmd, data);
-	if (data->cmd_tree->fd_out > 2)
-	{
-		close(data->cmd_tree->fd_out);
-		data->cmd_tree->fd_out = 1;
-	}
 }
