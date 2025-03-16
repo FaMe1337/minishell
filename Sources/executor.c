@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:15:00 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:20:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 			child_process(cmd_tree, data);
 		}
 		//temos de resetar o terminal com sinais senão perco o readline
-		int	status;
-		waitpid(cmd_tree->pid, &status, 0);
+		ft_waitpid(cmd_tree->pid, data);
 		/*
 			OBRIGADO WAITPID
 		*/

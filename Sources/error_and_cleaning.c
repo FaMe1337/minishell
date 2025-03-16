@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 15:01:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:31:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	free_stuff(t_data *data)
 		free(data->cmd_tree);
 		data->cmd_tree = currentz;
 	}
+	data->signaled = false;
 }
 
 void clean_all_fds(t_pipe *tree)
