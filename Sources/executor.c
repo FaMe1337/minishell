@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:39:22 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:21:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ static void exec_multiple_pipes(t_pipe *tree, t_data *data)
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
+	if (!cmd_tree->cmd)
+		return ;
+	
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else
@@ -71,11 +74,7 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 			set_signals_to_default();
 			child_process(cmd_tree, data);
 		}
-		//temos de resetar o terminal com sinais senão perco o readline
 		ft_waitpid(cmd_tree->pid, data);
-		/*
-			OBRIGADO WAITPID
-		*/
 	}
 }
 
