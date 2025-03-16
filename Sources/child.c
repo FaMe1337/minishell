@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:50:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:25:20 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static void close_fds(t_pipe *tree)
 		dup2(tree->doc_pipe[0], STDIN_FILENO);
 		close(tree->doc_pipe[0]);
 	}
-	else
+	else if (tree->fd_in > 2)
 	{
-		if (tree->fd_in > 2)
-			dup2(tree->fd_in, STDIN_FILENO);
+		dup2(tree->fd_in, STDIN_FILENO);
 		close(tree->fd_in);
 	}
 }
@@ -48,9 +47,8 @@ static void child_red_in(t_pipe *tree)
 		dup2(tree->previous->pipe[0], STDIN_FILENO);
 		close(tree->previous->pipe[0]);
 	}
-	if (has_red)
-		close_fds(tree);
-	close(tree->pipe[0]);
+	else if (has_red)
+		close_fds(tree);	
 }
 
 static void	child_red_out(t_pipe *tree)
@@ -65,7 +63,10 @@ static void	child_red_out(t_pipe *tree)
 		while (tree->red[i])
 		{
 			if (ft_strncmp(tree->red[i], "RDO:", 4) == 0 || ft_strncmp(tree->red[i], "APP:", 4) == 0)
+			{
 				has_red = true;
+				dup2(tree->fd_out, STDOUT_FILENO);
+			}
 			i++;
 		}
 	}
@@ -74,8 +75,6 @@ static void	child_red_out(t_pipe *tree)
 		dup2(tree->pipe[1], STDOUT_FILENO);
 		close(tree->pipe[1]);
 	}
-	close(tree->pipe[1]);
-	dup2(tree->fd_out, STDOUT_FILENO);
 }
 
 static char	*find_path(char *cmd, char **envp)
@@ -111,15 +110,12 @@ void	child_process(t_pipe *tree, t_data *data)
 {
 	char	*path;
 
-	printf("\nfd is: %d\n", tree->fd_out);
-	if (!tree)
-		return ;
 	child_red_out(tree);
 	child_red_in(tree);
-	printf("fd after red is: %d\n", tree->fd_out);
 	if (is_builtin(tree->cmd[0]))
 	{
 		exec_builtin(tree->cmd, data, tree);
+		clean_all_fds(tree);
 		exit(0);
 	}
 	else if (access(tree->cmd[0], F_OK) == 0)
@@ -129,6 +125,7 @@ void	child_process(t_pipe *tree, t_data *data)
 		path = find_path(tree->cmd[0], data->env_str_array);
 		if (!path)
 			path = ft_strdup(tree->cmd[0]);
+		clean_all_fds(tree);	
 		execve(path, tree->cmd, data->env_str_array);
 		free(path);
 	}

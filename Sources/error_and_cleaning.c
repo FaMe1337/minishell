@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:46:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:22:21 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void clean_all_fds(t_pipe *tree)
 	if (tree->doc_pipe[0] > 2)
 		close(tree->doc_pipe[0]);
 	if (tree->pipe[0] > 2)
-		close(tree->pipe[0]);	
+		close(tree->pipe[0]);
+	if (tree->pipe[1] > 2)
+		close(tree->pipe[1]);	
 }
 
 void	clean_tokens(t_data *data)

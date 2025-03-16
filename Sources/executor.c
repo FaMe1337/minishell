@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:15:00 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:19:20 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void exec_multiple_pipes(t_pipe *tree, t_data *data)
 	{
 		if (!set_up_child(tree, data))
 			return ;
+		clean_all_fds(tree);
 		tree = tree->next;
 	}
 	tree = temp;
