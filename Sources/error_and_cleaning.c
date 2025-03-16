@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:46:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:01:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ void	exit_exit(t_data *data)
 	clean_tokens(data);
 	clean_cmd_tree(data);
 	clean_all_fds(data->cmd_tree);
-	write(1, "exit\n", 6);
 	clear_history();
 	code = data->exit_status;
 	exit(code);
