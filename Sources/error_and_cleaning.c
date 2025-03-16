@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:22:21 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:39:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	free_stuff(t_data *data)
 		free(data->cmd_tree);
 		data->cmd_tree = currentz;
 	}
+	data->signaled = false;
 }
 
 void clean_all_fds(t_pipe *tree)
@@ -131,7 +132,6 @@ void	exit_exit(t_data *data)
 	clean_tokens(data);
 	clean_cmd_tree(data);
 	clean_all_fds(data->cmd_tree);
-	write(1, "exit\n", 6);
 	clear_history();
 	code = data->exit_status;
 	exit(code);

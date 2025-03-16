@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/03/14 15:09:43 by toferrei         ###   ########.fr        #
+#    Updated: 2025/03/16 16:28:29 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SOURCES		=	$(SRC)change_directory_set.c \
 				$(SRC)ft_print_list.c \
 				$(SRC)get_prompt.c \
 				$(SRC)heredoc.c \
+				$(SRC)heredoc_2.c \
 				$(SRC)init_data.c \
 				$(SRC)list_utils.c \
 				$(SRC)list_utils_2.c \
@@ -64,6 +65,7 @@ SOURCES		=	$(SRC)change_directory_set.c \
 				$(SRC)remove_quotes.c \
 				$(SRC)second_tokenization.c \
 				$(SRC)signals.c \
+				$(SRC)signals_waitpid.c \
 				$(SRC)split.c \
 				$(SRC)unset.c
 

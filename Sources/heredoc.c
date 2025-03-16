@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/15 13:57:21 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/16 16:25:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 	{
 		input = readline("> ");
 		if (!input)
-			break;
+			ctrl_d_msg_and_exit(input, str, cmd, data);
 		if (ft_strcmp(input, str) == 0)
 		{
 			free(input);
@@ -92,14 +92,13 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 		}
 		write_heredoc(input, cmd->doc_pipe[1], data);
 	}
-	close(cmd->doc_pipe[1]);
+	if_close(cmd->doc_pipe[1]);
 	exit(0);
 }
 
 void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
 	int	pid;
-	int	status;
 
 	cmd->heredoc = true;
 	if (pipe(cmd->doc_pipe) < 0)
@@ -118,5 +117,5 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	else if (pid == 0)
 		read_heredoc(str, cmd, data);
 	close(cmd->doc_pipe[1]);
-	waitpid(pid, &status, 0);
+	ft_waitpid(pid, data);
 }

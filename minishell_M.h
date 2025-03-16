@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:44:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:24:26 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_data{
 	char		*pwd_with_till; //allocado
 	char		**env_str_array; //allocado
 	int			exit_status;
+	int			line_nbr;
+	bool		signaled;
 	t_env		**env; //allocado, vai ser o tomas a gerir
 	t_token		*token; //allocado
 	t_pipe		*cmd_tree; //allocado
@@ -100,6 +102,7 @@ void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
 void	clean_all_fds(t_pipe *tree);
 void	exit_exit(t_data *data);
+void	if_close();
 
 /* init data */
 
@@ -185,6 +188,9 @@ void	set_main_signals();
 void	set_signals_to_default(void);
 void	set_parent_signals(void);
 void	set_signals_to_ignore(void);
+void	ft_waitpid(int pid, t_data *data);
+void	ctrl_d_msg_and_exit(char *input, char *str, t_pipe *pipe, t_data *data);
+void	if_close(int fd);
 
 /* Data */
 

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:41:56 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:35:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	show_starter(char **env, t_data *data)
 		data->input = readline(data->pwd_with_till);
 		if (!data->input)
 		{
-			ft_putstr_fd("Exit\n", 2);
+			ft_putstr_fd("exit\n", 2);
 			break;
 		}
 		if (*data->input)
 		{
+			data->line_nbr++;
 			add_history(data->input);
 			if (input_parser(data) == 1)
 				executor(data);
@@ -34,14 +35,9 @@ void	show_starter(char **env, t_data *data)
 				data->exit_status = 2;
 			}
 		}
-		//limpar tudo que foi usado para o parsing e execuçao
 		free_stuff(data);
 	}
-	//limpar tudo que resta
 	exit_exit(data);
-	/*
-		MEMORY IS CLEANED
-	*/
 }
 
 

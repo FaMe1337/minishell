@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:16:10 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:14:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,6 @@ void	init_data(char **env, t_data *data)
 	data->token = NULL;
 	data->cmd_tree = NULL;
 	data->exit_status = 0;
+	data->line_nbr = 0;
+	data->signaled = false;
 }
