@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/07 23:51:53 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:43:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	print_export(t_env **list)
 	if (!list)
 		return ;
 	copy = malloc(sizeof * copy);
+	if (!copy)
+		return ;
 	*copy = NULL;
 	list_copier(list, copy);
 	if (ft_modifiedlstsize(*copy) > 1)
@@ -70,4 +72,5 @@ void	export_bi(char **args, t_data *data)
 			env_to_list(data, (char *[]){args[i], NULL});
 		i++;
 	}
+	update_prompt(data);
 }

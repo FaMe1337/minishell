@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 17:34:02 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:17:23 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	show_starter(char **env, t_data *data)
 		data->input = readline(data->pwd_with_till);
 		if (!data->input)
 		{
-			ft_putstr_fd("exit\n", 2);
+			ft_putstr_fd("Exit\n", 2);
 			break;
 		}
 		if (*data->input)
@@ -44,15 +44,23 @@ void	show_starter(char **env, t_data *data)
 	*/
 }
 
+
+t_data *minicall(void)
+{
+	static t_data data;
+
+	return(&data);
+}
+
+
 int	main(int ac, char **av, char **env)
 {
 	(void) av;
-	t_data data;
 
 	if (ac == 1)
 	{
-		show_starter(env, &data);
+		set_main_signals();
+		show_starter(env, minicall());
 	}
 	return (0);
 }
-

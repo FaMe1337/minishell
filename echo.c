@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/16 13:46:37 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:12:51 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	echo(char **strstr, t_data *data, t_pipe *tree)
 	{
 		ft_putstr_fd(strstr[i], tree->fd_out);
 		if (strstr[i + 1] != NULL && ft_strlen(strstr[i]))
-			write (data->cmd_tree->fd_out, " ", 1);
+			write (tree->fd_out, " ", 1);
 		i++;
 	}
-	if (!flag)
+	if (!flag && tree->fd_out <= 2)
 		write (1, "\n", 1);
 	data->exit_status = 0;
 }

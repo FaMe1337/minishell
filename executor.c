@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 13:54:59 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:15:00 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else
 	{
+		set_signals_to_ignore();
 		cmd_tree->pid = fork();
 		if (cmd_tree->pid == -1)
 		{
@@ -65,7 +66,10 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 			return;
 		}
 		if (cmd_tree->pid == 0)
+		{
+			set_signals_to_default();
 			child_process(cmd_tree, data);
+		}
 		//temos de resetar o terminal com sinais senão perco o readline
 		int	status;
 		waitpid(cmd_tree->pid, &status, 0);
@@ -86,4 +90,5 @@ void	executor(t_data *data)
 		exec_solo_pipe(data->cmd_tree, data);
 	else
 		exec_multiple_pipes(data->cmd_tree, data);
+	set_main_signals();	
 }
