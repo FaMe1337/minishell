@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 23:41:35 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/16 13:55:35 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void clean_all_fds(t_pipe *tree)
 		close(tree->fd_out);
 	if (tree->doc_pipe[0] > 2)
 		close(tree->doc_pipe[0]);
+	if (tree->pipe[0] > 2)
+		close(tree->pipe[0]);	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/15 18:14:18 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/16 13:46:37 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	check_flag(char *str)
 	return (str[i] == '\0');
 }
 
-void	echo(char **strstr, t_data *data)
+void	echo(char **strstr, t_data *data, t_pipe *tree)
 {
 	bool	flag;
 	int		i;
@@ -40,7 +40,7 @@ void	echo(char **strstr, t_data *data)
 		i++;
 	while (strstr[i])
 	{
-		ft_putstr_fd(strstr[i], data->cmd_tree->fd_out);
+		ft_putstr_fd(strstr[i], tree->fd_out);
 		if (strstr[i + 1] != NULL && ft_strlen(strstr[i]))
 			write (data->cmd_tree->fd_out, " ", 1);
 		i++;

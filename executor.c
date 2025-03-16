@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 23:39:19 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/16 13:54:59 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ static int set_up_child (t_pipe *tree, t_data *data)
 	}
 	if (tree->pid == 0)
 		child_process(tree, data);
-	close(tree->pipe[0]);
 	close(tree->pipe[1]);
-	if (tree->doc_pipe[0] > 2)
-		close(data->cmd_tree->doc_pipe[0]);
 	return (1);
 }
 
@@ -57,7 +54,7 @@ static void exec_multiple_pipes(t_pipe *tree, t_data *data)
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
 	if (is_builtin(cmd_tree->cmd[0]))
-		exec_builtin(cmd_tree->cmd, data);
+		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else
 	{
 		cmd_tree->pid = fork();

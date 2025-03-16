@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 23:41:56 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/16 13:43:34 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void		second_tokenazor(t_token **token);
 
 void	executor(t_data *data);
 int		is_builtin(char *command);
-void	exec_builtin(char **cmd, t_data *data);
+void	exec_builtin(char **cmd, t_data *data, t_pipe *tree);
 void	child_process(t_pipe *tree, t_data *data);
 
 /* red handler */
@@ -156,7 +156,7 @@ void	export_bi(char **args, t_data *data);
 void	change_directory(char **args, t_data *data);
 void	unset_env(char **args, t_data *data);
 void	pwd(t_data *data);
-void	echo(char **strstr, t_data *data);
+void	echo(char **strstr, t_data *data, t_pipe *tree);
 void	builtin_exit(char **args, t_data *data);
 
 /* List Fx */
