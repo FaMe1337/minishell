@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:17:23 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:41:56 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	show_starter(char **env, t_data *data)
 		free_stuff(data);
 	}
 	//limpar tudo que resta
-	free_all_data(data);
+	exit_exit(data);
 	/*
 		MEMORY IS CLEANED
 	*/

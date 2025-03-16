@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_M.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:19:27 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:44:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_pipe
 	int				fd_in;
 	int				fd_out;
 	int				doc_pipe[2]; //pipe
+	bool			heredoc;
 	bool			last_child;
 	bool			bad_fd;
 	char			*path;
@@ -97,6 +98,8 @@ void	free_split_and_token(char **split, t_token *token);
 void	free_stuff(t_data *data);
 void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
+void	clean_all_fds(t_pipe *tree);
+void	exit_exit(t_data *data);
 
 /* init data */
 
@@ -118,9 +121,11 @@ char	**add_prefix(char **res, char *value, char *prefix);
 /* expanse */
 
 void	expanse_parse(t_data * data);
+void	expand_str(t_token *token, t_data *data);
 char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
+bool	valid_expansion(char *str, int i);
 
 /* quotes shenanigan */
 
@@ -140,7 +145,7 @@ void		second_tokenazor(t_token **token);
 
 void	executor(t_data *data);
 int		is_builtin(char *command);
-void	exec_builtin(char **cmd, t_data *data);
+void	exec_builtin(char **cmd, t_data *data, t_pipe *tree);
 void	child_process(t_pipe *tree, t_data *data);
 
 /* red handler */
