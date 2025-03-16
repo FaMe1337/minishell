@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:52:38 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/14 00:41:19 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/16 14:03:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ char	*get_prompt(t_data *data)
 	size = ft_strlen(get_user(data)) \
 		+ ft_strlen(get_name(data)) \
 		+ ft_strlen(temp);
-	line = safe_malloc(sizeof * line * (size + 4)); 
-	ft_strlcat(line, get_user(data), size + 4);
-	ft_strlcat(line, "@", size + 4);
-	ft_strlcat(line, get_name(data), size + 4);
-	ft_strlcat(line, ":", size + 4);
-	ft_strlcat(line, temp, size + 4);
-	ft_strlcat(line, "$", size + 4);
+	line = safe_malloc(sizeof * line * (size + 5)); 
+	ft_strlcat(line, get_user(data), size + 5);
+	ft_strlcat(line, "@", size + 5);
+	ft_strlcat(line, get_name(data), size + 5);
+	ft_strlcat(line, ":", size + 5);
+	ft_strlcat(line, temp, size + 5);
+	ft_strlcat(line, "$ ", size + 5);
 	free(temp);
 	return (line);
 }
