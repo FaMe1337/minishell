@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:19:58 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:11:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 static bool	check_for_open_quotes(char *str)
 {
-	int	i;
+	int		i;
 	bool	one_quote;
 	bool	double_quote;
 
 	i = 0;
 	one_quote = false;
 	double_quote = false;
-
 	while (str[i])
 	{
 		if (str[i] == '\'' && !double_quote)
@@ -37,13 +36,13 @@ static bool	check_for_open_quotes(char *str)
 
 static bool	parse_pipe(t_token *token)
 {
-	if (!token->previous || !token->next
+	if (!token->previous || !token->next \
 		|| token->next->token_type == PIPE)
-		{
-			write(2, "syntax error near ", 18);
-			write(2, "unexpected token \'|\'\n", 22);
-			return (true);
-		}
+	{
+		write(2, "syntax error near ", 18);
+		write(2, "unexpected token \'|\'\n", 22);
+		return (true);
+	}
 	return (false);
 }
 
@@ -63,6 +62,7 @@ static bool	parse_red(t_token *token)
 	}
 	return (false);
 }
+
 static bool	parsing_operators(t_token *token)
 {
 	bool	error;
@@ -72,8 +72,8 @@ static bool	parsing_operators(t_token *token)
 	{
 		if (token->token_type == PIPE)
 			error = parse_pipe(token);
-		else if (token->token_type != PIPE
-				&& token->token_type != WORD)
+		else if (token->token_type != PIPE \
+					&& token->token_type != WORD)
 			error = parse_red(token);
 		token = token->next;
 	}
@@ -82,9 +82,9 @@ static bool	parsing_operators(t_token *token)
 	return (false);
 }
 
-int input_parser(t_data *data)
+int	input_parser(t_data *data)
 {
-	char **inputs;
+	char	**inputs;
 
 	if (!check_for_open_quotes(data->input))
 	{
@@ -92,19 +92,15 @@ int input_parser(t_data *data)
 		return (0);
 	}
 	inputs = ft_splits(data->input);
-	first_tokenazor(data, inputs); 	//tokenizar o que recebo
+	first_tokenazor(data, inputs);
 	if (!data->token)
 		return (0);
-	second_tokenazor(&data->token);//primeira tokenizaçao feita, ir para segunda
-	if (parsing_operators(data->token)) //checkar por inputs errados a volta dos operadores
+	second_tokenazor(&data->token);
+	if (parsing_operators(data->token))
 		return (0);
 	expanse_parse(data);
-	//segunda feita, vamos para a criaçao de pipes
 	data->cmd_tree = cmd_lst_creation(data->token);
 	remove_quotes(data->cmd_tree);
 	free(data->input);
 	return (1);
 }
-/*
-PARSING ESTA OFICIALMENTE ACABADO
-*/

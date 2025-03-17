@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 17:21:13 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:05:00 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int set_up_child (t_pipe *tree, t_data *data)
+static int	set_up_child(t_pipe *tree, t_data *data)
 {
 	if (pipe(tree->pipe) < 0)
 	{
@@ -31,10 +31,10 @@ static int set_up_child (t_pipe *tree, t_data *data)
 	return (1);
 }
 
-static void exec_multiple_pipes(t_pipe *tree, t_data *data)
+static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 {
-	int	status;
-	t_pipe *temp;
+	int		status;
+	t_pipe	*temp;
 
 	temp = tree;
 	while (tree)
@@ -56,7 +56,6 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
 	if (!cmd_tree->cmd)
 		return ;
-	
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else
@@ -67,7 +66,7 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 		{
 			ft_putstr_fd("Error creating fork", 2);
 			data->exit_status = 1;
-			return;
+			return ;
 		}
 		if (cmd_tree->pid == 0)
 		{
@@ -83,11 +82,11 @@ void	executor(t_data *data)
 	if (handle_redirections(data->cmd_tree, data))
 	{
 		data->exit_status = 1;
-		return;
+		return ;
 	}
 	if (!data->cmd_tree->next)
 		exec_solo_pipe(data->cmd_tree, data);
 	else
 		exec_multiple_pipes(data->cmd_tree, data);
-	set_main_signals();	
+	set_main_signals();
 }

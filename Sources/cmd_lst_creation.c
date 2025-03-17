@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst_creation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 15:18:08 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/17 16:19:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_pipe	*init_pipe(void)
 {
-	t_pipe *data;
+	t_pipe	*data;
 
 	data = safe_malloc(sizeof(t_pipe));
 	data->next = NULL;
@@ -28,7 +28,8 @@ static t_pipe	*init_pipe(void)
 }
 
 static int	count_pipes(t_token *token)
-{	int	res;
+{
+	int	res;
 
 	res = 1;
 	while (token)
@@ -40,12 +41,12 @@ static int	count_pipes(t_token *token)
 	return (res);
 }
 
-static void pipe_add_back(t_pipe *start, t_pipe *next)
+static void	pipe_add_back(t_pipe *start, t_pipe *next)
 {
-	t_pipe *current;
+	t_pipe	*current;
 
 	if (!start || !next)
-		return;
+		return ;
 	current = start;
 	while (current->next)
 		current = current->next;
@@ -55,7 +56,6 @@ static void pipe_add_back(t_pipe *start, t_pipe *next)
 
 static void	init_red_and_cmd(t_token *token, t_pipe *start)
 {
-
 	while (token)
 	{
 		if (token->token_type == HEREDOC)

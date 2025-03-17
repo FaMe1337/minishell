@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 22:11:50 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/08 22:33:53 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:08:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*remove_double_quotes(char *str)
 		if (str[i] == '\"')
 		{
 			if (!str[i + 1])
-				break;
+				break ;
 			i++;
 		}
 		else
@@ -51,7 +51,7 @@ static char	*remove_single_quote(char *str)
 		if (str[i] == '\'')
 		{
 			if (!str[i + 1])
-				break;
+				break ;
 			i++;
 		}
 		else
@@ -87,7 +87,7 @@ static void	remove_quotes_from_red(char **strs)
 	i = 0;
 	while (strs[i])
 	{
-		if (in_quotes(strs[i] , 5))
+		if (in_quotes(strs[i], 5))
 		{
 			if (strs[i][4] == '\"')
 				strs[i] = remove_double_quotes(strs[i]);
@@ -97,7 +97,6 @@ static void	remove_quotes_from_red(char **strs)
 		i++;
 	}
 }
-
 
 void	remove_quotes(t_pipe *tree)
 {

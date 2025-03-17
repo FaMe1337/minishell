@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 15:36:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:23:06 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,13 @@
 # include <termios.h>
 # include "Libft/libft.h"
 
-//lista env
-
 typedef struct s_env
 {
 	char			*name; //allocado
 	char			*value; //allocado
 	bool			exported;
 	struct s_env	*next;
-}	t_env;
-
-//todo
+}		t_env;
 
 typedef struct s_token
 {
@@ -47,48 +43,49 @@ typedef struct s_token
 	char			*value; //allocado
 	struct s_token	*next;
 	struct s_token	*previous;
-}					t_token;
+}		t_token;
 
 typedef struct s_pipe
 {
-	int				pid; //fork
-	int				pipe[2]; //pipe
+	int				pid;
+	int				pipe[2];
 	int				fd_in;
 	int				fd_out;
-	int				doc_pipe[2]; //pipe
+	int				doc_pipe[2];
 	bool			heredoc;
 	bool			last_child;
 	bool			bad_fd;
 	char			*path;
-	char			**red; //allocado
-	char			**cmd; //allocado
+	char			**red;
+	char			**cmd;
 	struct s_pipe	*next;
 	struct s_pipe	*previous;
-}					t_pipe;
+}		t_pipe;
 
-//todo
-typedef struct s_data{
+typedef struct s_data
+{
 	char		*input;
-	char		*home; //allocado
-	char		*pwd; //allocado
-	char		*pwd_with_till; //allocado
-	char		**env_str_array; //allocado
+	char		*home;
+	char		*pwd;
+	char		*pwd_with_till;
+	char		**env_str_array;
 	int			exit_status;
 	int			line_nbr;
 	bool		signaled;
-	t_env		**env; //allocado, vai ser o tomas a gerir
-	t_token		*token; //allocado
-	t_pipe		*cmd_tree; //allocado
+	t_env		**env;
+	t_token		*token;
+	t_pipe		*cmd_tree;
 }		t_data;
 
-typedef enum {
+typedef enum Token_type
+{
 	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
 	HEREDOC,
 	PIPE,
 	WORD,
-} Token_type;
+}		t_Token_type;
 
 /* start */
 
@@ -123,7 +120,7 @@ char	**add_prefix(char **res, char *value, char *prefix);
 
 /* expanse */
 
-void	expanse_parse(t_data * data);
+void	expanse_parse(t_data *data);
 void	expand_str(t_token *token, t_data *data);
 char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
@@ -140,9 +137,9 @@ void	remove_quotes(t_pipe *tree);
 
 /* token fuctions */
 
-t_token		*first_tokenazor(t_data *data, char **inputs);
-t_token 	*init_token(char *str);
-void		second_tokenazor(t_token **token);
+t_token	*first_tokenazor(t_data *data, char **inputs);
+t_token	*init_token(char *str);
+void	second_tokenazor(t_token **token);
 
 /* executor */
 
@@ -185,7 +182,7 @@ bool	for_export(char *str);
 
 /* Signals */
 
-void	set_main_signals();
+void	set_main_signals(void);
 void	set_signals_to_default(void);
 void	set_parent_signals(void);
 void	set_signals_to_ignore(void);

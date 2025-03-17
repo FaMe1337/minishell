@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:59:37 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/14 15:10:50 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:07:38 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	str_count(char **res)
 	int	i;
 
 	i = 0;
-
 	while (res[i])
 		i++;
 	return (i);
@@ -28,7 +27,7 @@ void	free_char_array(char **res)
 	int	i;
 
 	if (!res)
-		return;
+		return ;
 	i = 0;
 	while (res[i])
 		free(res[i++]);
@@ -37,8 +36,8 @@ void	free_char_array(char **res)
 
 static char	**word_to_res(char **res, char *word)
 {
-	int	i;
-	char **result;
+	int		i;
+	char	**result;
 
 	i = 0;
 	if (!res)
@@ -63,7 +62,7 @@ static char	**word_to_res(char **res, char *word)
 
 char	**add_prefix(char **res, char *value, char *prefix)
 {
-	char *word;
+	char	*word;
 
 	if (prefix)
 		word = ft_strjoin(prefix, value);

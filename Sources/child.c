@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:25:20 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:06:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void close_fds(t_pipe *tree)
+static void	close_fds(t_pipe *tree)
 {
 	if (tree->heredoc)
 	{
@@ -26,10 +26,10 @@ static void close_fds(t_pipe *tree)
 	}
 }
 
-static void child_red_in(t_pipe *tree)
+static void	child_red_in(t_pipe *tree)
 {
-	int i;
-	bool has_red;
+	int		i;
+	bool	has_red;
 
 	i = 0;
 	has_red = false;
@@ -37,7 +37,8 @@ static void child_red_in(t_pipe *tree)
 	{
 		while (tree->red[i])
 		{
-			if (ft_strncmp(tree->red[i], "RDI:", 4) == 0 || ft_strncmp(tree->red[i], "DOC:", 4) == 0)
+			if (ft_strncmp(tree->red[i], "RDI:", 4) == 0 \
+				|| ft_strncmp(tree->red[i], "DOC:", 4) == 0)
 				has_red = true;
 			i++;
 		}
@@ -48,13 +49,13 @@ static void child_red_in(t_pipe *tree)
 		close(tree->previous->pipe[0]);
 	}
 	else if (has_red)
-		close_fds(tree);	
+		close_fds(tree);
 }
 
 static void	child_red_out(t_pipe *tree)
 {
-	int i;
-	bool has_red;
+	int		i;
+	bool	has_red;
 
 	i = 0;
 	has_red = false;
@@ -62,7 +63,8 @@ static void	child_red_out(t_pipe *tree)
 	{
 		while (tree->red[i])
 		{
-			if (ft_strncmp(tree->red[i], "RDO:", 4) == 0 || ft_strncmp(tree->red[i], "APP:", 4) == 0)
+			if (ft_strncmp(tree->red[i], "RDO:", 4) == 0 \
+				|| ft_strncmp(tree->red[i], "APP:", 4) == 0)
 			{
 				has_red = true;
 				dup2(tree->fd_out, STDOUT_FILENO);
@@ -125,7 +127,7 @@ void	child_process(t_pipe *tree, t_data *data)
 		path = find_path(tree->cmd[0], data->env_str_array);
 		if (!path)
 			path = ft_strdup(tree->cmd[0]);
-		clean_all_fds(tree);	
+		clean_all_fds(tree);
 		execve(path, tree->cmd, data->env_str_array);
 		free(path);
 	}
@@ -133,4 +135,3 @@ void	child_process(t_pipe *tree, t_data *data)
 	ft_putstr_fd(" : command not found\n", 2);
 	exit(127);
 }
-

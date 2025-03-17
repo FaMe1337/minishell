@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/15 13:21:06 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/17 16:24:25 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 bool	valid_expansion(char *str, int i)
 {
 	i++;
-	if (ft_isalnum(str[i]) || str[i] == '?' || str[i] == '$' ||
-			str[i] == '_' || str[i] == '"' || str[i] == '\'')
-		return true;
+	if (ft_isalnum(str[i]) || str[i] == '?' || str[i] == '$'\
+		|| str[i] == '_' || str[i] == '"' || str[i] == '\'')
+		return (true);
 	return (false);
 }
 
 char	*put_var_on_token(t_token *token, char *var)
 {
-	int	i;
-	int	j;
-	int	var_size;
+	int		i;
+	int		j;
+	int		var_size;
 	char	*res;
 	char	*tmp1;
 	char	*tmp2;
@@ -66,11 +66,10 @@ void	expand_str(t_token *token, t_data *data)
 	free(var_value);
 }
 
-
-void	expanse_parse(t_data * data)
+void	expanse_parse(t_data *data)
 {
-	int	i;
-	t_token *temp;
+	int		i;
+	t_token	*temp;
 
 	temp = data->token;
 	while (temp)
@@ -80,13 +79,13 @@ void	expanse_parse(t_data * data)
 			i = 0;
 			while (temp->value[i])
 			{
-				if (temp->value[i] == '$' && !single_quote(temp->value, i)
-						&& temp->value[i + 1])
+				if (temp->value[i] == '$' && !single_quote(temp->value, i) \
+					&& temp->value[i + 1])
 				{
 					if (valid_expansion(temp->value, i))
 					{
 						expand_str(temp, data);
-						continue;
+						continue ;
 					}
 				}
 				i++;

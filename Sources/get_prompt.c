@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:52:38 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/16 14:03:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:09:24 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_path(t_data *data, char *pwd)
 {
-	char *temp;
+	char	*temp;
 
 	if (check_for_variable(*data->env, "HOME") && \
 	!ft_strncmp(get_var_value(*data->env, "HOME"), \
@@ -53,13 +53,13 @@ char	*get_prompt(t_data *data)
 {
 	char	*line;
 	int		size;
-	char 	*temp;
+	char	*temp;
 
 	temp = get_path(data, data->pwd);
 	size = ft_strlen(get_user(data)) \
 		+ ft_strlen(get_name(data)) \
 		+ ft_strlen(temp);
-	line = safe_malloc(sizeof * line * (size + 5)); 
+	line = safe_malloc(sizeof * line * (size + 5));
 	ft_strlcat(line, get_user(data), size + 5);
 	ft_strlcat(line, "@", size + 5);
 	ft_strlcat(line, get_name(data), size + 5);
@@ -70,7 +70,7 @@ char	*get_prompt(t_data *data)
 	return (line);
 }
 
-void update_prompt(t_data *data)
+void	update_prompt(t_data *data)
 {
 	if (data->pwd_with_till)
 		free(data->pwd_with_till);

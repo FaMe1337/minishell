@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/17 15:49:50 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:19:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	clean_all_fds(t_pipe *tree)
 	if (tree->pipe[1] > 2)
 		close(tree->pipe[1]);
 }
+
 void	free_split_and_token(char **split, t_token *token)
 {
 	int		i;

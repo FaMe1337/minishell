@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:38:10 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/13 16:43:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:08:47 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	delete_node(t_env **env, char *var_name)
 	t_env	*cursor;
 
 	if (!env || !*env)
-		return;
+		return ;
 	cursor = *env;
 	temp = check_for_variable(*env, var_name);
 	if (cursor != temp)
