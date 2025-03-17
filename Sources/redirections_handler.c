@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:33:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:05:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	red_out(char *str, t_pipe *cmd)
 		return ;
 	}
 	if (cmd->fd_out > 2)
-		if_close(cmd->fd_out);
+		close(cmd->fd_out);
 	cmd->fd_out = fd;
 }
 

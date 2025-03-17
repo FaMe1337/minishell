@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_M.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:24:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:14:09 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
 void	clean_all_fds(t_pipe *tree);
 void	exit_exit(t_data *data);
-void	if_close();
 
 /* init data */
 
@@ -154,7 +153,7 @@ void	child_process(t_pipe *tree, t_data *data);
 /* red handler */
 
 int		handle_redirections(t_pipe *cmd, t_data *data);
-void	exec_doc(char *str, t_pipe *cmd, t_data *data);
+int		exec_doc(char *str, t_pipe *cmd, t_data *data);
 
 /* Built - Ins */
 
@@ -190,7 +189,6 @@ void	set_parent_signals(void);
 void	set_signals_to_ignore(void);
 void	ft_waitpid(int pid, t_data *data);
 void	ctrl_d_msg_and_exit(char *input, char *str, t_pipe *pipe, t_data *data);
-void	if_close(int fd);
 
 /* Data */
 

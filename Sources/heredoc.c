@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/16 16:25:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:35:59 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
 	char	*input;
 
+	signal(SIGINT, SIG_DFL);
 	close(cmd->doc_pipe[0]);
 	while (1)
 	{
-		input = readline("> ");
+		if (data->signaled == false)
+			input = readline("> ");
 		if (!input)
 			ctrl_d_msg_and_exit(input, str, cmd, data);
 		if (ft_strcmp(input, str) == 0)
@@ -92,11 +94,11 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 		}
 		write_heredoc(input, cmd->doc_pipe[1], data);
 	}
-	if_close(cmd->doc_pipe[1]);
+	close(cmd->doc_pipe[1]);
 	exit(0);
 }
 
-void	exec_doc(char *str, t_pipe *cmd, t_data *data)
+int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
 	int	pid;
 
@@ -105,17 +107,27 @@ void	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	{
 		perror("pipe error");
 		cmd->bad_fd = true;
-		return;
+		return (-1);
 	}
 	pid = fork();
 	if (pid == -1)
 	{
 		perror("pid error");
 		cmd->bad_fd = true;
-		return;
+		return (-1);
 	}
 	else if (pid == 0)
 		read_heredoc(str, cmd, data);
+	set_parent_signals();
 	close(cmd->doc_pipe[1]);
 	ft_waitpid(pid, data);
+	set_main_signals();
+	if (data->exit_status == 130)
+		return (-1);
+	if (data->exit_status == 144)
+	{
+		data->cmd_tree->bad_fd = true;
+		data->exit_status = 0;
+	}
+	return (1);
 }
