@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/17 14:35:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:43:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,13 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	cmd->heredoc = true;
 	if (pipe(cmd->doc_pipe) < 0)
 	{
-		perror("pipe error");
-		cmd->bad_fd = true;
+		pipe_error(cmd);
 		return (-1);
 	}
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("pid error");
-		cmd->bad_fd = true;
+		pipe_error(cmd);
 		return (-1);
 	}
 	else if (pid == 0)
@@ -125,9 +123,6 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	if (data->exit_status == 130)
 		return (-1);
 	if (data->exit_status == 144)
-	{
-		data->cmd_tree->bad_fd = true;
 		data->exit_status = 0;
-	}
 	return (1);
 }

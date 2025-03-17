@@ -6,11 +6,18 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 16:05:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/17 14:15:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:44:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	pipe_error(t_pipe *cmd)
+{
+	perror("pid error");
+	cmd->bad_fd = true;
+	return ;
+}
 
 void	print_ctrl_d_msg(char *eof, t_data *data)
 {
@@ -31,5 +38,6 @@ void	ctrl_d_msg_and_exit(char *input, char *str, t_pipe *pipe, t_data *data)
 		free(input);
 	close(pipe->doc_pipe[1]);
 	print_ctrl_d_msg(str, data);
+	data->exit_status = 144;
 	exit(144);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/14 15:22:14 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:48:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	change_directory(char **args, t_data *data)
 		data->exit_status = 1;
 		return ;
 	}
-	// printf("curpath %s", curpath);
 	ft_strlcpy(env_var, "PWD=", sizeof(env_var));
 	ft_strlcat(env_var, curpath, sizeof(env_var));
 	update_pwd(data);
