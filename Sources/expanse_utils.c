@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:59:45 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/09 17:17:16 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:53:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	get_var_len(char *str, int i)
 	len = 0;
 	if (ft_isdigit(str[i]) || str[i] == '$' || str[i] == '?')
 		return (1);
-	while (str[i + len] && (ft_isalnum(str[i + len])
-			|| str[i + len] == '_') &&
-				!ft_isquote(str[i + len]))
+	while (str[i + len] && (ft_isalnum(str[i + len]) \
+			|| str[i + len] == '_') \
+			&& !ft_isquote(str[i + len]))
 		len++;
-	return(len);
+	return (len);
 }
 
 char	*get_var_values(char *var_name, t_env **env)

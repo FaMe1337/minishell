@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/03/16 16:28:29 by toferrei         ###   ########.fr        #
+#    Updated: 2025/03/17 15:55:46 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SOURCES		=	$(SRC)change_directory_set.c \
 				$(SRC)env_to_list.c \
 				$(SRC)env.c \
 				$(SRC)error_and_cleaning.c \
+				$(SRC)error_and_cleaning_2.c \
 				$(SRC)exec_builtins.c \
 				$(SRC)executor.c \
 				$(SRC)exit.c \

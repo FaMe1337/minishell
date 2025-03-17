@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 14:13:43 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:58:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_builtin(char *command)
+int	is_builtin(char *command)
 {
 	if (ft_strcmp(command, "echo\0") == 0)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 14:36:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:57:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	show_starter(char **env, t_data *data)
 		if (!data->input)
 		{
 			ft_putstr_fd("exit\n", 2);
-			break;
+			break ;
 		}
 		if (*data->input)
 		{
@@ -40,19 +40,16 @@ void	show_starter(char **env, t_data *data)
 	exit_exit(data);
 }
 
-
-t_data *minicall(void)
+t_data	*minicall(void)
 {
-	static t_data data;
+	static t_data	data;
 
-	return(&data);
+	return (&data);
 }
-
 
 int	main(int ac, char **av, char **env)
 {
 	(void) av;
-
 	if (ac == 1)
 	{
 		set_main_signals();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/16 16:14:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:52:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	**cpy_from_env(t_env **env)
 	return (res);
 }
 
-void	increase_SHLVL(t_data *data)
+static void	increase_shlvl(t_data *data)
 {
 	int		x;
 
@@ -58,8 +58,8 @@ void	init_data(char **env, t_data *data)
 	if (env)
 	{
 		env_to_list(data, env);
-		increase_SHLVL(data);
-	}	
+		increase_shlvl(data);
+	}
 	else
 		minimal_list_init(data);
 	if (check_for_variable(*(data)->env, "HOME"))

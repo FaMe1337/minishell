@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   first_tokenization.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:05:29 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/02 21:30:29 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:53:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int get_type(char *str)
+static int	get_type(char *str)
 {
 	if (!str || !str[0])
 		return (-1);
@@ -30,9 +30,9 @@ static int get_type(char *str)
 		return (WORD);
 }
 
-static void lst_add_back(t_token *token, t_token *add, char *str)
+static void	lst_add_back(t_token *token, t_token *add, char *str)
 {
-	t_token *current;
+	t_token	*current;
 
 	current = token;
 	while (current->next)
@@ -45,9 +45,9 @@ static void lst_add_back(t_token *token, t_token *add, char *str)
 	add->next = NULL;
 }
 
-static t_token *add_tokens(t_token *token, char *str)
+static t_token	*add_tokens(t_token *token, char *str)
 {
-	t_token *add;
+	t_token	*add;
 
 	add = malloc(sizeof(t_token));
 	if (!add)
@@ -71,7 +71,7 @@ static t_token *add_tokens(t_token *token, char *str)
 	return (token);
 }
 
-t_token *init_token(char *str)
+t_token	*init_token(char *str)
 {
 	t_token	*token;
 
@@ -92,10 +92,10 @@ t_token *init_token(char *str)
 	return (token);
 }
 
-t_token *first_tokenazor(t_data *data, char **inputs)
+t_token	*first_tokenazor(t_data *data, char **inputs)
 {
-	t_token *token;
-	int	i;
+	t_token	*token;
+	int		i;
 
 	i = 0;
 	if (!inputs || !inputs[i])

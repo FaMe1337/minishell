@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/02/19 19:44:10 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:54:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	safe_mallocs(char **res, int position, size_t buffer)
 
 static int	fill(char **res, char const *s)
 {
-	int	i;
-	int	len;
-	char const *start;
+	int			i;
+	int			len;
+	char const	*start;
 
 	i = 0;
 	while (*s)
@@ -59,7 +59,7 @@ static int	fill(char **res, char const *s)
 static int	word_counter(char const *s)
 {
 	int	count;
-	int i;
+	int	i;
 
 	i = 0;
 	count = 0;

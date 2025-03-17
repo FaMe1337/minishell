@@ -6,36 +6,35 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/17 14:43:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	expand_doc_token(t_token *token ,t_data *data)
+static void	expand_doc_token(t_token *token, t_data *data)
 {
-	int	i;
-	t_token *temp;
+	int		i;
+	t_token	*temp;
 
 	temp = token;
-
 	i = 0;
 	while (temp->value[i])
 	{
-		if (temp->value[i] == '$' && !single_quote(temp->value, i)
-				&& temp->value[i + 1])
+		if (temp->value[i] == '$' && !single_quote(temp->value, i) \
+			&& temp->value[i + 1])
 		{
 			if (valid_expansion(temp->value, i))
 			{
 				expand_str(temp, data);
-				continue;
+				continue ;
 			}
 		}
 		i++;
 	}
 }
 
-static char *expand_doc(char *str, t_data *data)
+static char	*expand_doc(char *str, t_data *data)
 {
 	t_token	*token;
 	char	*result;
@@ -48,9 +47,9 @@ static char *expand_doc(char *str, t_data *data)
 	return (result);
 }
 
-static void write_heredoc(char *input, int wpipe,t_data *data)
+static void	write_heredoc(char *input, int wpipe, t_data *data)
 {
-	int	i;
+	int		i;
 	char	*temp;
 
 	i = 0;
@@ -66,7 +65,7 @@ static void write_heredoc(char *input, int wpipe,t_data *data)
 		if (temp[i] == '$')
 		{
 			temp = expand_doc(temp, data);
-			continue;
+			continue ;
 		}
 		i++;
 	}
@@ -75,7 +74,7 @@ static void write_heredoc(char *input, int wpipe,t_data *data)
 	free(temp);
 }
 
-static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
+static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
 	char	*input;
 
@@ -90,7 +89,7 @@ static void read_heredoc(char *str, t_pipe *cmd, t_data *data)
 		if (ft_strcmp(input, str) == 0)
 		{
 			free(input);
-			break;
+			break ;
 		}
 		write_heredoc(input, cmd->doc_pipe[1], data);
 	}

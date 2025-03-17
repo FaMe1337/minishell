@@ -6,15 +6,15 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:16:54 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/10 15:03:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:40:43 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char *has_operator(char *str)
+static char	*has_operator(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -34,50 +34,52 @@ static char *has_operator(char *str)
 	return (NULL);
 }
 
-static t_token *extract_operator(t_token *token, char *operator)
+static t_token	*extract_operator(t_token *token, char *operator)
 {
-	t_token *new;
+	t_token	*new;
 	t_token	*new_after;
-	char *new_value;
-	int	op_len;
+	char	*new_value;
+	int		op_len;
 
 	op_len = ft_strlen(operator);
 	new_value = ft_substr(token->value, 0, op_len);
 	new = init_token(new_value);
-	new_value = ft_substr(token->value, op_len, ft_strlen(token->value) - op_len);
+	new_value = ft_substr(token->value, op_len, \
+					ft_strlen(token->value) - op_len);
 	new_after = init_token(new_value);
 	if (!new && !new_after)
 		return (NULL);
 	new->next = new_after;
 	new_after->previous = new;
-	return(new);
+	return (new);
 }
-static t_token *extract_word(t_token *token, char *operator)
+
+static t_token	*extract_word(t_token *token, char *operator)
 {
-	int	i;
-	t_token *new;
+	int		i;
+	t_token	*new;
 	t_token	*new_after;
-	char *new_value;
+	char	*new_value;
 
 	i = 0;
-   while (token->value[i] && ft_strncmp(&token->value[i], \
-	operator, ft_strlen(operator)) != 0)
-	    i++;
+	while (token->value[i] && ft_strncmp(&token->value[i], \
+			operator, ft_strlen(operator)) != 0)
+		i++;
 	new_value = ft_substr(token->value, 0, i);
 	new = init_token(new_value);
-	new_value = ft_substr(token->value, i,
-		ft_strlen(token->value) -  i);
+	new_value = ft_substr(token->value, i, \
+					ft_strlen(token->value) - i);
 	new_after = init_token(new_value);
 	if (!new && !new_after)
 		return (NULL);
 	new->next = new_after;
 	new_after->previous = new;
-	return(new);
+	return (new);
 }
 
 static t_token	*reasign_tokens(t_token *token, char *operator)
 {
-	t_token *new;
+	t_token	*new;
 
 	if (ft_strncmp(token->value, operator, ft_strlen(operator)) == 0)
 		new = extract_operator(token, operator);
@@ -97,20 +99,19 @@ static t_token	*reasign_tokens(t_token *token, char *operator)
 }
 
 void	second_tokenazor(t_token **head)
-{// o maximo que consigo ter numa str sao 3 operators
-	// int	i;
-	char *operator;
-	t_token *token;
+{
+	char	*operator;
+	t_token	*token;
 
-	// i = 0;
 	token = *head;
 	while (token)
 	{
 		operator = has_operator(token->value);
-		if (operator && !in_quotes(token->value, 1) && ft_strlen(token->value) >= 2)
+		if (operator && !in_quotes(token->value, 1) && \
+			ft_strlen(token->value) >= 2)
 		{
-			if ((ft_strcmp(operator, ">>") != 0 &&
-				ft_strcmp(operator, "<<") != 0) ||
+			if ((ft_strcmp(operator, ">>") != 0 && \
+				ft_strcmp(operator, "<<") != 0) || \
 				ft_strlen(token->value) > 2)
 			{
 				token = reasign_tokens(token, operator);
@@ -121,4 +122,3 @@ void	second_tokenazor(t_token **head)
 		token = token->next;
 	}
 }
-

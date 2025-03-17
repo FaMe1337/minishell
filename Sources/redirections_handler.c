@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 14:05:52 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:02:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	append(char *str, t_pipe *cmd)
 	fd = open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 	{
-        ft_putstr_fd("minishell: ", 2);
-        perror(str);
+		ft_putstr_fd("minishell: ", 2);
+		perror(str);
 		cmd->bad_fd = true;
 		return ;
 	}
@@ -48,8 +48,8 @@ static void	red_out(char *str, t_pipe *cmd)
 	fd = open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-        ft_putstr_fd("minishell: ", 2);
-        perror(str);
+		ft_putstr_fd("minishell: ", 2);
+		perror(str);
 		cmd->bad_fd = true;
 		return ;
 	}
@@ -71,8 +71,8 @@ static void	red_in(char *str, t_pipe *cmd)
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 	{
-        ft_putstr_fd("minishell: ", 2);
-        perror(str);
+		ft_putstr_fd("minishell: ", 2);
+		perror(str);
 		cmd->bad_fd = true;
 		return ;
 	}
@@ -105,7 +105,7 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 	while (cmd)
 	{
 		i = 0;
-		while(cmd->red && cmd->red[i])
+		while (cmd->red && cmd->red[i])
 		{
 			if (parse_redirections(cmd->red[i], cmd, data))
 				return (1);

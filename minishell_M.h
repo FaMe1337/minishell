@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 14:44:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:36:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MINISHELL_M_H
+#ifndef MINISHELL_M_H
 # define MINISHELL_M_H
 
 # include <stdio.h>
@@ -41,12 +41,13 @@ typedef struct s_env
 
 //todo
 
-typedef struct s_token{
+typedef struct s_token
+{
 	int				token_type;
 	char			*value; //allocado
-	struct s_token *next;
-	struct s_token *previous;
-}		t_token;
+	struct s_token	*next;
+	struct s_token	*previous;
+}					t_token;
 
 typedef struct s_pipe
 {
@@ -63,7 +64,7 @@ typedef struct s_pipe
 	char			**cmd; //allocado
 	struct s_pipe	*next;
 	struct s_pipe	*previous;
-}			t_pipe;
+}					t_pipe;
 
 //todo
 typedef struct s_data{
