@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:54:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/14 15:20:09 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:48:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	*set_dir_sub1(char **args, char *curpath, t_data *data)
 {
+	printf("passei aqui 1;%s\n", curpath);
 	ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
 	if (args[1] && ft_strncmp(args[1], "~", ft_strlen(args[1])) \
 		&& ft_strncmp(args[1], "~/", ft_strlen(args[1])))
@@ -21,6 +22,7 @@ static char	*set_dir_sub1(char **args, char *curpath, t_data *data)
 		args[1]++;
 		ft_strlcat(curpath, args[1], ft_strlen(data->pwd) + 1);
 	}
+	printf("passei aqui 2;%s\n", curpath);
 	return (curpath);
 }
 
@@ -35,7 +37,7 @@ static char	*set_dir_sub2(char *curpath, t_data *data)
 	{
 		ft_strlcat(curpath, get_var_value(*(data->env), "OLDPWD"), \
 			ft_strlen(get_var_value(*(data->env), "OLDPWD")) + 1);
-		printf("%s\n", check_for_variable(*(data->env), "PWD")->value);
+		printf("%s\n", curpath);
 	}
 	return (curpath);
 }
@@ -63,5 +65,6 @@ char	*set_directory(char **args, char *curpath, t_data *data)
 		ft_strlcat(curpath, args[1], \
 			ft_strlen(args[1]) + ft_strlen(data->pwd) + 2);
 	}
+	printf("passei aqui ;%s\n", curpath);
 	return (curpath);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/17 16:19:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:56:24 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	free_stuff(t_data *data)
 	{
 		currentz = data->cmd_tree->next;
 		clean_all_fds(data->cmd_tree);
-		free_char_array(data->cmd_tree->cmd);
+		while (*data->cmd_tree->cmd)
+			printf("%s\n", *data->cmd_tree->cmd++);
+		if (data->cmd_tree->cmd) // NAO ESTAVA tentativa resolver cd ~/PATH/ quando pwd ~/PATH/SUBPATH/
+			free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);
 		data->cmd_tree = currentz;

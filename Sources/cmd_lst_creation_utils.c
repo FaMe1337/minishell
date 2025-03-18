@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:59:37 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:07:38 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:00:10 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char	**add_prefix(char **res, char *value, char *prefix)
 	if (!word)
 		return (NULL);
 	res = word_to_res(res, word);
+	printf("erro provavel %s ou %s", res, word);
 	return (res);
 }

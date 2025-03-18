@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:24:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:29:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,35 @@ bool	valid_expansion(char *str, int i)
 		return (true);
 	return (false);
 }
+/* For norminette purposes
 
+
+char	*put_var_on_token(t_token *token, char *var)
+{
+	int		i;
+	int		j;
+	char	*res;
+	char	*tmp1;
+	char	*tmp2;
+
+	i = 0;
+	while (token->value[i] != '$')
+		i++;
+	j = (i + 1) + get_var_len(token->value, i + 1);
+	while (token->value[j])
+		j++;
+	tmp1 = ft_substr(token->value, 0, i);
+	tmp2 = ft_strjoin(tmp1, var);
+	free(tmp1);
+	tmp1 = ft_substr(token->value, (i + 1) \
+			+ get_var_len(token->value, i + 1), j);
+	res = ft_strjoin(tmp2, tmp1);
+	free(tmp2);
+	free(tmp1);
+	free(token->value);
+	return (res);
+}
+*/
 char	*put_var_on_token(t_token *token, char *var)
 {
 	int		i;
