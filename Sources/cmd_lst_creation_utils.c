@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst_creation_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:59:37 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/18 09:51:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:49:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,19 @@ void	free_char_array(char **res)
 		return ;
 	i = 0;
 	while (res[i])
-		free(res[i++]);
+	{
+		// printf("res %d is	%s\n", i , res[i]);
+		// if (res[i])
+		// {
+			free(res[i]);
+		// }
+		i++;
+	}
+	// printf("passou depois\n");
 	free(res);
 }
 
-static char	**word_to_res(char **res, char *word)
+char	**word_to_res(char **res, char *word)
 {
 	int		i;
 	char	**result;
@@ -64,6 +72,8 @@ char	**add_prefix(char **res, char *value, char *prefix)
 {
 	char	*word;
 
+	// printf("o valor e:%s\n", value);
+	// printf("o valor e:%s\n", prefix);
 	if (prefix)
 		word = ft_strjoin(prefix, value);
 	else
@@ -71,8 +81,5 @@ char	**add_prefix(char **res, char *value, char *prefix)
 	if (!word)
 		return (NULL);
 	res = word_to_res(res, word);
-	// while (*res)
-	// 	printf("res, %s\n", *res++);
-	// printf("erro provavel %s", word);
 	return (res);
 }

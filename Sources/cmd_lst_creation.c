@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst_creation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:19:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:48:56 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	pipe_add_back(t_pipe *start, t_pipe *next)
 
 static void	init_red_and_cmd(t_token *token, t_pipe *start)
 {
+	// printf("token type: %d\n", token->token_type);
 	while (token)
 	{
 		if (token->token_type == HEREDOC)
@@ -85,6 +86,7 @@ t_pipe	*cmd_lst_creation(t_token *token)
 
 	start = init_pipe();
 	processes = count_pipes(token);
+	// printf("%d\n", processes);
 	if (processes > 1)
 	{
 		while (processes > 1)

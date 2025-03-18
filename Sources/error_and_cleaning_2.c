@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/18 00:56:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:48:43 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	free_stuff(t_data *data)
 	t_token	*current;
 	t_pipe	*currentz;
 
+	// printf("freestuff\n");
 	while (data->token)
 	{
 		current = data->token->next;
@@ -62,10 +63,7 @@ void	free_stuff(t_data *data)
 	{
 		currentz = data->cmd_tree->next;
 		clean_all_fds(data->cmd_tree);
-		while (*data->cmd_tree->cmd)
-			printf("%s\n", *data->cmd_tree->cmd++);
-		if (data->cmd_tree->cmd) // NAO ESTAVA tentativa resolver cd ~/PATH/ quando pwd ~/PATH/SUBPATH/
-			free_char_array(data->cmd_tree->cmd);
+		free_char_array(data->cmd_tree->cmd);
 		free_char_array(data->cmd_tree->red);
 		free(data->cmd_tree);
 		data->cmd_tree = currentz;

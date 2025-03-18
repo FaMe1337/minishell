@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/18 00:48:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:49:14 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	change_directory(char **args, t_data *data)
 
 	curpath[0] = '\0';
 	set_directory(args, curpath, data);
-	printf("tambem 1;%s\n", curpath);
+	// printf("tambem 1;%s\n", curpath);
 	if (data->exit_status == 1)
 		return ;
 	if (chdir(curpath))
@@ -69,5 +69,5 @@ void	change_directory(char **args, t_data *data)
 	update_pwd(data);
 	export_for_cd(data, env_var);
 	data->exit_status = 0;
-	printf("tambem 2;%s\n", curpath);
+	// printf("tambem 2;%s\n", curpath);
 }
