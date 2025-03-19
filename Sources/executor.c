@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/19 19:46:02 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:05:40 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 	}
 	if (tree->pid == 0)
 		child_process(tree, data);
-	close(tree->pipe[1]);
+	clean_all_fds(tree);
 	return (1);
 }
 
@@ -41,7 +41,6 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 	{
 		if (!set_up_child(tree, data))
 			return ;
-		clean_all_fds(tree);
 		tree = tree->next;
 	}
 	tree = temp;

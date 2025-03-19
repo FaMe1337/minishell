@@ -1,0 +1,25 @@
+USER=fabio
+SHLVL=2
+LD_LIBRARY_PATH=/usr/lib/debug
+HOME=/home/fabio
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+WSL_DISTRO_NAME=Ubuntu
+WAYLAND_DISPLAY=wayland-0
+LOGNAME=fabio
+WSL_INTEROP=/run/WSL/54215_interop
+NAME=DESKTOP-GMEVVS5
+PULSE_SERVER=unix:/mnt/wslg/PulseServer
+TERM=xterm-256color
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.4.12.0_x64__8wekyb3d8bbwe:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/fabio/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/fabio/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/fabio/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+XDG_RUNTIME_DIR=/run/user/1000/
+GLIBCPP_FORCE_NEW=1
+DISPLAY=:0
+LANG=C.UTF-8
+SHELL=/usr/bin/fish
+PWD=/home/fabio/minishell
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+WSL2_GUI_APPS_ENABLED=1
+HOSTTYPE=x86_64
+WSLENV=
+GLIBCXX_FORCE_NEW=1
+LD_PRELOAD=/usr/libexec/valgrind/vgpreload_core-amd64-linux.so:/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
