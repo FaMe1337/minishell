@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:35:28 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:01:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:37:46 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,26 @@ bool	double_quotes(const char *str, int index)
 		i++;
 	}
 	return (double_quote);
+}
+
+bool	check_for_open_quotes(char *str)
+{
+	int		i;
+	bool	one_quote;
+	bool	double_quote;
+
+	i = 0;
+	one_quote = false;
+	double_quote = false;
+	while (str[i])
+	{
+		if (str[i] == '\'' && !double_quote)
+			one_quote = !one_quote;
+		else if (str[i] == '\"' && !one_quote)
+			double_quote = !double_quote;
+		i++;
+	}
+	if (one_quote || double_quote)
+		return (false);
+	return (true);
 }
