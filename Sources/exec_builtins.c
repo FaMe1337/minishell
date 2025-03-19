@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 15:58:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:28:27 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	exec_builtin(char **cmd, t_data *data, t_pipe *tree)
 		unset_env(cmd, data);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		builtin_exit(cmd, data);
+	clean_all_fds(tree);
 }

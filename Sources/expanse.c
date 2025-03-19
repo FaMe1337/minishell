@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/18 00:29:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:42:37 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,31 +94,37 @@ void	expand_str(t_token *token, t_data *data)
 	free(var_value);
 }
 
+static void expand_token(t_token *token, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (token->value[i])
+	{
+		if (token->value[i] == '$' && !single_quote(token->value, i) \
+		&& token->value[i + 1])
+		{
+			if (valid_expansion(token->value, i))
+			{
+				expand_str(token, data);
+				continue ;
+			}
+		}
+		i++;
+	}
+}
+
 void	expanse_parse(t_data *data)
 {
-	int		i;
 	t_token	*temp;
 
 	temp = data->token;
 	while (temp)
 	{
 		if (temp->previous && temp->previous->token_type != HEREDOC)
-		{
-			i = 0;
-			while (temp->value[i])
-			{
-				if (temp->value[i] == '$' && !single_quote(temp->value, i) \
-					&& temp->value[i + 1])
-				{
-					if (valid_expansion(temp->value, i))
-					{
-						expand_str(temp, data);
-						continue ;
-					}
-				}
-				i++;
-			}
-		}
+			expand_token(temp, data);
+		else if (!temp->previous /* && !temp->next */)
+			expand_token(temp, data);
 		temp = temp->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:06:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:29:27 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	child_process(t_pipe *tree, t_data *data)
 	if (is_builtin(tree->cmd[0]))
 	{
 		exec_builtin(tree->cmd, data, tree);
-		clean_all_fds(tree);
 		exit(0);
 	}
 	else if (access(tree->cmd[0], F_OK) == 0)
@@ -127,7 +126,6 @@ void	child_process(t_pipe *tree, t_data *data)
 		path = find_path(tree->cmd[0], data->env_str_array);
 		if (!path)
 			path = ft_strdup(tree->cmd[0]);
-		clean_all_fds(tree);
 		execve(path, tree->cmd, data->env_str_array);
 		free(path);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory_set.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:54:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/18 16:10:46 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:03:31 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char	*set_dir_sub1(char **args, char *curpath, t_data *data)
 {
-	int i;
+/* 	int i;
 
-	i = 0;
+	i = 0; */
 	// printf("passei aqui 1;%s\n", curpath);
 	ft_strlcat(curpath, data->home, ft_strlen(data->home) + 1);
 	// printf("curapth %s\n",curpath);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:11:44 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/19 08:08:14 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,29 @@ static bool	parsing_operators(t_token *token)
 	return (false);
 }
 
+/* static void	printar_cenas(t_pipe *tree)
+{
+	int	i;
+	int j;
+	char *current;
+
+	if (!tree->cmd)
+		return;
+	i = 0;
+	j = 0;
+	while (tree->cmd[i] && tree->cmd[i + 1])
+	{
+		printf("cmd é: %s\n", tree->cmd[i]);
+		current = tree->cmd[i];
+		if (!current[0])
+			free(current);
+		else
+			tree->cmd[j++] = current;
+		i++;
+	}
+} */
+
+
 int	input_parser(t_data *data)
 {
 	char	**inputs;
@@ -101,6 +124,8 @@ int	input_parser(t_data *data)
 	expanse_parse(data);
 	data->cmd_tree = cmd_lst_creation(data->token);
 	remove_quotes(data->cmd_tree);
+	//printar_cenas(data->cmd_tree);
 	free(data->input);
 	return (1);
 }
+
