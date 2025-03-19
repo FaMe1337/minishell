@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst_creation_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:59:37 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/18 15:49:51 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:14:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,7 @@ void	free_char_array(char **res)
 		return ;
 	i = 0;
 	while (res[i])
-	{
-		// printf("res %d is	%s\n", i , res[i]);
-		// if (res[i])
-		// {
-			free(res[i]);
-		// }
-		i++;
-	}
-	// printf("passou depois\n");
+		free(res[i++]);
 	free(res);
 }
 
@@ -72,8 +64,6 @@ char	**add_prefix(char **res, char *value, char *prefix)
 {
 	char	*word;
 
-	// printf("o valor e:%s\n", value);
-	// printf("o valor e:%s\n", prefix);
 	if (prefix)
 		word = ft_strjoin(prefix, value);
 	else

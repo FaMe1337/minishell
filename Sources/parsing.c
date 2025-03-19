@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/19 08:08:14 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/19 19:49:02 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,31 @@ static bool	parsing_operators(t_token *token)
 	return (false);
 }
 
-/* static void	printar_cenas(t_pipe *tree)
+static char	**skip_empty_cmd(t_pipe *tree)
 {
 	int	i;
 	int j;
-	char *current;
+	char **result;
 
 	if (!tree->cmd)
-		return;
+		return (NULL);
+	i = 0;
+	while (tree->cmd[i])
+		i++;
+	result = safe_malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	j = 0;
-	while (tree->cmd[i] && tree->cmd[i + 1])
+	while (tree->cmd[i])
 	{
-		printf("cmd é: %s\n", tree->cmd[i]);
-		current = tree->cmd[i];
-		if (!current[0])
-			free(current);
+		if (!tree->cmd[i][0])
+			i++;
 		else
-			tree->cmd[j++] = current;
-		i++;
+			result[j++] = ft_strdup(tree->cmd[i++]);
 	}
-} */
+	result[j] = 0;
+	free_char_array(tree->cmd);
+	return (result);
+}
 
 
 int	input_parser(t_data *data)
@@ -124,7 +128,7 @@ int	input_parser(t_data *data)
 	expanse_parse(data);
 	data->cmd_tree = cmd_lst_creation(data->token);
 	remove_quotes(data->cmd_tree);
-	//printar_cenas(data->cmd_tree);
+	data->cmd_tree->cmd = skip_empty_cmd(data->cmd_tree);
 	free(data->input);
 	return (1);
 }

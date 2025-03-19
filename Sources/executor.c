@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/18 20:51:42 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/19 19:46:02 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
-	if ((!cmd_tree->cmd || !cmd_tree->cmd[0][0]))
+	if ((!cmd_tree->cmd || !cmd_tree->cmd[0]))
 		return ;
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
