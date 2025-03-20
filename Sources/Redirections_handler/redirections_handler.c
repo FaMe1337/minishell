@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:10:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:44:23 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,9 @@ static void	red_in(char *str, t_pipe *cmd)
 	cmd->fd_in = fd;
 }
 
-static int	parse_redirections(char *str, t_pipe *red, t_data *data)
+static int	parse_redirections(char *str, t_pipe *red)
 {
-	if (ft_strncmp(str, "DOC:", 4) == 0)
-		exec_doc(str + 4, red, data);
-	else if (ft_strncmp(str, "RDI:", 4) == 0)
+	if (ft_strncmp(str, "RDI:", 4) == 0)
 		red_in(str + 4, red);
 	else if (ft_strncmp(str, "RDO:", 4) == 0)
 		red_out(str + 4, red);
@@ -116,7 +114,14 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 		i = 0;
 		while (cmd->red && cmd->red[i])
 		{
-			if (parse_redirections(cmd->red[i], cmd, data))
+			if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
+				exec_doc(cmd->red[i] + 4, cmd, data);
+			i++;
+		}
+		i = 0;
+		while (cmd->red && cmd->red[i])
+		{
+			if (parse_redirections(cmd->red[i], cmd))
 				return (1);
 			i++;
 		}

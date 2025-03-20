@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
+#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/03/20 16:10:24 by toferrei         ###   ########.fr        #
+#    Updated: 2025/03/20 19:32:44 by fabio            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,13 @@ SOURCES		=	$(SRC)$(BLT)change_directory_set.c \
 				$(SRC)$(QOT)remove_quotes.c \
 				$(SRC)$(TOK)first_tokenization.c \
 				$(SRC)$(TOK)second_tokenization.c \
+				$(SRC)$(TOK)split.c \
 				$(SRC)$(RED)heredoc.c \
 				$(SRC)$(RED)heredoc_2.c \
 				$(SRC)$(RED)redirections_handler.c \
 				$(SRC)$(SGN)signals.c \
 				$(SRC)$(SGN)signals_waitpid.c \
-				$(SRC)main.c \
-				$(SRC)split.c
+				$(SRC)main.c
 
 OBJECTS		=	$(patsubst $(SRC)%.c, $(OBJ_DIR)%.o, $(SOURCES))
 

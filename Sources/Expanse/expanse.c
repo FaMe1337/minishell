@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:33:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:08:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ bool	valid_expansion(char *str, int i)
 		return (true);
 	return (false);
 }
-/* For norminette purposes
-
 
 char	*put_var_on_token(t_token *token, char *var)
 {
@@ -45,35 +43,6 @@ char	*put_var_on_token(t_token *token, char *var)
 	res = ft_strjoin(tmp2, tmp1);
 	free(tmp2);
 	free(tmp1);
-	free(token->value);
-	return (res);
-}
-*/
-
-char	*put_var_on_token(t_token *token, char *var)
-{
-	int		i;
-	int		j;
-	int		var_size;
-	char	*res;
-	char	*tmp1;
-	char	*tmp2;
-	char	*tmp3;
-
-	i = 0;
-	while (token->value[i] != '$')
-		i++;
-	var_size = get_var_len(token->value, i + 1);
-	j = (i + 1) + var_size;
-	while (token->value[j])
-		j++;
-	tmp1 = ft_substr(token->value, 0, i);
-	tmp2 = ft_strjoin(tmp1, var);
-	tmp3 = ft_substr(token->value, (i + 1) + var_size, j);
-	res = ft_strjoin(tmp2, tmp3);
-	free(tmp1);
-	free(tmp2);
-	free(tmp3);
 	free(token->value);
 	return (res);
 }
@@ -103,7 +72,7 @@ static void	expand_token(t_token *token, t_data *data)
 	while (token->value[i])
 	{
 		if (token->value[i] == '$' && !single_quote(token->value, i) \
-		&& token->value[i + 1])
+		&& token->value[i + 1] )
 		{
 			if (valid_expansion(token->value, i))
 			{
