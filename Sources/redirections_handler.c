@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/17 16:02:04 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:15:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,15 @@ static int	parse_redirections(char *str, t_pipe *red, t_data *data)
 		return (1);
 	return (0);
 }
+/* o parse_redirections tem de ser separado em duas partes,
+primeiro parse das input depois as de output.
+as de input teem de ser primeiro as heredocs e depois as normais.
 
+cat << a c< unexisting file << heredoc
+
+tentar primeiro abrir todos os heredocs e depois fazer redireccoes.
+
+*/
 int	handle_redirections(t_pipe *cmd, t_data *data)
 {
 	int		i;

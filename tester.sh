@@ -52,7 +52,7 @@ do
 		cat "$BASH_OUTPUT"
 		echo -n "your output: "
 		cat "$MINISHELL_OUTPUT"
-		((COUNT++))
+		((KO_COUNT++))
 	else
 		echo "OK"
 	fi
