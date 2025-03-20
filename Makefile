@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/03/17 15:55:46 by toferrei         ###   ########.fr        #
+#    Updated: 2025/03/20 16:10:24 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,60 +19,58 @@ OBJ_DIR		=	Objects/
 
 SRC			=	Sources/
 
-INI			=	$(SRC)Initialization/
-ERR			=	$(SRC)Error_management/
-PRS			=	$(SRC)Parsing/
-EXP			=	$(SRC)Expanse/
-QOT			=	$(SRC)Quotes/
-TOK			=	$(SRC)Tokens/
-EXC			=	$(SRC)Executor/
-RED			=	$(SRC)Red_handler/
-BLT			=	$(SRC)Built_ins/
-LST			=	$(SRC)List_utils/
-SGN			=	$(SRC)Signals/
+BLT			=	Built_ins/
+ERR			=	Error_management/
+EXC			=	Executor/
+EXP			=	Expanse/
+INI			=	Initialization/
+LST			=	List_utils/
+PRS			=	Parsing/
+QOT			=	Quotes/
+RED			=	Redirections_handler/
+SGN			=	Signals/
+TOK			=	Tokens/
 
-SOURCES		=	$(SRC)change_directory_set.c \
-				$(SRC)change_directory.c \
-				$(SRC)child.c \
-				$(SRC)cmd_lst_creation_utils.c \
-				$(SRC)cmd_lst_creation.c \
-				$(SRC)echo.c \
-				$(SRC)env_to_list.c \
-				$(SRC)env.c \
-				$(SRC)error_and_cleaning.c \
-				$(SRC)error_and_cleaning_2.c \
-				$(SRC)exec_builtins.c \
-				$(SRC)executor.c \
-				$(SRC)exit.c \
-				$(SRC)expanse_utils.c \
-				$(SRC)expanse.c \
-				$(SRC)export.c \
-				$(SRC)first_tokenization.c \
-				$(SRC)ft_clean_list.c \
-				$(SRC)ft_print_list.c \
-				$(SRC)get_prompt.c \
-				$(SRC)heredoc.c \
-				$(SRC)heredoc_2.c \
-				$(SRC)init_data.c \
-				$(SRC)list_utils.c \
-				$(SRC)list_utils_2.c \
-				$(SRC)list_utils_3.c \
+SOURCES		=	$(SRC)$(BLT)change_directory_set.c \
+				$(SRC)$(BLT)change_directory.c \
+				$(SRC)$(BLT)echo.c \
+				$(SRC)$(BLT)exit.c \
+				$(SRC)$(BLT)export.c \
+				$(SRC)$(BLT)env.c \
+				$(SRC)$(BLT)pwd.c \
+				$(SRC)$(BLT)unset.c \
+				$(SRC)$(ERR)error_and_cleaning.c \
+				$(SRC)$(ERR)error_and_cleaning_2.c \
+				$(SRC)$(EXC)child.c \
+				$(SRC)$(EXC)exec_builtins.c \
+				$(SRC)$(EXC)executor.c \
+				$(SRC)$(EXP)expanse_utils.c \
+				$(SRC)$(EXP)expanse.c \
+				$(SRC)$(INI)env_to_list.c \
+				$(SRC)$(INI)get_prompt.c \
+				$(SRC)$(INI)init_data.c \
+				$(SRC)$(INI)minimal_list_init.c \
+				$(SRC)$(LST)ft_clean_list.c \
+				$(SRC)$(LST)ft_print_list.c \
+				$(SRC)$(LST)list_utils.c \
+				$(SRC)$(LST)list_utils_2.c \
+				$(SRC)$(LST)list_utils_3.c \
+				$(SRC)$(PRS)cmd_lst_creation_utils.c \
+				$(SRC)$(PRS)cmd_lst_creation.c \
+				$(SRC)$(PRS)parsing.c \
+				$(SRC)$(QOT)quotes.c \
+				$(SRC)$(QOT)remove_quotes.c \
+				$(SRC)$(TOK)first_tokenization.c \
+				$(SRC)$(TOK)second_tokenization.c \
+				$(SRC)$(RED)heredoc.c \
+				$(SRC)$(RED)heredoc_2.c \
+				$(SRC)$(RED)redirections_handler.c \
+				$(SRC)$(SGN)signals.c \
+				$(SRC)$(SGN)signals_waitpid.c \
 				$(SRC)main.c \
-				$(SRC)minimal_list_init.c \
-				$(SRC)parsing.c \
-				$(SRC)pwd.c \
-				$(SRC)quotes.c \
-				$(SRC)redirections_handler.c \
-				$(SRC)remove_quotes.c \
-				$(SRC)second_tokenization.c \
-				$(SRC)signals.c \
-				$(SRC)signals_waitpid.c \
-				$(SRC)split.c \
-				$(SRC)unset.c
+				$(SRC)split.c
 
 OBJECTS		=	$(patsubst $(SRC)%.c, $(OBJ_DIR)%.o, $(SOURCES))
-
-# OBJECTS		=	$(patsubst $(SRC)%.c, $(OBJ_DIR)%.o, $(SOURCES))
 
 # Compiler and Flags
 CC			=	cc

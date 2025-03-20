@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 14:00:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:31:42 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	show_starter(char **env, t_data *data)
 {
@@ -36,7 +36,6 @@ void	show_starter(char **env, t_data *data)
 			}
 		}
 		free_stuff(data);
-		// printf("passei aqui \n");
 	}
 	exit_exit(data);
 }
