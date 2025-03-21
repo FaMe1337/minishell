@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 22:11:50 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:06:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:15:04 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,24 @@ static char	*remove_single_quote(char *str)
 static void	remove_quotes_from_cmd(char **strs)
 {
 	int	i;
+	int j;
 
 	i = 0;
 	while (strs[i])
 	{
+		printf("a str é: %s\n", strs[i]);
 		if (in_quotes(strs[i], 1))
 		{
 			if (strs[i][0] == '\"')
 				strs[i] = remove_double_quotes(strs[i]);
-			else
+			else if (strs[i][0] == '\'')
 				strs[i] = remove_single_quote(strs[i]);
+			j = 0;
+			while (strs[i][++j])
+			{
+				if (strs[i][j] == '\'')
+					strs[i] = remove_single_quote(strs[i]);
+			}
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 20:08:43 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/21 20:24:12 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	expand_token(t_token *token, t_data *data)
 	while (token->value[i])
 	{
 		if (token->value[i] == '$' && !single_quote(token->value, i) \
-		&& token->value[i + 1] )
+		&& token->value[i + 1])
 		{
 			if (valid_expansion(token->value, i))
 			{
@@ -93,7 +93,7 @@ void	expanse_parse(t_data *data)
 	{
 		if (temp->previous && temp->previous->token_type != HEREDOC)
 			expand_token(temp, data);
-		else if (!temp->previous /* && !temp->next */)
+		else if (!temp->previous)
 			expand_token(temp, data);
 		temp = temp->next;
 	}
