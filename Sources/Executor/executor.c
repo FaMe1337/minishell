@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:16:35 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:25:15 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 	}
 	if (tree->pid == 0)
 		child_process(tree, data);
-	clean_all_fds(tree);
+	close(tree->pipe[1]);
+	if (tree->previous)
+		close(tree->previous->pipe[0]);
+	if (!tree->next)
+		close(tree->pipe[0]);
 	return (1);
 }
 

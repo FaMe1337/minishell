@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/22 16:44:35 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/22 18:20:34 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static void	child_red_out(t_pipe *tree)
 		dup2(tree->pipe[1], STDOUT_FILENO);
 		close(tree->pipe[1]);
 	}
+	if (!tree->next)
+		close(tree->pipe[1]);
 }
 
 static char	*find_path(char *cmd, char **envp)
@@ -114,7 +116,6 @@ void	child_process(t_pipe *tree, t_data *data)
 
 	child_red_out(tree);
 	child_red_in(tree);
-	printf("");
 	if (is_builtin(tree->cmd[0]))
 	{
 		exec_builtin(tree->cmd, data, tree);
