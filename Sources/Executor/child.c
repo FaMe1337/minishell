@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 19:45:29 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/22 16:44:35 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	child_process(t_pipe *tree, t_data *data)
 
 	child_red_out(tree);
 	child_red_in(tree);
+	printf("");
 	if (is_builtin(tree->cmd[0]))
 	{
 		exec_builtin(tree->cmd, data, tree);
