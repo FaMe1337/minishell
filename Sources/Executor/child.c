@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/22 18:20:34 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/23 00:52:50 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	child_red_in(t_pipe *tree)
 	}
 	else if (has_red)
 		close_fds(tree);
+	if (!tree->previous)
+		close(tree->pipe[0]);
 }
 
 static void	child_red_out(t_pipe *tree)
@@ -117,10 +119,7 @@ void	child_process(t_pipe *tree, t_data *data)
 	child_red_out(tree);
 	child_red_in(tree);
 	if (is_builtin(tree->cmd[0]))
-	{
 		exec_builtin(tree->cmd, data, tree);
-		exit(0);
-	}
 	else if (access(tree->cmd[0], F_OK | X_OK) == 0)
 		execve(tree->cmd[0], tree->cmd, data->env_str_array);
 	else

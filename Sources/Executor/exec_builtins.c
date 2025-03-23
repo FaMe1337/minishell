@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:05:47 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/23 00:44:16 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	exec_builtin(char **cmd, t_data *data, t_pipe *tree)
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		builtin_exit(cmd, data);
 	clean_all_fds(tree);
+	if (tree->pid == 0)
+		exit(minicall()->exit_status);
 }

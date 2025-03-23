@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/22 18:25:15 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/23 01:09:08 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 	close(tree->pipe[1]);
 	if (tree->previous)
 		close(tree->previous->pipe[0]);
-	if (!tree->next)
-		close(tree->pipe[0]);
 	return (1);
 }
 
