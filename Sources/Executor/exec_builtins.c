@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/23 00:44:16 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/24 20:33:37 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,9 @@ void	exec_builtin(char **cmd, t_data *data, t_pipe *tree)
 		builtin_exit(cmd, data);
 	clean_all_fds(tree);
 	if (tree->pid == 0)
+	{
+		close(STDOUT_FILENO);
+		close(STDIN_FILENO);
 		exit(minicall()->exit_status);
+	}
 }

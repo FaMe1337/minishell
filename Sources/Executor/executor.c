@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/23 01:09:08 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/24 20:28:31 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 	if (tree->pid == 0)
 		child_process(tree, data);
 	close(tree->pipe[1]);
-	if (tree->previous)
+	if (tree->previous && tree->previous->pipe[0] > 2)
 		close(tree->previous->pipe[0]);
 	return (1);
 }
