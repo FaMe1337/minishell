@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/24 20:22:45 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/26 19:25:04 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	child_red_in(t_pipe *tree)
 		dup2(tree->previous->pipe[0], STDIN_FILENO);
 		close(tree->previous->pipe[0]);
 	}
-	else if (has_red)
+	if (has_red)
 		close_fds(tree);
 	if (!tree->previous && tree->pipe[0] > 2)
 

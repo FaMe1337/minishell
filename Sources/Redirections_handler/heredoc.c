@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/20 16:09:41 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:31:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
 	int	pid;
 
-	cmd->heredoc = true;
 	if (pipe(cmd->doc_pipe) < 0)
 	{
 		pipe_error(cmd);

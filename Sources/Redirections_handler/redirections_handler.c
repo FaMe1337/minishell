@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/22 18:40:27 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:37:01 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	red_out(char *str, t_pipe *cmd)
 		ft_putstr_fd("minishell: ", 2);
 		perror(str);
 		cmd->bad_fd = true;
-		
+
 		return ;
 	}
 	if (cmd->fd_out > 2)
@@ -94,15 +94,6 @@ static int	parse_redirections(char *str, t_pipe *red)
 		return (1);
 	return (0);
 }
-/* o parse_redirections tem de ser separado em duas partes,
-primeiro parse das input depois as de output.
-as de input teem de ser primeiro as heredocs e depois as normais.
-
-cat << a c< unexisting file << heredoc
-
-tentar primeiro abrir todos os heredocs e depois fazer redireccoes.
-
-*/
 
 int	handle_redirections(t_pipe *cmd, t_data *data)
 {
@@ -126,6 +117,7 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 				return (1);
 			i++;
 		}
+		check_last_red_in(cmd);
 		cmd = cmd->next;
 	}
 	return (0);

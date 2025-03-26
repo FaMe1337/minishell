@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:15:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/26 19:30:12 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void	child_process(t_pipe *tree, t_data *data);
 /* Redirections Handler */
 
 int		handle_redirections(t_pipe *cmd, t_data *data);
+void 	check_last_in_red (t_pipe *cmd);
 int		exec_doc(char *str, t_pipe *cmd, t_data *data);
 void	pipe_error(t_pipe *cmd);
 
