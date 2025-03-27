@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 00:11:56 by etom              #+#    #+#             */
-/*   Updated: 2024/05/03 12:16:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:42 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		k--;
 	return (nstr(s1, c, k - (c - 1)));
 }
-/* int main (void)
-{
-	char *s = ft_strtrim("tripouille   xxx", " x");
-	printf("%s", s);
-} */

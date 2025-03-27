@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 19:22:09 by toferrei          #+#    #+#             */
-/*   Updated: 2024/04/12 22:15:26 by etom             ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:07 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	else
 		return (-1);
 }
-
-/*int	main (void)
-{
-	printf("%d\n", ft_memcmp("salut", "salut", 5));
-	printf("%d\n\n",  memcmp("salut", "salut", 5));
-	printf("%d\n", ft_memcmp("t\200", "t\0", 2));
-	printf("%d\n\n",  memcmp("t\200", "t\0", 2));
-	printf("%d\n", ft_memcmp("testss", "test", 5));
-	printf("%d\n\n",  memcmp("testss", "test", 5));
-	printf("%d\n", ft_memcmp("test", "tEst", 4));
-	printf("%d\n\n",  memcmp("test", "tEst", 4));
-	printf("%d\n", ft_memcmp("", "test", 4));
-	printf("%d\n\n", memcmp("", "test", 4));
-	printf("%d\n", ft_memcmp("test", "", 4));
-	printf("%d\n\n", memcmp("test", "", 4));
-	printf("%d\n", ft_memcmp("abcdefghij", "abcdefgxyz", 7));
-	printf("%d\n\n",  memcmp("abcdefghij", "abcdefgxyz", 7));
-	printf("%d\n", ft_memcmp("abcdefgh", "abcdwxyz", 6));
-	printf("%d\n\n",  memcmp("abcdefgh", "abcdwxyz", 6));
-	printf("%d\n", ft_memcmp("zyxbcdefgh", "abcdefgxyz", 0));
-	printf("%d\n",    memcmp("zyxbcdefgh", "abcdefgxyz", 0));
-}*/

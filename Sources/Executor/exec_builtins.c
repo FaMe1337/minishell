@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/24 20:33:37 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 13:54:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exec_builtin(char **cmd, t_data *data, t_pipe *tree)
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		echo(cmd, data, tree);
 	else if (ft_strcmp(cmd[0], "cd") == 0)
-		change_directory(cmd, data);
+		change_directory_main(cmd, data);
 	else if (ft_strcmp(cmd[0], "pwd") == 0)
 		pwd(data);
 	else if (ft_strcmp(cmd[0], "env") == 0)

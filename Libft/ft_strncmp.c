@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:38:35 by toferrei          #+#    #+#             */
-/*   Updated: 2024/04/11 14:14:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:34 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
-
-/* int	main()
-{
-	printf("%d", ft_strncmp("abcdf", "ac", 2));
-	return (0);
-} */

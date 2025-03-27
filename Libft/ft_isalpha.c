@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:06:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/04/11 14:08:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:16:56 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,3 @@ int	ft_isalpha(int c)
 	else
 		return (0);
 }
-
-/* int	main(void)
-{
-	printf("%d\n", isalpha('B'));
-	printf("%d\n", ft_isalpha('A'));
-} */

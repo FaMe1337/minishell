@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:19:21 by toferrei          #+#    #+#             */
-/*   Updated: 2024/04/24 17:00:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:00 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/* int	main(void)
-{
-	printf("%s\n", ft_itoa(0));
-    printf("%s\n", ft_itoa(9));
-    printf("%s\n", ft_itoa(-9));
-    printf("%s\n", ft_itoa(10));
-	printf("%s\n", ft_itoa(-10));
-	printf("%s\n", ft_itoa(8124));
-	printf("%s\n", ft_itoa(-9874));
-	printf("%s\n", ft_itoa(54300));
-	printf("%s\n", ft_itoa(-2147483648LL));
-	printf("%s\n", ft_itoa(2147483647));
-} */

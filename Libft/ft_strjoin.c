@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 23:31:09 by etom              #+#    #+#             */
-/*   Updated: 2024/04/20 23:57:05 by etom             ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:24 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[n] = '\0';
 	return (res);
 }
-
-/*int	main(void)
-{
-	char s1[] = "isso isso isso ";
-	char s2[] = "nao nao nao";
-	printf("%s", ft_strjoin(s1, s2));
-}
-*/

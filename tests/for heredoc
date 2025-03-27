@@ -1,0 +1,75 @@
+https://github.com/LucasKuhn/minishell_tester/blob/main/manual_tests/heredoc
+
+for heredoc
+
+cat <<HEREDOC
+oi
+HEREDOC
+
+all good
+
+//
+
+cat <<HERE <<DOC
+oi
+HERE
+time
+DOC
+
+open fd at exit
+
+//
+
+cat <<HERE | ls
+oi
+HERE
+
+all good
+
+//
+
+cat <<HERE
+$USER
+oi
+HERE
+
+all good
+
+//
+
+cat <minishell.h <<HERE <missing | ls
+HERE
+
+not same output with bash
+and open fd at exit
+
+//
+
+cat <minishell.h <<HERE | cat
+HERE
+
+all good
+
+//
+
+cat <minishell.h <<HERE <missing <<DOC | echo oi
+HERE
+DOC
+
+not same output with bash
+and open fd at exit
+
+//
+
+cat << $
+oi
+$
+
+all good
+
+//
+
+<< echo oi
+echo
+
+all good

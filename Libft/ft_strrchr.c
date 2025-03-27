@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:59:07 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/03 12:08:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:38 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,3 @@ char	*ft_strrchr(const char *s, int c)
 	else
 		return (NULL);
 }
-
-/* int	main(void)
-{
-	printf("%s\n", strrchr("bonjour", 'z'));
-	printf("%s", ft_strrchr("bonjour", 'z'));
-}
- */

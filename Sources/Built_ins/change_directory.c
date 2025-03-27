@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/20 16:30:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:17:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	change_directory(char **args, t_data *data)
 	}
 	if (getcwd(curpath, sizeof(curpath)) == NULL)
 	{
-		write(2, "minishell: pwd: ", 17);
+		perror("minishell: pwd: ");
 		data->exit_status = 1;
 		return ;
 	}
@@ -68,4 +68,15 @@ void	change_directory(char **args, t_data *data)
 	ft_strlcat(env_var, curpath, sizeof(env_var));
 	update_pwd(data);
 	export_for_cd(data, env_var);
+}
+
+void	change_directory_main(char **args, t_data *data)
+{
+	if (args[2])
+	{
+		write(2, "minishell: cd: too many arguments\n", 35);
+		data->exit_status = 1;
+		return ;
+	}
+	change_directory(args, data);
 }

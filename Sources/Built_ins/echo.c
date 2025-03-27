@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/20 16:05:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:43:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	echo(char **strstr, t_data *data, t_pipe *tree)
 	{
 		ft_putstr_fd(strstr[i], tree->fd_out);
 		if (strstr[i + 1] != NULL && ft_strlen(strstr[i]))
+		{
 			write (tree->fd_out, " ", 1);
+		}
 		i++;
 	}
 	if (!flag && tree->fd_out <= 2)
