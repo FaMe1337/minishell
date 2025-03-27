@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 22:11:50 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/22 16:17:40 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/27 20:48:31 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ static void	remove_quotes_from_cmd(char **strs)
 	i = 0;
 	while (strs[i])
 	{
-		if (in_quotes(strs[i], 1))
-		{
 			if (strs[i][0] == '\"')
 				strs[i] = remove_double_quotes(strs[i]);
 			else if (strs[i][0] == '\'')
 				strs[i] = remove_single_quote(strs[i]);
-		}
 		i++;
+	}
+	i = 0;
+	while (strs[i])
+	{
+		
 	}
 }
 

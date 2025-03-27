@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/27 20:03:30 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/27 20:44:10 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,13 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
 	int	pid;
 
+	if (cmd->doc_pipe[0] > 2)
+		close(cmd->doc_pipe[0]);
 	if (pipe(cmd->doc_pipe) < 0)
-	{
-		pipe_error(cmd);
-		return (-1);
-	}
+		return (pipe_error(cmd));
 	pid = fork();
 	if (pid == -1)
-	{
-		pipe_error(cmd);
-		return (-1);
-	}
+		return (pipe_error(cmd));
 	else if (pid == 0)
 		read_heredoc(str, cmd, data);
 	set_parent_signals();
@@ -124,4 +120,3 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 		data->exit_status = 0;
 	return (1);
 }
-2

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 16:05:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/27 14:36:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 20:39:38 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	check_last_red_in(t_pipe *cmd)
 	}
 }
 
-void	pipe_error(t_pipe *cmd)
+int pipe_error(t_pipe *cmd)
 {
 	perror("pid error");
 	cmd->bad_fd = true;
-	return ;
+	return (-1);
 }
 
 void	print_ctrl_d_msg(char *eof, t_data *data)
