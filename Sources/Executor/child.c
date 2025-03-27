@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/26 19:25:04 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:35:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	child_red_in(t_pipe *tree)
 	if (has_red)
 		close_fds(tree);
 	if (!tree->previous && tree->pipe[0] > 2)
-
 		close(tree->pipe[0]);
 }
 

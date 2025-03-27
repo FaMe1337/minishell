@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 13:54:42 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:34:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	child_process(t_pipe *tree, t_data *data);
 /* Redirections Handler */
 
 int		handle_redirections(t_pipe *cmd, t_data *data);
-void 	check_last_red_in (t_pipe *cmd);
+void	check_last_red_in(t_pipe *cmd);
 int		exec_doc(char *str, t_pipe *cmd, t_data *data);
 void	pipe_error(t_pipe *cmd);
 

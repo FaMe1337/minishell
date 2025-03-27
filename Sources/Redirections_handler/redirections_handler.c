@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/26 19:37:01 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:35:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	red_out(char *str, t_pipe *cmd)
 		ft_putstr_fd("minishell: ", 2);
 		perror(str);
 		cmd->bad_fd = true;
-
 		return ;
 	}
 	if (cmd->fd_out > 2)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 16:05:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/26 19:37:09 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 14:36:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void check_last_red_in (t_pipe *cmd)
+void	check_last_red_in(t_pipe *cmd)
 {
 	int	i;
 

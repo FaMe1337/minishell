@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:02:14 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/25 14:17:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:35:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
