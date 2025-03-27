@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/26 19:31:43 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 20:03:30 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,3 +124,4 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 		data->exit_status = 0;
 	return (1);
 }
+2

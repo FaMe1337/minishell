@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/27 14:36:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:24:48 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	update_pwd(t_data *data)
 
 	new_pwd = NULL;
 	new_pwd = getcwd(NULL, 0);
+	if (!new_pwd)
+		return;
 	if (new_pwd)
 	{
 		free(data->pwd);

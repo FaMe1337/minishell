@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 14:35:53 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:12:48 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 static void	close_fds(t_pipe *tree)
 {
 	if (tree->heredoc)
-	{
 		dup2(tree->doc_pipe[0], STDIN_FILENO);
-		close(tree->doc_pipe[0]);
-	}
 	else if (tree->fd_in > 2)
-	{
 		dup2(tree->fd_in, STDIN_FILENO);
+	if (tree->doc_pipe[0] > 2)
+		close(tree->doc_pipe[0]);	
+	if (tree->fd_in > 2)
 		close(tree->fd_in);
-	}
 }
 
 static void	child_red_in(t_pipe *tree)
