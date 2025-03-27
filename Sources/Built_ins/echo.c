@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:26:18 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/27 13:43:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:03:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	echo(char **strstr, t_data *data, t_pipe *tree)
 
 	i = 1;
 	flag = false;
+	printf("%s", strstr[1]);
 	if (strstr[1] && check_flag(strstr[i]))
 	{
 		flag = true;
@@ -47,7 +48,8 @@ void	echo(char **strstr, t_data *data, t_pipe *tree)
 		}
 		i++;
 	}
+	printf("\ntree fd:%d\n", tree->fd_out);
 	if (!flag && tree->fd_out <= 2)
-		write (1, "\n", 1);
+		write (tree->fd_out, "\n", 1);
 	data->exit_status = 0;
 }
