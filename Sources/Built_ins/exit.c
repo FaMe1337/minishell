@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/20 16:05:24 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:05:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	builtin_exit(char **args, t_data *data)
 	if (args[2] && is_string_numeric(args[1]))
 	{
 		printf("minishell: exit: too many arguments\n");
+		data->exit_status = 2;
 		return ;
 	}
 	if (!is_string_numeric(args[1]) || !is_in_long_long_range(args[1]))

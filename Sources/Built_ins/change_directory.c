@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/27 19:24:48 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:34:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ void	change_directory(char **args, t_data *data)
 
 void	change_directory_main(char **args, t_data *data)
 {
-	if (args[2])
+	if (!args[1] || !args[2])
+		change_directory(args, data);
+	else
 	{
 		write(2, "minishell: cd: too many arguments\n", 35);
 		data->exit_status = 1;
-		return ;
 	}
-	change_directory(args, data);
+		
 }

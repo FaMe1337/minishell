@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/20 16:05:27 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 01:51:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	pwd(t_data *data)
 	dir = getcwd(NULL, 0);
 	if (!dir)
 	{
-		dir = data->pwd;
+		dir = ft_strdup(data->pwd);
 	}
 	if (dir != NULL)
 	{
@@ -35,13 +35,3 @@ void	pwd(t_data *data)
 		data->exit_status = 1;
 	}
 }
-
-/* int main (void)
-{
-	t_data data;
-
-	data.pwd = NULL;
-	data.pwd = getcwd(NULL, 0);
-	pwd(&data);
-	free(data.pwd);
-} */
