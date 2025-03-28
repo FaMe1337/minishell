@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:02:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:52:57 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		input_parser(t_data *data);
 char	**ft_splits(char *str);
 t_pipe	*cmd_lst_creation(t_token *token);
 char	**add_prefix(char **res, char *value, char *prefix);
-void 	split_for_export(t_pipe *tree);
+void	split_for_export(t_pipe *tree);
 
 /* Expanse */
 
@@ -127,7 +127,7 @@ char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
 bool	valid_expansion(char *str, int i);
-void 	free_strs(char *str1, char *str2, char *str3);
+void	free_strs(char *str1, char *str2, char *str3);
 
 /* Quotes */
 
@@ -143,7 +143,6 @@ void	remove_quotes(t_pipe *tree);
 t_token	*first_tokenazor(t_data *data, char **inputs);
 t_token	*init_token(char *str);
 void	second_tokenazor(t_token **token);
-void 	third_tokenazor(t_token **token);
 
 /* Executor */
 
