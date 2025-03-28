@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 20:44:25 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 01:05:44 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static int	parse_redirections(char *str, t_pipe *red)
 		red_out(str + 4, red);
 	else if (ft_strncmp(str, "APP:", 4) == 0)
 		append(str + 4, red);
-	if (red->bad_fd)
-		return (1);
+/* 	if (red->bad_fd)
+		return (1); */
 	return (0);
 }
 
