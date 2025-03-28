@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:08:49 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 23:00:25 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 23:11:20 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_waitpid(int pid, t_data *data)
 	{
 		if (errno == EINTR)
 			continue ;
-		perror("waitpid");
 		data->exit_status = 1;
 		return ;
 	}
