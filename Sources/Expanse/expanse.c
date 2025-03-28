@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 23:19:51 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 15:33:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	expand_str(t_token *token, t_data *data)
 	else
 		var_value = get_var_values(var_name, data->env);
 	token->value = put_var_on_token(token, var_value);
+	printf("%s\n", token->value);
 	free(var_name);
 	free(var_value);
 }
@@ -77,10 +78,13 @@ static void	expand_token(t_token *token, t_data *data)
 	while (temp[i])
 	{
 		if (temp[i] == '$' && !single_quote(temp, i) \
-		&& temp[i + 1])
+			&& temp[i + 1])
 		{
 			if (valid_expansion(temp, i))
+			{
 				expand_str(token, data);
+				continue;
+			}	
 		}
 		i++;
 	}

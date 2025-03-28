@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:15:58 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 01:51:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:41:23 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	pwd(t_data *data)
 	dir = NULL;
 	dir = getcwd(NULL, 0);
 	if (!dir)
-	{
 		dir = ft_strdup(data->pwd);
-	}
 	if (dir != NULL)
 	{
 		write(1, dir, ft_strlen(dir));
