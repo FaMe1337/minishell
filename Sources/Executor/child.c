@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 01:08:21 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 15:16:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	child_process(t_pipe *tree, t_data *data)
 		path = find_path(tree->cmd[0], data->env_str_array);
 		if (!path)
 			path = ft_strdup(tree->cmd[0]);
+		printf(" a str e: %s\n", tree->cmd[0]);
 		execve(path, tree->cmd, data->env_str_array);
 		free(path);
 	}

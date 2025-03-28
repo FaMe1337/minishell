@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/20 16:06:02 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:04:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ static void	populate_list(char *env, t_data *data)
 	if (check_for_variable(*data->env, temp1))
 	{
 		temp = check_for_variable(*data->env, temp1);
-		free(temp->value);
-		temp->value = ft_strdup(get_value_for_list(env));
-		check_for_variable(*data->env, temp1)->exported = true;
+		if (for_export(env))
+		{
+			free(temp->value);
+			temp->value = ft_strdup(get_value_for_list(env));
+			check_for_variable(*data->env, temp1)->exported = true;
+		}
 	}
 	else
 	{
@@ -45,8 +48,10 @@ void	env_to_list(t_data *data, char **env)
 		data->env = safe_malloc(sizeof * data->env);
 		*data->env = NULL;
 	}
+	
 	while (env[n])
 	{
+		printf("%s\n", env[n]);
 		populate_list(env[n], data);
 		n++;
 	}
