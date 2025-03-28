@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 01:32:05 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 14:15:24 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,27 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 	temp = tree;
 	while (tree)
 	{
+		if (handle_redirections(tree, data))
+		{
+			tree = tree->next;
+			continue;
+		}
 		if (!set_up_child(tree, data))
 			return ;
 		tree = tree->next;
 	}
-	tree = temp;
-	while (tree)
+	while (temp)
 	{
-		waitpid(tree->pid, &status, 0);
-		tree = tree->next;
+		waitpid(temp->pid, &status, 0);
+		temp = temp->next;
 	}
 }
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
 	if ((!cmd_tree->cmd || !cmd_tree->cmd[0]))
+		return ;
+	if (handle_redirections(cmd_tree, data))
 		return ;
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
@@ -82,11 +88,11 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 
 void	executor(t_data *data)
 {
-	if (handle_redirections(data->cmd_tree, data))
+/* 	if (handle_redirections(data->cmd_tree, data))
 	{
 		data->exit_status = 1;
 		return ;
-	}
+	} */
 	if (!data->cmd_tree->next)
 		exec_solo_pipe(data->cmd_tree, data);
 	else

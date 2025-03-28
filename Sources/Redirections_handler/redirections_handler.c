@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 01:30:10 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 14:17:42 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	parse_redirections(char *str, t_pipe *red)
 		red_out(str + 4, red);
 	else if (ft_strncmp(str, "APP:", 4) == 0)
 		append(str + 4, red);
-	if (red->bad_fd/*  && (!red->next || (red->next && red->red[index + 1])) */)
+	if (red->bad_fd)
 		return (1);
 	return (0);
 }
@@ -98,26 +98,23 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 {
 	int		i;
 
-	if (!cmd)
-		return (1);
-	while (cmd)
+	i = 0;
+	while (cmd->red && cmd->red[i])
 	{
-		i = 0;
-		while (cmd->red && cmd->red[i])
-		{
-			if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
-				exec_doc(cmd->red[i] + 4, cmd, data);
-			i++;
-		}
-		i = 0;
-		while (cmd->red && cmd->red[i])
-		{
-			if (parse_redirections(cmd->red[i], cmd))
-				return (1);
-			i++;
-		}
-		check_last_red_in(cmd);
-		cmd = cmd->next;
+		if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
+			exec_doc(cmd->red[i] + 4, cmd, data);
+		i++;
 	}
+	i = 0;
+	while (cmd->red && cmd->red[i])
+	{
+		if (parse_redirections(cmd->red[i], cmd))
+		{
+			data->exit_status = 1;
+			return (1);
+		}	
+		i++;
+	}
+	check_last_red_in(cmd);
 	return (0);
 }
