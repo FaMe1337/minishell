@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:52:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:28:30 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	env_to_list(t_data *data, char **env);
 void	minimal_list_init(t_data *data);
 char	*get_prompt(t_data *data);
 void	update_prompt(t_data *data);
+char	**cpy_from_env(t_env **env);
 
 /* Parsing */
 

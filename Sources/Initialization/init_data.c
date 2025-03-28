@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 02:04:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:28:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static char	**cpy_from_env(t_env **env)
+char	**cpy_from_env(t_env **env)
 {
 	char	**res;
 	t_env	*temp;
@@ -44,6 +44,11 @@ static void	increase_shlvl(t_data *data)
 {
 	int		x;
 
+	if (!check_for_variable(*data->env, "SHLVL"))
+	{
+		env_to_list(data, (char *[]){"SHLVL=1", NULL});
+		return ;
+	}
 	x = ft_atoi((check_for_variable(*data->env, "SHLVL")->value));
 	x++;
 	free(check_for_variable(*data->env, "SHLVL")->value);
