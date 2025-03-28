@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 23:19:51 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 16:38:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,18 @@ static void	expand_token(t_token *token, t_data *data)
 	char *temp;
 
 	i = 0;
-	temp = token->value;
-	while (temp[i])
+	while (token->value[i])
 	{
+		temp = token->value;
 		if (temp[i] == '$' && !single_quote(temp, i) \
 		&& temp[i + 1])
 		{
 			if (valid_expansion(temp, i))
+			{
 				expand_str(token, data);
+				i = 0;
+				continue;
+			}
 		}
 		i++;
 	}
