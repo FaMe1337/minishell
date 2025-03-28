@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 15:29:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:20:08 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,37 @@ int	input_parser(t_data *data)
 	if (parsing_operators(data->token))
 		return (0);
 	expanse_parse(data);
+	third_tokenazor(&data->token);
 	data->cmd_tree = cmd_lst_creation(data->token);
 	remove_quotes(data->cmd_tree);
 	skip_empty_cmd(data->cmd_tree);
+	//split_for_export(data->cmd_tree);
 	free(data->input);
 	return (1);
+}
+
+void third_tokenazor(t_token **token)
+{
+	t_token *temp;
+	char **str;
+	int		i;
+	
+	temp = (*token);
+	while (temp)
+	{
+		i = 0;
+		while (temp->value[i])
+		{
+			if (!in_quotes(temp->value, i))
+			{
+				str = ft_split(temp->value, ' ');
+					if (str && str[1])
+					{
+						printf("%s\n", str[1]);
+					}		
+			}
+			i++;
+		}
+		temp = temp->next;
+	}
 }

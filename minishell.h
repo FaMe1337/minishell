@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 23:20:12 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 17:13:40 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	remove_quotes(t_pipe *tree);
 t_token	*first_tokenazor(t_data *data, char **inputs);
 t_token	*init_token(char *str);
 void	second_tokenazor(t_token **token);
+void 	third_tokenazor(t_token **token);
 
 /* Executor */
 
