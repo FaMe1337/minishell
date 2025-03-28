@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 21:39:42 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:56:41 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 			tree = tree->next;
 			continue ;
 		}
+		if (!tree->cmd || !tree->cmd[0])
+		{
+			tree = tree->next;
+			continue ;
+		}
 		if (!set_up_child(tree, data))
 			return ;
 		tree = tree->next;
@@ -64,12 +69,10 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
-	if (((!cmd_tree->cmd || !cmd_tree->cmd[0]) && \
-		(!cmd_tree->red || !cmd_tree->red[0])))
-		return ;
 	if (handle_redirections(cmd_tree, data))
 		return ;
-	printf("ola1\n");	
+	if (!cmd_tree->cmd || !cmd_tree->cmd[0])
+		return ;
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else

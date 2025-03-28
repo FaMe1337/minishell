@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 20:34:06 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 22:44:20 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,22 +116,19 @@ void	child_process(t_pipe *tree, t_data *data)
 
 	child_red_out(tree);
 	child_red_in(tree);
-	if (tree->cmd)
+	if (is_builtin(tree->cmd[0]))
+		exec_builtin(tree->cmd, data, tree);
+	else if (access(tree->cmd[0], F_OK | X_OK) == 0)
+		execve(tree->cmd[0], tree->cmd, data->env_str_array);
+	else
 	{
-		if (is_builtin(tree->cmd[0]))
-			exec_builtin(tree->cmd, data, tree);
-		else if (access(tree->cmd[0], F_OK | X_OK) == 0)
-			execve(tree->cmd[0], tree->cmd, data->env_str_array);
-		else
-		{
-			path = find_path(tree->cmd[0], data->env_str_array);
-			if (!path)
-				path = ft_strdup(tree->cmd[0]);
-			execve(path, tree->cmd, data->env_str_array);
-			free(path);
-		}
-		write(2, tree->cmd[0], ft_strlen(tree->cmd[0]));
-		ft_putstr_fd(" : command not found\n", 2);
-		exit(127);
+		path = find_path(tree->cmd[0], data->env_str_array);
+		if (!path)
+			path = ft_strdup(tree->cmd[0]);
+		execve(path, tree->cmd, data->env_str_array);
+		free(path);
 	}
+	write(2, tree->cmd[0], ft_strlen(tree->cmd[0]));
+	ft_putstr_fd(" : command not found\n", 2);
+	exit(127);
 }
