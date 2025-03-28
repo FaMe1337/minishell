@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:43:40 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:27:05 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	split_for_export(t_pipe *tree)
 
 	while (tree)
 	{
-		if (tree->cmd)
+		if (tree->cmd && *tree->cmd)
 		{
 			if (!tree->cmd[1])
 			{

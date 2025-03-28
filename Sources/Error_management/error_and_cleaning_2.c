@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 18:23:25 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:42:56 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,4 @@ void	free_stuff(t_data *data)
 		data->cmd_tree = currentz;
 	}
 	data->signaled = false;
-	free(data->input);
 }

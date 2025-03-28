@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:41:34 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:45:17 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ int	input_parser(t_data *data)
 	remove_quotes(data->cmd_tree);
 	skip_empty_cmd(data->cmd_tree);
 	split_for_export(data->cmd_tree);
+	free(data->input);
 	return (1);
 }

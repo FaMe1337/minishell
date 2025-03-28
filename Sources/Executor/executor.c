@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:40:36 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:39:42 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		ft_putstr_fd("Error creating pipe", 2);
 		return (0);
 	}
+	set_parent_signals();
 	tree->pid = fork();
 	if (tree->pid == -1)
 	{
@@ -26,7 +27,10 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		return (0);
 	}
 	if (tree->pid == 0)
+	{
+		set_signals_to_default();
 		child_process(tree, data);
+	}
 	close(tree->pipe[1]);
 	if (tree->previous && tree->previous->pipe[0] > 2)
 		close(tree->previous->pipe[0]);
@@ -37,7 +41,6 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 
 static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 {
-	int		status;
 	t_pipe	*temp;
 
 	temp = tree;
@@ -54,17 +57,19 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 	}
 	while (temp)
 	{
-		waitpid(temp->pid, &status, 0);
+		ft_waitpid(temp->pid, data);
 		temp = temp->next;
 	}
 }
 
 static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 {
-	if ((!cmd_tree->cmd || !cmd_tree->cmd[0]))
+	if (((!cmd_tree->cmd || !cmd_tree->cmd[0]) && \
+		(!cmd_tree->red || !cmd_tree->red[0])))
 		return ;
 	if (handle_redirections(cmd_tree, data))
 		return ;
+	printf("ola1\n");	
 	if (is_builtin(cmd_tree->cmd[0]))
 		exec_builtin(cmd_tree->cmd, data, cmd_tree);
 	else

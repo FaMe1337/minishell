@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 20:02:42 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 21:38:06 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	is_builtin(char *command)
 {
+	if (!command)
+		{printf("ola\n");
+			return (0);
+
+		}
 	if (ft_strcmp(command, "echo\0") == 0)
 		return (1);
 	else if (ft_strcmp(command, "cd\0") == 0)
