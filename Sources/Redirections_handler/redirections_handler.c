@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 01:05:44 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 01:27:11 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	red_in(char *str, t_pipe *cmd)
 	cmd->fd_in = fd;
 }
 
-static int	parse_redirections(char *str, t_pipe *red)
+static int	parse_redirections(char *str, t_pipe *red, int index)
 {
 	if (ft_strncmp(str, "RDI:", 4) == 0)
 		red_in(str + 4, red);
@@ -89,8 +89,8 @@ static int	parse_redirections(char *str, t_pipe *red)
 		red_out(str + 4, red);
 	else if (ft_strncmp(str, "APP:", 4) == 0)
 		append(str + 4, red);
-/* 	if (red->bad_fd)
-		return (1); */
+	if (red->bad_fd/*  && (!red->next || (red->next && red->red[index + 1])) */)
+		return (1);
 	return (0);
 }
 
@@ -112,7 +112,7 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 		i = 0;
 		while (cmd->red && cmd->red[i])
 		{
-			if (parse_redirections(cmd->red[i], cmd))
+			if (parse_redirections(cmd->red[i], cmd, i))
 				return (1);
 			i++;
 		}
