@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:59:45 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 16:05:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:19:55 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ char	*get_var_name(t_token *token)
 	int	i;
 
 	i = 0;
-	while (token->value[i] != '$')
+	while (token->value[i])
+	{
+		if (token->value[i] == '$' && single_quote(token->value, (i + 1)))
+			i++;
+		else if (token->value[i] == '$')
+			break;
 		i++;
+	}
 	i++;
 	if (token->value[i] == '$' || token->value[i] == '?')
 		return (ft_substr(token->value, i, 1));
@@ -58,4 +64,11 @@ int	ft_isquote(char c)
 	if (c == '"' || c == '\'')
 		return (1);
 	return (0);
+}
+
+void free_strs(char *str1, char *str2, char *str3)
+{
+	free(str1);
+	free(str2);
+	free(str3);
 }

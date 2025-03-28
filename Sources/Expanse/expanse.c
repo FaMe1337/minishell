@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/21 20:24:12 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/27 23:19:51 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,24 @@ char	*put_var_on_token(t_token *token, char *var)
 	char	*tmp1;
 	char	*tmp2;
 
-	i = 0;
-	while (token->value[i] != '$')
-		i++;
+	i = -1;
+	while (token->value[++i])
+	{
+		if (token->value[i] == '$' && single_quote(token->value, (i + 1)))
+			i++;
+		else if (token->value[i] == '$')
+			break;
+	}
 	j = (i + 1) + get_var_len(token->value, i + 1);
 	while (token->value[j])
 		j++;
 	tmp1 = ft_substr(token->value, 0, i);
 	tmp2 = ft_strjoin(tmp1, var);
 	free(tmp1);
-	tmp1 = ft_substr(token->value, (i + 1) \
-			+ get_var_len(token->value, i + 1), j);
+	tmp1 = ft_substr(token->value, (i + 1) + \
+			get_var_len(token->value, i + 1), j);
 	res = ft_strjoin(tmp2, tmp1);
-	free(tmp2);
-	free(tmp1);
-	free(token->value);
+	free_strs(tmp1, tmp2, token->value);
 	return (res);
 }
 
@@ -67,18 +70,17 @@ void	expand_str(t_token *token, t_data *data)
 static void	expand_token(t_token *token, t_data *data)
 {
 	int	i;
+	char *temp;
 
 	i = 0;
-	while (token->value[i])
+	temp = token->value;
+	while (temp[i])
 	{
-		if (token->value[i] == '$' && !single_quote(token->value, i) \
-		&& token->value[i + 1])
+		if (temp[i] == '$' && !single_quote(temp, i) \
+		&& temp[i + 1])
 		{
-			if (valid_expansion(token->value, i))
-			{
+			if (valid_expansion(temp, i))
 				expand_str(token, data);
-				continue ;
-			}
 		}
 		i++;
 	}

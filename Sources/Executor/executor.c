@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/24 20:28:31 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 00:45:49 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 	close(tree->pipe[1]);
 	if (tree->previous && tree->previous->pipe[0] > 2)
 		close(tree->previous->pipe[0]);
+	if (!tree->next && tree->pipe[0] > 2)
+		close(tree->pipe[0]);
 	return (1);
 }
 

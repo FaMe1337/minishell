@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 20:40:52 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:20:12 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ char	*get_var_name(t_token *token);
 int		get_var_len(char *str, int i);
 char	*get_var_values(char *var_name, t_env **env);
 bool	valid_expansion(char *str, int i);
+void 	free_strs(char *str1, char *str2, char *str3);
 
 /* Quotes */
 
