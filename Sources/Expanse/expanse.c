@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 16:38:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:55:58 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*put_var_on_token(t_token *token, char *var)
 		if (token->value[i] == '$' && single_quote(token->value, (i + 1)))
 			i++;
 		else if (token->value[i] == '$')
-			break;
+			break ;
 	}
 	j = (i + 1) + get_var_len(token->value, i + 1);
 	while (token->value[j])
@@ -69,8 +69,8 @@ void	expand_str(t_token *token, t_data *data)
 
 static void	expand_token(t_token *token, t_data *data)
 {
-	int	i;
-	char *temp;
+	int		i;
+	char	*temp;
 
 	i = 0;
 	while (token->value[i])
@@ -83,7 +83,7 @@ static void	expand_token(t_token *token, t_data *data)
 			{
 				expand_str(token, data);
 				i = 0;
-				continue;
+				continue ;
 			}
 		}
 		i++;

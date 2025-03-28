@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_directory.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:26:16 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 14:34:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:54:24 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	update_pwd(t_data *data)
 	new_pwd = NULL;
 	new_pwd = getcwd(NULL, 0);
 	if (!new_pwd)
-		return;
+		return ;
 	if (new_pwd)
 	{
 		free(data->pwd);
@@ -81,5 +81,4 @@ void	change_directory_main(char **args, t_data *data)
 		write(2, "minishell: cd: too many arguments\n", 35);
 		data->exit_status = 1;
 	}
-		
 }

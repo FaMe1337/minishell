@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanse_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:59:45 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 23:19:55 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 16:56:12 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_var_name(t_token *token)
 		if (token->value[i] == '$' && single_quote(token->value, (i + 1)))
 			i++;
 		else if (token->value[i] == '$')
-			break;
+			break ;
 		i++;
 	}
 	i++;
@@ -66,7 +66,7 @@ int	ft_isquote(char c)
 	return (0);
 }
 
-void free_strs(char *str1, char *str2, char *str3)
+void	free_strs(char *str1, char *str2, char *str3)
 {
 	free(str1);
 	free(str2);
