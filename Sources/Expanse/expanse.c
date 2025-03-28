@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:32:35 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 16:59:37 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:30:58 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	expand_str(t_token *token, t_data *data)
 	else
 		var_value = get_var_values(var_name, data->env);
 	token->value = put_var_on_token(token, var_value);
-	printf("%s\n", token->value);
 	free(var_name);
 	free(var_value);
 }

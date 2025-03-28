@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 14:17:42 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:42:55 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 		{
 			data->exit_status = 1;
 			return (1);
-		}	
+		}
 		i++;
 	}
 	check_last_red_in(cmd);

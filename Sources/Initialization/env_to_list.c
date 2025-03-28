@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_to_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:43:46 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 15:04:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:25:21 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ void	env_to_list(t_data *data, char **env)
 		data->env = safe_malloc(sizeof * data->env);
 		*data->env = NULL;
 	}
-	
 	while (env[n])
 	{
-		printf("%s\n", env[n]);
 		populate_list(env[n], data);
 		n++;
 	}

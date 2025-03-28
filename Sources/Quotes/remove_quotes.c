@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 22:11:50 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/27 21:50:16 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:42:23 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*remove_single_quote(char *str)
 static void	remove_quotes_from_cmd(char **strs)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (strs[i])
@@ -76,18 +76,17 @@ static void	remove_quotes_from_cmd(char **strs)
 			if (strs[i][j] == '\"')
 			{
 				strs[i] = remove_double_quotes(strs[i]);
-				break;
+				break ;
 			}
 			else if (strs[i][j] == '\'')
 			{
 				strs[i] = remove_single_quote(strs[i]);
-				break;
+				break ;
 			}
 		}
 		i++;
 	}
 }
-
 
 static void	remove_quotes_from_red(char **strs)
 {
@@ -103,12 +102,12 @@ static void	remove_quotes_from_red(char **strs)
 			if (strs[i][j] == '\"')
 			{
 				strs[i] = remove_double_quotes(strs[i]);
-				break;
+				break ;
 			}
 			else if (strs[i][j] == '\'')
 			{
 				strs[i] = remove_single_quote(strs[i]);
-				break;
+				break ;
 			}
 		}
 		i++;

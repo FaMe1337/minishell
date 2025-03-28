@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:06:26 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 17:20:08 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:41:34 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ int	input_parser(t_data *data)
 	char	**inputs;
 
 	if (!check_for_open_quotes(data->input))
-	{
-		ft_putstr_fd("Wrong input\n", 2);
 		return (0);
-	}
 	inputs = ft_splits(data->input);
+	if (inputs && !*inputs)
+	{
+		free_char_array(inputs);
+		return (1);
+	}
 	first_tokenazor(data, inputs);
 	if (!data->token)
 		return (0);
@@ -103,37 +105,9 @@ int	input_parser(t_data *data)
 	if (parsing_operators(data->token))
 		return (0);
 	expanse_parse(data);
-	third_tokenazor(&data->token);
 	data->cmd_tree = cmd_lst_creation(data->token);
 	remove_quotes(data->cmd_tree);
 	skip_empty_cmd(data->cmd_tree);
-	//split_for_export(data->cmd_tree);
-	free(data->input);
+	split_for_export(data->cmd_tree);
 	return (1);
-}
-
-void third_tokenazor(t_token **token)
-{
-	t_token *temp;
-	char **str;
-	int		i;
-	
-	temp = (*token);
-	while (temp)
-	{
-		i = 0;
-		while (temp->value[i])
-		{
-			if (!in_quotes(temp->value, i))
-			{
-				str = ft_split(temp->value, ' ');
-					if (str && str[1])
-					{
-						printf("%s\n", str[1]);
-					}		
-			}
-			i++;
-		}
-		temp = temp->next;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 17:13:40 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:02:36 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int		input_parser(t_data *data);
 char	**ft_splits(char *str);
 t_pipe	*cmd_lst_creation(t_token *token);
 char	**add_prefix(char **res, char *value, char *prefix);
+void 	split_for_export(t_pipe *tree);
 
 /* Expanse */
 

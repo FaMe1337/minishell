@@ -6,7 +6,7 @@
 /*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 16:59:10 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:40:36 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static void	exec_solo_pipe(t_pipe *cmd_tree, t_data *data)
 
 void	executor(t_data *data)
 {
+	if (!data->cmd_tree)
+		return ;
 	if (!data->cmd_tree->next)
 		exec_solo_pipe(data->cmd_tree, data);
 	else

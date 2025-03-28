@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:57:46 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/20 19:37:31 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/28 18:43:40 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,28 @@ char	**ft_splits(char *s)
 	if (fill (res, s))
 		return (NULL);
 	return (res);
+}
+
+void	split_for_export(t_pipe *tree)
+{
+	char	**strs;
+
+	while (tree)
+	{
+		if (tree->cmd)
+		{
+			if (!tree->cmd[1])
+			{
+				strs = ft_split(tree->cmd[0], ' ');
+				if (strs && strs[1])
+				{
+					free_char_array(tree->cmd);
+					tree->cmd = strs;
+				}
+				else
+					free_char_array(strs);
+			}
+		}
+		tree = tree->next;
+	}
 }
