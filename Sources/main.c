@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:07:34 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:59:43 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	show_starter(char **env, t_data *data)
 			ft_putstr_fd("exit\n", 2);
 			break ;
 		}
-		if (*data->input)
+		if (data->input && *data->input)
 		{
 			data->line_nbr++;
 			add_history(data->input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/29 17:48:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:03:25 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 			free(input);
 			break ;
 		}
-		if (*input)
-			write_heredoc(input, cmd->doc_pipe[1], data);
+		write_heredoc(input, cmd->doc_pipe[1], data);
 	}
 	close(cmd->doc_pipe[1]);
 }
