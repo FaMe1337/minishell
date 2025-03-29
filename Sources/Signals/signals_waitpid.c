@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_waitpid.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:08:49 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/29 00:20:16 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:25:21 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,10 @@ void	ft_waitpid(int pid, t_data *data)
 {
 	int	status;
 
-	printf("entrei\n");
 	while (waitpid(pid, &status, 0) == -1)
 	{
-		printf("%d\n", errno);
 		if (errno == EINTR)
 			continue ;
-		perror("waitpid");
 		data->exit_status = 1;
 		return ;
 	}

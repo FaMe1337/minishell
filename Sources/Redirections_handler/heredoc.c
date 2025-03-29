@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/29 00:21:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:27:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 	char	*input;
 
 	signal(SIGINT, SIG_DFL);
-	close(cmd->doc_pipe[0]);
+	if (cmd->doc_pipe[0] > 2)
+		close(cmd->doc_pipe[0]);
 	while (1)
 	{
-		if (data->signaled == false)
-			input = readline("> ");
+		input = readline("> ");
 		if (!input)
 			ctrl_d_msg_and_exit(input, str, cmd, data);
 		if (ft_strcmp(input, str) == 0)
@@ -91,10 +91,10 @@ static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 			free(input);
 			break ;
 		}
-		write_heredoc(input, cmd->doc_pipe[1], data);
+		if (*input)
+			write_heredoc(input, cmd->doc_pipe[1], data);
 	}
 	close(cmd->doc_pipe[1]);
-	exit(0);
 }
 
 int	exec_doc(char *str, t_pipe *cmd, t_data *data)
@@ -114,6 +114,7 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	close(cmd->doc_pipe[1]);
 	ft_waitpid(pid, data);
 	set_main_signals();
+	printf("exit :%d\n", data->exit_status);
 	if (data->exit_status == 130)
 		return (-1);
 	if (data->exit_status == 144)
