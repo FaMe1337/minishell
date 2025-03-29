@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/29 17:27:48 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:48:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	close(cmd->doc_pipe[1]);
 	ft_waitpid(pid, data);
 	set_main_signals();
-	printf("exit :%d\n", data->exit_status);
 	if (data->exit_status == 130)
 		return (-1);
 	if (data->exit_status == 144)
