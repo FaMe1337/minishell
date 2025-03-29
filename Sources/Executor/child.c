@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/29 15:46:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 20:41:10 by famendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,18 @@ static void	child_red_out(t_pipe *tree)
 		close(tree->pipe[1]);
 }
 
-static char	*find_path(char *cmd, char **envp)
+static char	*find_path(char *cmd, t_data *data)
 {
 	int		i;
 	char	**paths;
 	char	*result;
 	char	*path;
 
+	if (!check_for_variable((*data->env), "PATH"))
+		return (NULL);
+	paths = ft_split(check_for_variable((*data->env), "PATH")->value, ':');
 	i = 0;
-	while (ft_strncmp(envp[i], "PATH", 4) != 0)
-		i++;
-	paths = ft_split(envp[i] + 5, ':');
-	i = 0;
-	while (paths[i])
+	while (paths && paths[i])
 	{
 		path = ft_strjoin(paths[i], "/");
 		result = ft_strjoin(path, cmd);
@@ -122,7 +121,7 @@ void	child_process(t_pipe *tree, t_data *data)
 		execve(tree->cmd[0], tree->cmd, data->env_str_array);
 	else
 	{
-		path = find_path(tree->cmd[0], data->env_str_array);
+		path = find_path(tree->cmd[0], data);
 		if (!path)
 			path = ft_strdup(tree->cmd[0]);
 		execve(path, tree->cmd, data->env_str_array);
