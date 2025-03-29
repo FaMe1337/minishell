@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 20:28:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:37:39 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	free_strs(char *str1, char *str2, char *str3);
 
 bool	check_for_open_quotes(char *str);
 bool	in_quotes(char const *str, int index);
-bool	double_quotes(const char *str, int index);
 bool	single_quote(const char *str, int index);
 int		ft_isquote(char c);
 void	remove_quotes(t_pipe *tree);

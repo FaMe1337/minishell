@@ -6,7 +6,7 @@
 /*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:35:28 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/29 23:33:05 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/29 23:37:46 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,6 @@ bool	single_quote(const char *str, int index)
 	if (!double_quote && one_quote)
 		return (true);
 	return (false);
-}
-
-bool	double_quotes(const char *str, int index)
-{
-	int		i;
-	bool	double_quote;
-
-	i = 0;
-	double_quote = false;
-	while (str[i] && i < index)
-	{
-		if (str[i] == '\"')
-			double_quote = !double_quote;
-		i++;
-	}
-	return (double_quote);
 }
 
 bool	check_for_open_quotes(char *str)
