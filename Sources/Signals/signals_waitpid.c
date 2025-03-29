@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_waitpid.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:08:49 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/28 23:00:25 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/29 00:20:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	handle_signaled(int status, t_data *data)
 	if (WTERMSIG(status) == 2 && !data->signaled)
 	{
 		write(1, "\n", 1);
+		write(1, "olaoalaoaoal\n", 14);
 		data->signaled = true;
 	}
 	else if (WTERMSIG(status) == 3 && !data->signaled)
@@ -31,8 +32,10 @@ void	ft_waitpid(int pid, t_data *data)
 {
 	int	status;
 
+	printf("entrei\n");
 	while (waitpid(pid, &status, 0) == -1)
 	{
+		printf("%d\n", errno);
 		if (errno == EINTR)
 			continue ;
 		perror("waitpid");
