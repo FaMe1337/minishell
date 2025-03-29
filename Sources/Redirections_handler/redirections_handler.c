@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 20:51:25 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/28 18:42:55 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:08:32 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ int	handle_redirections(t_pipe *cmd, t_data *data)
 	while (cmd->red && cmd->red[i])
 	{
 		if (ft_strncmp(cmd->red[i], "DOC:", 4) == 0)
-			exec_doc(cmd->red[i] + 4, cmd, data);
+			if (exec_doc(cmd->red[i] + 4, cmd, data) == -1)
+				break;
 		i++;
 	}
 	i = 0;

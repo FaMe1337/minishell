@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 16:05:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/29 16:31:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:13:24 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	check_last_red_in(t_pipe *cmd)
 int	pipe_error(t_pipe *cmd)
 {
 	perror("pid error");
-	cmd->bad_fd = true;
+	if (cmd->doc_pipe[0] > 2)
+		close(cmd->doc_pipe[0]);
+	if (cmd->doc_pipe[1] > 2)
+		close(cmd->doc_pipe[1]);
 	return (-1);
 }
 
