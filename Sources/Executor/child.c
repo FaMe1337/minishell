@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/29 20:41:10 by famendes         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:09:50 by fabio            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static void	child_red_in(t_pipe *tree)
 	}
 	if (has_red)
 		close_fds(tree);
-	if (!tree->previous && tree->pipe[0] > 2)
-		close(tree->pipe[0]);
 }
 
 static void	child_red_out(t_pipe *tree)
@@ -77,8 +75,6 @@ static void	child_red_out(t_pipe *tree)
 		dup2(tree->pipe[1], STDOUT_FILENO);
 		close(tree->pipe[1]);
 	}
-	if (!tree->next && tree->pipe[1] > 2)
-		close(tree->pipe[1]);
 }
 
 static char	*find_path(char *cmd, t_data *data)
@@ -113,8 +109,14 @@ void	child_process(t_pipe *tree, t_data *data)
 {
 	char	*path;
 
-	child_red_out(tree);
 	child_red_in(tree);
+	child_red_out(tree);
+	if (tree->next || tree->previous)
+	{
+		if (tree->pipe[0] > 2)
+			close(tree->pipe[0]);
+		close(tree->pipe[1]);
+	}
 	if (is_builtin(tree->cmd[0]))
 		exec_builtin(tree->cmd, data, tree);
 	else if (access(tree->cmd[0], F_OK | X_OK) == 0)
