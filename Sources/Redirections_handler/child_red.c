@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_red.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:57:55 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/30 16:13:41 by fabio            ###   ########.fr       */
+/*   Updated: 2025/03/30 22:08:45 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	child_red_in(t_pipe *tree)
 	bool	has_red;
 
 	i = 0;
-	printf("dentro do child red in o cmd é : %s\n", tree->cmd[0]);
 	has_red = false;
 	if (tree->red)
 	{
@@ -42,13 +41,10 @@ void	child_red_in(t_pipe *tree)
 			i++;
 		}
 	}
-	printf("has_read: %d\n", has_red);
 	if (tree->previous != NULL)
 	{
-		if (!has_red){
+		if (!has_red)
 			dup2(tree->previous->pipe[0], STDIN_FILENO);
-			printf("entrei no previous\n");
-		}
 		close(tree->previous->pipe[0]);
 	}
 	if (has_red)
@@ -63,7 +59,6 @@ void	child_red_out(t_pipe *tree)
 	bool	has_red;
 
 	i = -1;
-	ft_putstr_fd("entrei no red out", 2);
 	has_red = false;
 	if (tree->red)
 	{
@@ -79,10 +74,8 @@ void	child_red_out(t_pipe *tree)
 	}
 	if (tree->next)
 	{
-		if (!has_red){
+		if (!has_red)
 			dup2(tree->pipe[1], STDOUT_FILENO);
-			printf("entrei dup do red out\n");
-		}
 		close(tree->pipe[1]);
 	}
 	if (!tree->next && tree->pipe[1] > 2)
