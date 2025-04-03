@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:39:06 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/29 17:31:21 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:02:35 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	exec_builtin(char **cmd, t_data *data, t_pipe *tree)
 	{
 		close(STDOUT_FILENO);
 		close(STDIN_FILENO);
-		exit(minicall()->exit_status);
+		exit_exit(data, 0);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_cleaning_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/29 22:59:34 by fabio            ###   ########.fr       */
+/*   Updated: 2025/04/03 19:42:33 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	clean_all_fds(t_pipe *tree)
 		close(tree->fd_out);
 	if (tree->doc_pipe[0] > 2)
 		close(tree->doc_pipe[0]);
-	if (tree->pipe[0] > 2)
-		close(tree->pipe[0]);
 	if (tree->pipe[1] > 2)
 		close(tree->pipe[1]);
 }
@@ -51,6 +49,7 @@ void	free_stuff(t_data *data)
 	t_token	*current;
 	t_pipe	*currentz;
 
+	printf("ola1\n");
 	if (data->input)
 		free(data->input);
 	while (data->token)
@@ -60,6 +59,7 @@ void	free_stuff(t_data *data)
 		free(data->token);
 		data->token = current;
 	}
+	printf("olameio\n");
 	while (data->cmd_tree)
 	{
 		currentz = data->cmd_tree->next;
@@ -70,4 +70,6 @@ void	free_stuff(t_data *data)
 		data->cmd_tree = currentz;
 	}
 	data->signaled = false;
+	printf("free stuff%d\n", data-> exit_status);
+	printf("ola2\n");
 }

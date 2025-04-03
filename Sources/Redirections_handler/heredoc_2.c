@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 16:05:08 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/29 23:13:24 by fabio            ###   ########.fr       */
+/*   Updated: 2025/04/03 19:53:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	ctrl_d_msg_and_exit(char *input, char *str, t_pipe *pipe, t_data *data)
 	close(pipe->doc_pipe[1]);
 	print_ctrl_d_msg(str, data);
 	data->exit_status = 144;
-	exit(144);
+	exit_exit(data, 144);
+	// exit(144);
 }

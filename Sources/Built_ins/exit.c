@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/03/27 23:05:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:02:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	builtin_exit(char **args, t_data *data)
 	if (!args[1])
 	{
 		data->exit_status = 0;
-		exit_exit(data);
+		exit_exit(data, 0);
 	}
 	if (args[2] && is_string_numeric(args[1]))
 	{
@@ -97,8 +97,8 @@ void	builtin_exit(char **args, t_data *data)
 		write(1, args[1], ft_strlen(args[1]));
 		write(1, ": numeric argument required\n", 29);
 		data->exit_status = 2;
-		exit_exit(data);
+		exit_exit(data, 0);
 	}
 	data->exit_status = (unsigned char)ft_atoll(args[1]);
-	exit_exit(data);
+	exit_exit(data, 0);
 }

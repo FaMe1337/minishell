@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: famendes <famendes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/29 20:13:05 by famendes         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:39:40 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		ft_putstr_fd("Error creating fork", 2);
 		return (0);
 	}
+/* 	else if (tree->pid != 0) // foi acrescentado
+	{
+			// close(tree->pipe[1]);
+			// exit_exit(data, 0);
+			return 0;
+	} */
 	if (tree->pid == 0)
 	{
 		set_signals_to_default();
@@ -36,6 +42,7 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		close(tree->previous->pipe[0]);
 	if (!tree->next && tree->pipe[0] > 2)
 		close(tree->pipe[0]);
+	clean_all_fds(tree);	
 	return (1);
 }
 

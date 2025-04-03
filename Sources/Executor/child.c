@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 17:32:18 by famendes          #+#    #+#             */
-/*   Updated: 2025/03/30 18:09:50 by fabio            ###   ########.fr       */
+/*   Updated: 2025/04/03 19:04:50 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	child_red_out(t_pipe *tree)
 			{
 				has_red = true;
 				dup2(tree->fd_out, STDOUT_FILENO);
+				close (tree->fd_out);
 			}
 			i++;
 		}
@@ -118,7 +119,7 @@ void	child_process(t_pipe *tree, t_data *data)
 		close(tree->pipe[1]);
 	}
 	if (is_builtin(tree->cmd[0]))
-		exec_builtin(tree->cmd, data, tree);
+		return (exec_builtin(tree->cmd, data, tree));
 	else if (access(tree->cmd[0], F_OK | X_OK) == 0)
 		execve(tree->cmd[0], tree->cmd, data->env_str_array);
 	else
@@ -131,5 +132,5 @@ void	child_process(t_pipe *tree, t_data *data)
 	}
 	write(2, tree->cmd[0], ft_strlen(tree->cmd[0]));
 	ft_putstr_fd(" : command not found\n", 2);
-	exit(127);
+	exit_exit(data, 127);
 }
