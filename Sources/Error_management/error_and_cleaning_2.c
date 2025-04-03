@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:46:00 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/03 19:42:33 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:24:08 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	free_stuff(t_data *data)
 	t_token	*current;
 	t_pipe	*currentz;
 
-	printf("ola1\n");
 	if (data->input)
 		free(data->input);
 	while (data->token)
@@ -59,7 +58,6 @@ void	free_stuff(t_data *data)
 		free(data->token);
 		data->token = current;
 	}
-	printf("olameio\n");
 	while (data->cmd_tree)
 	{
 		currentz = data->cmd_tree->next;
@@ -70,6 +68,4 @@ void	free_stuff(t_data *data)
 		data->cmd_tree = currentz;
 	}
 	data->signaled = false;
-	printf("free stuff%d\n", data-> exit_status);
-	printf("ola2\n");
 }

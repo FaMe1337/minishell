@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 19:31:43 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:10:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	exit_exit(t_data *data, int number)
 {
 	int	code;
 
-
 	if (data->pwd)
 		free(data->pwd);
 	if (data->home)
@@ -75,11 +74,9 @@ void	exit_exit(t_data *data, int number)
 	clean_cmd_tree(data);
 	clean_all_fds(data->cmd_tree);
 	clear_history();
-	printf("antes exit_exit %d\n", data->exit_status);
 	if (number != 0)
 		code = data->exit_status;
 	else
 	 	code = number;
-	printf("exit_exit %d\n", code );
 	exit(code);
 }

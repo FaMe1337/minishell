@@ -6,11 +6,18 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:08:49 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/03 19:58:12 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:49:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	handle_heredoc(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\n", 1);
+	exit_exit(minicall(), 130);
+}
 
 static void	handle_signaled(int status, t_data *data)
 {
@@ -21,10 +28,6 @@ static void	handle_signaled(int status, t_data *data)
 	{
 		write(1, "\n", 1);
 		data->signaled = true;
-		printf("%d\n", data->cmd_tree->pid);
-		if (data->cmd_tree->pid == -1)
-			exit_exit(data, 128 + sig);
-
 	}
 	else if (sig == SIGQUIT && !data->signaled)
 	{
@@ -32,7 +35,6 @@ static void	handle_signaled(int status, t_data *data)
 		data->signaled = true;
 	}
 	minicall()->exit_status = 128 + sig;
-	printf("fx ctrl c%d\n", data->exit_status);
 }
 
 void	ft_waitpid(int pid, t_data *data)
@@ -43,8 +45,7 @@ void	ft_waitpid(int pid, t_data *data)
 	{
 		if (errno == EINTR)
 			continue ;
-		printf("passei oaoalaoaoal \n");
-		data->exit_status = 1;
+		data->exit_status = 130;
 		return ;
 	}
 	if (WIFEXITED(status))
@@ -53,4 +54,5 @@ void	ft_waitpid(int pid, t_data *data)
 		handle_signaled(status, data);
 	else
 		data->exit_status = 1;
+	printf("a saida do wait pid %d\n", data->exit_status);
 }

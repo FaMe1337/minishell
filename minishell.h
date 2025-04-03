@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 19:01:43 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:42:57 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void	set_parent_signals(void);
 void	set_signals_to_ignore(void);
 void	ft_waitpid(int pid, t_data *data);
 void	ctrl_d_msg_and_exit(char *input, char *str, t_pipe *pipe, t_data *data);
+void	handle_heredoc(int sig);
 
 /* Data */
 

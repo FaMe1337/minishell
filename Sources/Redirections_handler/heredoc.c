@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabio <fabio@student.42.fr>                +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/03/29 23:14:19 by fabio            ###   ########.fr       */
+/*   Updated: 2025/04/03 21:45:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,16 @@ static void	write_heredoc(char *input, int wpipe, t_data *data)
 	free(temp);
 }
 
+
 static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
-	char	*input;
+	char				*input;
+	struct sigaction	sa;
 
-	signal(SIGINT, SIG_DFL);
+	sa.sa_handler = handle_heredoc;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
 	if (cmd->doc_pipe[0] > 2)
 		close(cmd->doc_pipe[0]);
 	while (1)
@@ -94,12 +99,12 @@ static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 		write_heredoc(input, cmd->doc_pipe[1], data);
 	}
 	close(cmd->doc_pipe[1]);
-	exit(0);
+	exit_exit(data, 0);
 }
 
 int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
-	int	pid;
+	int pid;
 
 	if (cmd->doc_pipe[0] > 2)
 		close(cmd->doc_pipe[0]);
@@ -114,11 +119,14 @@ int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 	close(cmd->doc_pipe[1]);
 	ft_waitpid(pid, data);
 	set_main_signals();
+	printf ("ola1\n");
+	printf("o exit e: %d\n",data->exit_status);
 	if (data->exit_status == 130)
 	{
 		close(cmd->doc_pipe[0]);
 		return (-1);
 	}
+	printf ("ola2\n");
 	if (data->exit_status == 144)
 		data->exit_status = 0;
 	return (0);
