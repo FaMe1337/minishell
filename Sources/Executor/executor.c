@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/04 19:13:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:30:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		close(tree->previous->pipe[0]);
 	if (!tree->next && tree->pipe[0] > 2)
 		close(tree->pipe[0]);
-	clean_all_fds(tree);	
+	clean_all_fds(tree);
 	return (1);
 }
 

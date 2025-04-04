@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/04/04 18:55:36 by toferrei         ###   ########.fr        #
+#    Updated: 2025/04/04 20:25:26 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ OBJECTS		=	$(patsubst $(SRC)%.c, $(OBJ_DIR)%.o, $(SOURCES))
 # Compiler and Flags
 CC			=	cc
 LDFLAGS		=	-L$(LIBFT) -lft
-CFLAGS		=	-g -Wall -Wextra -Werror
+CFLAGS		=	-g -Wall -Wextra -Werror 
 RFLAGS		=	-lreadline
 
 # Default Target
@@ -109,7 +109,6 @@ re: fclean all
 
 # Phony targets
 .PHONY: all clean fclean re
-
 
 v: re
 	valgrind --suppressions=readline.supp --show-leak-kinds=all --leak-check=full --track-fds=yes ./minishell

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:09:28 by toferrei          #+#    #+#             */
-/*   Updated: 2024/04/13 18:19:26 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:31:19 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,3 @@ int	ft_toupper(int ch)
 	else
 		return (ch);
 }
-
-/* int	main(void)
-{
-	printf("%c", ft_toupper('+'));
-} */

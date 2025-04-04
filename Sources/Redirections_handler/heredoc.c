@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:24:16 by fabio             #+#    #+#             */
-/*   Updated: 2025/04/04 19:19:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:29:35 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static void	write_heredoc(char *input, int wpipe, t_data *data)
 	free(temp);
 }
 
-
 static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 {
 	char				*input;
@@ -105,7 +104,7 @@ static void	read_heredoc(char *str, t_pipe *cmd, t_data *data)
 
 int	exec_doc(char *str, t_pipe *cmd, t_data *data)
 {
-	int pid;
+	int	pid;
 
 	if (cmd->doc_pipe[0] > 2)
 		close(cmd->doc_pipe[0]);

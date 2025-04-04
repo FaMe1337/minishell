@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/04 19:19:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:30:43 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*safe_malloc(size_t size)
 	return (ret);
 }
 
- void	clean_tokens(t_data *data)
+void	clean_tokens(t_data *data)
 {
 	t_token	*current;
 
