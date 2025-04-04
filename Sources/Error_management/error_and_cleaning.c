@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:14:12 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 21:10:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:02:42 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*safe_malloc(size_t size)
 	return (ret);
 }
 
-static void	clean_tokens(t_data *data)
+ void	clean_tokens(t_data *data)
 {
 	t_token	*current;
 
@@ -41,7 +41,7 @@ static void	clean_tokens(t_data *data)
 	}
 }
 
-static void	clean_cmd_tree(t_data *data)
+void	clean_cmd_tree(t_data *data)
 {
 	t_pipe	*current;
 
@@ -60,8 +60,6 @@ static void	clean_cmd_tree(t_data *data)
 
 void	exit_exit(t_data *data, int number)
 {
-	int	code;
-
 	if (data->pwd)
 		free(data->pwd);
 	if (data->home)
@@ -75,8 +73,6 @@ void	exit_exit(t_data *data, int number)
 	clean_all_fds(data->cmd_tree);
 	clear_history();
 	if (number != 0)
-		code = data->exit_status;
-	else
-	 	code = number;
-	exit(code);
+		data->exit_status = number;
+	exit(data->exit_status);
 }

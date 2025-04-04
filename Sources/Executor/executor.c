@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 19:39:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:26:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 	temp = tree;
 	while (tree)
 	{
+		if (data->exit_status == 130 /* && data->signaled == true */)
+		{
+			// data->exit_status = 0;
+			return ;
+		}
 		if (handle_redirections(tree, data))
 		{
 			tree = tree->next;

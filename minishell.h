@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 21:42:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:01:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	*safe_malloc(size_t size);
 void	free_char_array(char **res);
 void	clean_all_fds(t_pipe *tree);
 void	exit_exit(t_data *data, int number);
+
+
 
 /* Initialize Data */
 

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/03 19:02:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:01:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	is_string_numeric(char *str)
 
 void	builtin_exit(char **args, t_data *data)
 {
-	write(1, "exit\n", 6);
+	printf("exit\n");
 	if (!args[1])
 	{
 		data->exit_status = 0;
@@ -100,5 +100,6 @@ void	builtin_exit(char **args, t_data *data)
 		exit_exit(data, 0);
 	}
 	data->exit_status = (unsigned char)ft_atoll(args[1]);
+	printf("%d\n", data->exit_status);
 	exit_exit(data, 0);
 }
