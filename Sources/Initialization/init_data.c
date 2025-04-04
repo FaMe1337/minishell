@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:25:17 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 21:26:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:27:21 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,4 @@ void	init_data(char **env, t_data *data)
 	data->exit_status = 0;
 	data->line_nbr = 0;
 	data->signaled = false;
-
 }

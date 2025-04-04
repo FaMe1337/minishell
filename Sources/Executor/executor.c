@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:39:57 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/04 17:26:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 19:13:31 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 		ft_putstr_fd("Error creating fork", 2);
 		return (0);
 	}
-/* 	else if (tree->pid != 0) // foi acrescentado
-	{
-			// close(tree->pipe[1]);
-			// exit_exit(data, 0);
-			return 0;
-	} */
 	if (tree->pid == 0)
 	{
 		set_signals_to_default();
@@ -48,16 +42,11 @@ static int	set_up_child(t_pipe *tree, t_data *data)
 
 static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 {
-	t_pipe	*temp;
-
-	temp = tree;
+	data->exit_status = 0;
 	while (tree)
 	{
-		if (data->exit_status == 130 /* && data->signaled == true */)
-		{
-			// data->exit_status = 0;
+		if (data->exit_status == 130)
 			return ;
-		}
 		if (handle_redirections(tree, data))
 		{
 			tree = tree->next;
@@ -72,10 +61,11 @@ static void	exec_multiple_pipes(t_pipe *tree, t_data *data)
 			return ;
 		tree = tree->next;
 	}
-	while (temp)
+	tree = data->cmd_tree;
+	while (tree)
 	{
-		ft_waitpid(temp->pid, data);
-		temp = temp->next;
+		ft_waitpid(tree->pid, data);
+		tree = tree->next;
 	}
 }
 

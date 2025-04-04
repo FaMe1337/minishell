@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:42 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/04 17:01:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 19:17:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_data
 	char		**env_str_array;
 	int			exit_status;
 	int			line_nbr;
+	int			tmp;
 	bool		signaled;
 	t_env		**env;
 	t_token		*token;

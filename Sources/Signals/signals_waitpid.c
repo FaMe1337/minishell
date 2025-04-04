@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:08:49 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/04 17:18:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 19:20:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	handle_heredoc(int sig)
 {
 	(void)sig;
+
+	close(minicall()->tmp);
 	write(STDOUT_FILENO, "\n", 1);
-	minicall()->signaled = true;
 	minicall()->exit_status = 130;
 	exit_exit(minicall(), 130);
 }

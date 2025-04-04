@@ -6,11 +6,13 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:29:20 by famendes          #+#    #+#             */
-/*   Updated: 2025/04/03 19:01:37 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 18:44:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+bool signifier = false;
 
 void	show_starter(char **env, t_data *data)
 {

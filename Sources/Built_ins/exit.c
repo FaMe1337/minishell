@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 11:14:05 by toferrei          #+#    #+#             */
-/*   Updated: 2025/04/04 17:01:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2025/04/04 20:13:48 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void	builtin_exit(char **args, t_data *data)
 		exit_exit(data, 0);
 	}
 	data->exit_status = (unsigned char)ft_atoll(args[1]);
-	printf("%d\n", data->exit_status);
+	printf("");
 	exit_exit(data, 0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fabio <fabio@student.42.fr>                +#+  +:+       +#+         #
+#    By: toferrei <toferrei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 14:31:18 by toferrei          #+#    #+#              #
-#    Updated: 2025/03/20 19:32:44 by fabio            ###   ########.fr        #
+#    Updated: 2025/04/04 18:55:36 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,3 +109,7 @@ re: fclean all
 
 # Phony targets
 .PHONY: all clean fclean re
+
+
+v: re
+	valgrind --suppressions=readline.supp --show-leak-kinds=all --leak-check=full --track-fds=yes ./minishell
