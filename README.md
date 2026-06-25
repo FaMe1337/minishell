@@ -2,7 +2,7 @@
 
 A Unix shell written in C as part of the 42 Lisboa Common Core curriculum.
 
-Developed collaboratively by **Fábio Santos** and **Tomaz**.
+Developed collaboratively by **Fábio Santos** and **Tomaz Lima**.
 
 The goal of this project is to recreate the core behavior of a Unix shell by implementing command parsing, process creation, pipes, redirections, environment expansion and built-in commands.
 
